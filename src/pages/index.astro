@@ -17,20 +17,20 @@ const HOTELSYNC_BOOKING_URL =
   <!-- Sección 0: Header / Navbar (Sticky) -->
   <Navbar />
 
-  <main class="flex-1">
+  <main class="flex-1 bg-continuous-sunset bg-gradient-to-b from-[#fffdf7] via-[#fef6d8] to-[#fbd5b5]">
     <!-- Sección 1: Hero Section (Primer Impacto) -->
     <Hero hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
 
-    <!-- Sección 2: Confianza y Servicios Rápidos -->
+    <!-- Sección 2: Confianza y Servicios Rápidos (Transparente sobre el degradado continuo) -->
     <TrustServices />
 
-    <!-- Sección 3: Catálogo de Cabañas (Tarjetas y Modales) -->
+    <!-- Sección 3: Catálogo de Cabañas (Transparente con tarjetas blanco puro flotantes) -->
     <CabinCatalog />
 
-    <!-- Sección: Cómo Reservar (Flujo HotelSync & WhatsApp) -->
+    <!-- Sección: Cómo Reservar (Transparente con tarjetas blanco puro flotantes) -->
     <HowToBook hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
 
-    <!-- Sección 4: Ubicación Privilegiada -->
+    <!-- Sección 4: Ubicación Privilegiada (Transparente antes del Footer azul marino) -->
     <Location />
   </main>
 

@@ -22,22 +22,21 @@ const {
     aria-hidden="true"
   ></div>
 
-  <!-- Contenedor Principal Glassmorphism Cálido (#F2FAFC/95) -->
+  <!-- Contenedor Principal en Blanco Puro / Glassmorphism Cálido -->
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
-    <div class="bg-[#F2FAFC]/95 backdrop-blur-md shadow-2xl p-3 sm:p-5">
+    <div class="bg-white/95 backdrop-blur-md shadow-2xl border border-amber-900/10 p-3 sm:p-5">
       <!-- Marco Interior Punteado (Guiño directo al borde punteado del logo) -->
       <div class="border-2 border-dotted border-[#0A2246]/30 p-6 sm:p-12 lg:p-14">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <!-- Columna de Texto Principal (7 Columnas) -->
           <div class="lg:col-span-7 text-left">
-            <div class="inline-flex items-center gap-2.5 bg-pinamar-sun border border-pinamar-navy/20 px-4 py-1.5 mb-6">
+            <div class="inline-flex items-center gap-2.5 bg-pinamar-sun border border-amber-900/15 px-4 py-1.5 mb-6">
               <span class="w-2 h-2 rounded-full bg-sunset-5"></span>
               <span class="text-xs uppercase tracking-widest font-bold text-pinamar-navy">
                 TRADICIÓN Y DESCANSO · AV. PACÍFICO 5020
               </span>
             </div>
 
-            <!-- H1 en Playfair Display sin subrayados, combinando peso Serif y cursiva en color de acento -->
             <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.2rem] font-bold text-pinamar-navy tracking-tight leading-[1.18] mb-6">
               Más de <span class="italic font-normal text-sunset-5">25 años</span> siendo parte de tus estadías. Tu lugar en La Serena <span class="italic font-normal text-sunset-5">a pasos del mar.</span>
             </h1>
@@ -46,8 +45,8 @@ const {
               Un refugio cálido y familiar a solo 5 minutos caminando de la playa de Peñuelas, con atención las 24 horas y desayuno incluido.
             </p>
 
-            <!-- Barra Buscador / Reserva Directa Integrada -->
-            <div class="bg-white p-5 sm:p-6 shadow-lg border-l-4 border-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <!-- Barra Flotante de Reserva Directa en Blanco Puro Sólido (bg-white + border-amber-900/10) -->
+            <div class="bg-white p-5 sm:p-6 shadow-md border border-amber-900/10 border-l-4 border-l-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span class="block text-[11px] uppercase tracking-widest text-sunset-4 font-bold mb-0.5">
                   RESERVA ONLINE OFICIAL
@@ -62,7 +61,7 @@ const {
                 href={hotelSyncUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-md transition-all duration-300 ease-in-out"
+                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-sm transition-all duration-300 ease-in-out"
               >
                 Ver Disponibilidad
               </a>
@@ -71,7 +70,7 @@ const {
 
           <!-- Columna Derecha: Sello Visual Retro-Sunset + Fotografía Costera -->
           <div class="lg:col-span-5 relative">
-            <div class="relative bg-white p-3 shadow-xl border-2 border-dotted border-[#0A2246]/30">
+            <div class="relative bg-white p-3 shadow-xl border border-amber-900/10">
               <div class="relative aspect-[4/5] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
@@ -80,7 +79,7 @@ const {
                   loading="eager"
                 />
                 <!-- Sello Flotante con el Logo Original -->
-                <div class="absolute top-4 right-4 bg-[#F2FAFC]/95 backdrop-blur-sm p-2 shadow-lg border border-pinamar-navy/15">
+                <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm p-2 shadow-lg border border-amber-900/10">
                   <img
                     src="/logocabanas.png"
                     alt="Emblema Cabañas Pinamar"
@@ -101,10 +100,10 @@ const {
     </div>
   </div>
 
-  <!-- Divisor Inferior SVG de Horizonte / Ola en color #F2FAFC (pinamar-ice) replicando el corte del logo -->
+  <!-- Divisor Inferior SVG de Horizonte / Ola en color #fffdf7 para fundirse con el inicio del degradado continuo -->
   <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none">
     <svg
-      class="relative block w-full h-12 sm:h-20 text-pinamar-ice"
+      class="relative block w-full h-12 sm:h-20 text-[#fffdf7]"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1440 120"
       preserveAspectRatio="none"

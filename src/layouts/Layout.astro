@@ -38,14 +38,27 @@ const {
         --sunset-5: #E63B06;
       }
 
+      /* Degradado Continuo Inmersivo del Body / Main (Crema Solar -> Amarillo Sol -> Damasco -> Naranja Atardecer) */
+      .bg-continuous-sunset {
+        background-image: linear-gradient(
+          180deg,
+          #fffdf7 0%,
+          #fef6d8 35%,
+          #fde8d0 70%,
+          #fbd5b5 100%
+        );
+      }
+
+      /* Línea decorativa viva del logo al 100% de saturación */
+      .bg-logo-vivid-line {
+        background-image: linear-gradient(90deg, #f9c116 0%, #e76a14 100%);
+      }
+
       .bg-pinamar-gradient {
         background-image: linear-gradient(180deg, #FCE600 0%, #F9C600 25%, #F59B00 50%, #F06A00 75%, #E63B06 100%);
       }
       .bg-pinamar-stripes {
         background-image: linear-gradient(180deg, #FCE600 0% 20%, #F9C600 20% 40%, #F59B00 40% 60%, #F06A00 60% 80%, #E63B06 80% 100%);
-      }
-      .bg-pinamar-pastel {
-        background-image: linear-gradient(180deg, #FFFDF0 0%, #FFF4D6 50%, #F2FAFC 100%);
       }
       .bg-sunset-5 {
         background-color: #E63B06 !important;
@@ -81,7 +94,7 @@ const {
       }
     </style>
   </head>
-  <body class="bg-pinamar-ice text-pinamar-navy font-sans antialiased selection:bg-sunset-3 selection:text-pinamar-navy min-h-screen flex flex-col">
+  <body class="bg-continuous-sunset bg-gradient-to-b from-[#fffdf7] via-[#fef6d8] to-[#fbd5b5] text-pinamar-navy font-sans antialiased selection:bg-[#f9c116]/40 selection:text-pinamar-navy min-h-screen flex flex-col">
     <slot />
 
     <!-- Script Global de Scroll Reveal con IntersectionObserver -->

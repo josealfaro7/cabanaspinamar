@@ -70,7 +70,7 @@ const whatsappSteps = [
       type="button"
       @click="toggleChannel('hotelsync')"
       :aria-expanded="activeChannel === 'hotelsync'"
-      class="order-1 md:order-1 group w-full min-h-[48px] text-left bg-white p-2.5 shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none"
+      class="order-1 md:order-1 group w-full min-h-[48px] text-left bg-white border border-amber-900/10 p-2.5 shadow-sm hover:shadow-lg transition-all duration-300 focus:outline-none"
     >
       <div
         :class="[
@@ -165,7 +165,7 @@ const whatsappSteps = [
       type="button"
       @click="toggleChannel('whatsapp')"
       :aria-expanded="activeChannel === 'whatsapp'"
-      class="order-3 md:order-2 group w-full min-h-[48px] text-left bg-white p-2.5 shadow-md hover:shadow-xl transition-all duration-300 focus:outline-none"
+      class="order-3 md:order-2 group w-full min-h-[48px] text-left bg-white border border-amber-900/10 p-2.5 shadow-sm hover:shadow-lg transition-all duration-300 focus:outline-none"
     >
       <div
         :class="[

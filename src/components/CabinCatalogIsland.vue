@@ -115,7 +115,7 @@ onUnmounted(() => {
       <article
         v-for="cabin in props.cabins"
         :key="cabin.id"
-        class="bg-white p-2.5 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out flex flex-col group"
+        class="bg-white border border-amber-900/10 p-2.5 shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out flex flex-col group"
       >
         <div class="border-2 border-dotted border-[#0A2246]/30 flex-1 flex flex-col">
           <!-- Imagen Principal -->
