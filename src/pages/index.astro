@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import TrustServices from '../components/TrustServices.astro';
+import CabinCatalog from '../components/CabinCatalog.astro';
+import HowToBook from '../components/HowToBook.astro';
+import Location from '../components/Location.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+
+const HOTELSYNC_BOOKING_URL =
+  'https://app.hotelsync.com/engine/es?engine_code=e0dacb55418a3ad29a5f9d07b988ba218e10eeb0&adults=2&children=0';
+---
+
+<Layout>
+  <!-- Sección 0: Header / Navbar (Sticky) -->
+  <Navbar />
+
+  <main class="flex-1">
+    <!-- Sección 1: Hero Section (Primer Impacto) -->
+    <Hero hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
+
+    <!-- Sección 2: Confianza y Servicios Rápidos -->
+    <TrustServices />
+
+    <!-- Sección 3: Catálogo de Cabañas (Tarjetas y Modales) -->
+    <CabinCatalog />
+
+    <!-- Sección: Cómo Reservar (Flujo HotelSync & WhatsApp) -->
+    <HowToBook hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
+
+    <!-- Sección 4: Ubicación Privilegiada -->
+    <Location />
+  </main>
+
+  <!-- Sección 5: Footer y Políticas -->
+  <Footer />
+
+  <!-- Botón Flotante Permanente de WhatsApp -->
+  <WhatsAppFloat />
+</Layout>

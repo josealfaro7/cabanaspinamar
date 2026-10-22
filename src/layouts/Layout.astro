@@ -1,0 +1,82 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Cabañas Pinamar | La Serena',
+  description = 'Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/logocabanas.png" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Google Fonts: Lora & Lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <style is:global>
+      .reveal-on-scroll {
+        @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+        will-change: opacity, transform;
+      }
+      .reveal-on-scroll.is-visible {
+        @apply opacity-100 translate-y-0;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-primary font-sans antialiased selection:bg-accent selection:text-white min-h-screen flex flex-col">
+    <slot />
+
+    <!-- Script Global de Scroll Reveal con IntersectionObserver -->
+    <script>
+      const initScrollReveal = () => {
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+        if (!('IntersectionObserver' in window)) {
+          revealElements.forEach((el) => {
+            el.classList.remove('opacity-0', 'translate-y-8');
+            el.classList.add('is-visible', 'opacity-100', 'translate-y-0');
+          });
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = entry.target as HTMLElement;
+                target.classList.remove('opacity-0', 'translate-y-8');
+                target.classList.add('is-visible', 'opacity-100', 'translate-y-0');
+                obs.unobserve(target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px',
+          }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollReveal);
+      } else {
+        initScrollReveal();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+interface Props {
+  hotelSyncUrl?: string;
+}
+
+const {
+  hotelSyncUrl = 'https://app.hotelsync.com/engine/es?engine_code=e0dacb55418a3ad29a5f9d07b988ba218e10eeb0&adults=2&children=0',
+} = Astro.props;
+---
+
+<div class="relative">
+  <!-- Hero Principal a Pantalla Completa -->
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-primary">
+    <!-- Imagen Placeholder de Fondo -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1920&q=80"
+        alt="Cabañas Pinamar en La Serena"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+      <!-- Overlay oscuro gradiente -->
+      <div class="absolute inset-0 bg-primary/45"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+    </div>
+
+    <!-- Contenido Centralizado -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 py-24 text-center">
+      <p class="text-white/90 text-xs uppercase tracking-widest font-bold mb-6">
+        TRADICIÓN Y DESCANSO
+      </p>
+
+      <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+        Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Barra Horizontal Blanca Superpuesta en la Parte Inferior del Hero -->
+  <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-8 -mt-12">
+    <div class="bg-white p-8 shadow-lg border border-gray-200 rounded-none flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="text-center sm:text-left">
+        <span class="block text-xs uppercase tracking-widest text-primary/60 font-bold mb-1">
+          RESERVA DIRECTA · MEJOR TARIFA GARANTIZADA
+        </span>
+        <p class="font-serif text-xl sm:text-2xl font-bold text-primary">
+          Reserva tu estadía hoy
+        </p>
+      </div>
+
+      <!-- Botón Secundario en la Barra Inferior -->
+      <a
+        href={hotelSyncUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto text-center border border-primary bg-primary hover:bg-accent text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-none transition-all duration-300 ease-in-out"
+      >
+        Ver Disponibilidad
+      </a>
+    </div>
+  </div>
+</div>

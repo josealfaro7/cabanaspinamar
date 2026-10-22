@@ -1,0 +1,55 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  capacity: string;
+  defaultGuests: number;
+  mainImage: string;
+  images: string[];
+  delay?: number;
+}
+
+const { id, title, capacity, defaultGuests, mainImage, images, delay = 0 } = Astro.props;
+---
+
+<article
+  style={`transition-delay: ${delay}ms;`}
+  class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out bg-surface rounded-none border border-gray-200 hover:border-primary/40 hover:shadow-md flex flex-col"
+>
+  <!-- Imagen Placeholder -->
+  <div class="relative h-64 w-full overflow-hidden bg-gray-100">
+    <img
+      src={mainImage}
+      alt={title}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Contenido con Espacios en Blanco Generosos -->
+  <div class="p-8 flex-1 flex flex-col justify-between">
+    <div>
+      <p class="text-xs uppercase tracking-widest text-primary/60 font-bold mb-2">
+        {capacity}
+      </p>
+      <h3 class="font-serif text-2xl font-bold text-primary mb-6">
+        {title}
+      </h3>
+    </div>
+
+    <div class="pt-4 border-t border-gray-200">
+      <button
+        type="button"
+        data-open-cabin-modal
+        data-cabin-id={id}
+        data-cabin-title={title}
+        data-cabin-capacity={capacity}
+        data-cabin-guests={defaultGuests}
+        data-cabin-images={JSON.stringify(images)}
+        class="w-full border border-primary text-primary hover:bg-primary hover:text-white font-bold text-xs uppercase tracking-widest py-3.5 px-6 rounded-none transition-all duration-300 ease-in-out focus:outline-none"
+      >
+        Ver detalles
+      </button>
+    </div>
+  </div>
+</article>
