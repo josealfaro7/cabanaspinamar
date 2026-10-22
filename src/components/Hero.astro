@@ -8,70 +8,110 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative bg-surface overflow-hidden border-b border-primary/10">
-  <!-- Split Asimétrico 50/50 Editorial (Sin Hero Oscuro Centrado Genérico) -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-24">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      <!-- Columna Editorial Izquierda (7 Columnas) -->
-      <div class="lg:col-span-7 flex flex-col items-start text-left">
-        <div class="inline-flex items-center gap-3 mb-6">
-          <span class="w-8 h-px bg-accent"></span>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">
-            TRADICIÓN Y DESCANSO · LA SERENA
-          </span>
-        </div>
+<section class="relative overflow-hidden bg-pinamar-gradient pt-10 pb-24 sm:pt-16 sm:pb-32">
+  <!-- Bandas Retro Escalonadas del Logo (Sutiles en el fondo) -->
+  <div class="absolute inset-0 bg-pinamar-stripes opacity-55 pointer-events-none"></div>
 
-        <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.4rem] font-bold text-primary tracking-tight leading-snug mb-8">
-          Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.
-        </h1>
+  <!-- Sol Circular Difuminado del Logo (#FFFAC2 / pinamar-sun) -->
+  <div
+    class="
+      pointer-events-none absolute top-10 left-[12%] sm:left-[18%]
+      w-44 h-44 sm:w-72 sm:h-72 rounded-full bg-pinamar-sun
+      shadow-[0_0_90px_30px_rgba(255,250,194,0.75)] opacity-90
+    "
+    aria-hidden="true"
+  ></div>
 
-        <p class="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-10">
-          Descubre un refugio familiar en Avenida Pacífico 5020, diseñado para el descanso a solo 5 minutos a pie de la playa de Peñuelas.
-        </p>
+  <!-- Contenedor Principal Glassmorphism Cálido (#F2FAFC/95) -->
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
+    <div class="bg-[#F2FAFC]/95 backdrop-blur-md shadow-2xl p-3 sm:p-5">
+      <!-- Marco Interior Punteado (Guiño directo al borde punteado del logo) -->
+      <div class="border-2 border-dotted border-[#0A2246]/30 p-6 sm:p-12 lg:p-14">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <!-- Columna de Texto Principal (7 Columnas) -->
+          <div class="lg:col-span-7 text-left">
+            <div class="inline-flex items-center gap-2.5 bg-pinamar-sun border border-pinamar-navy/20 px-4 py-1.5 mb-6">
+              <span class="w-2 h-2 rounded-full bg-sunset-5"></span>
+              <span class="text-xs uppercase tracking-widest font-bold text-pinamar-navy">
+                TRADICIÓN Y DESCANSO · AV. PACÍFICO 5020
+              </span>
+            </div>
 
-        <!-- Barra Única de Acción y Reserva ("Reserva tu estadía hoy") -->
-        <div class="w-full bg-background p-6 sm:p-8 shadow-[0_12px_36px_-12px_rgba(10,31,53,0.10)] border-l-4 border-accent flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <span class="block text-xs uppercase tracking-widest text-primary/60 font-bold mb-1">
-              DISPONIBILIDAD EN TIEMPO REAL
-            </span>
-            <p class="font-serif text-xl sm:text-2xl font-bold text-primary">
-              Reserva tu estadía hoy
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] font-bold text-pinamar-navy tracking-tight leading-snug mb-6">
+              Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.
+            </h1>
+
+            <p class="text-pinamar-navy/80 text-base sm:text-lg leading-relaxed mb-8">
+              Un refugio cálido y familiar a solo 5 minutos caminando de la playa de Peñuelas, con atención las 24 horas y desayuno incluido.
             </p>
+
+            <!-- Barra Buscador / Reserva Directa Integrada -->
+            <div class="bg-white p-5 sm:p-6 shadow-lg border-l-4 border-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <span class="block text-[11px] uppercase tracking-widest text-sunset-4 font-bold mb-0.5">
+                  RESERVA ONLINE OFICIAL
+                </span>
+                <p class="font-serif text-xl sm:text-2xl font-bold text-pinamar-navy">
+                  Reserva tu estadía hoy
+                </p>
+              </div>
+
+              <!-- Botón Primario en #E63B06 (sunset-5) con hover en #F06A00 (sunset-4) -->
+              <a
+                href={hotelSyncUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-md transition-all duration-300 ease-in-out"
+              >
+                Ver Disponibilidad
+              </a>
+            </div>
           </div>
 
-          <a
-            href={hotelSyncUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-primary hover:bg-accent text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-none transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Ver Disponibilidad
-          </a>
-        </div>
-      </div>
+          <!-- Columna Derecha: Sello Visual Retro-Sunset + Fotografía Costera -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative bg-white p-3 shadow-xl border-2 border-dotted border-[#0A2246]/30">
+              <div class="relative aspect-[4/5] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
+                  alt="Atardecer costero y Cabañas Pinamar en La Serena"
+                  class="w-full h-full object-cover"
+                  loading="eager"
+                />
+                <!-- Sello Flotante con el Logo Original -->
+                <div class="absolute top-4 right-4 bg-[#F2FAFC]/95 backdrop-blur-sm p-2 shadow-lg border border-pinamar-navy/15">
+                  <img
+                    src="/logocabanas.png"
+                    alt="Emblema Cabañas Pinamar"
+                    class="w-14 h-14 object-contain"
+                  />
+                </div>
+              </div>
 
-      <!-- Columna Visual Derecha Asimétrica (5 Columnas, formato WebP) -->
-      <div class="lg:col-span-5 relative">
-        <div class="relative aspect-[4/5] w-full overflow-hidden bg-background shadow-[0_20px_50px_-15px_rgba(10,31,53,0.18)]">
-          <img
-            src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
-            alt="Cabañas Pinamar a pasos de la playa de Peñuelas en La Serena"
-            class="w-full h-full object-cover object-center"
-            loading="eager"
-          />
-        </div>
-
-        <!-- Pie Editorial Flotante Sutil -->
-        <div class="bg-primary text-white p-6 sm:p-7 -mt-12 ml-6 sm:ml-12 relative z-10 shadow-xl">
-          <p class="text-xs uppercase tracking-widest text-accent font-bold mb-1">
-            SECTOR PEÑUELAS
-          </p>
-          <p class="font-serif text-base sm:text-lg text-white">
-            Calificación 9,7 en Limpieza · 21 Cabañas Equipadas
-          </p>
+              <!-- Pie de foto estilo postal costera -->
+              <div class="pt-3 pb-1 px-2 flex items-center justify-between text-xs font-bold text-pinamar-navy">
+                <span class="uppercase tracking-widest">PLAYA DE PEÑUELAS</span>
+                <span class="text-sunset-5">★ 9,7 LIMPIEZA</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Divisor Inferior SVG de Horizonte / Ola en color #F2FAFC (pinamar-ice) replicando el corte del logo -->
+  <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none">
+    <svg
+      class="relative block w-full h-12 sm:h-20 text-pinamar-ice"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        fill="currentColor"
+        d="M0,48L80,53.3C160,59,320,69,480,69.3C640,69,800,59,960,48C1120,37,1280,27,1360,21.3L1440,16L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
+      ></path>
+    </svg>
   </div>
 </section>

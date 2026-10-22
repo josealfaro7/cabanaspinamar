@@ -10,22 +10,21 @@ const {
 } = Astro.props;
 ---
 
-<section id="como-reservar" class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-background border-t border-gray-200/80">
+<section id="como-reservar" class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-pinamar-ice border-t-2 border-dotted border-[#0A2246]/25">
   <div class="max-w-7xl mx-auto">
-    <!-- Encabezado Editorial -->
+    <!-- Encabezado -->
     <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-center max-w-3xl mx-auto mb-14">
-      <p class="text-xs uppercase tracking-widest text-accent font-bold mb-3">
+      <span class="inline-block bg-pinamar-sun text-pinamar-navy text-xs uppercase tracking-widest font-bold px-3.5 py-1 mb-3 border border-pinamar-navy/15">
         GUÍA PASO A PASO
-      </p>
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary tracking-tight leading-snug mb-4">
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pinamar-navy tracking-tight leading-snug mb-4">
         ¿Cómo Reservar tu Estadía?
       </h2>
-      <p class="text-gray-700 leading-relaxed text-base">
+      <p class="text-pinamar-navy/75 leading-relaxed text-base">
         Selecciona el canal de tu preferencia para desplegar el paso a paso de tu reserva.
       </p>
     </div>
 
-    <!-- Isla Vue 3 para el Despliegue Responsivo de Pasos -->
     <HowToBookIsland client:visible hotelSyncUrl={hotelSyncUrl} />
   </div>
 </section>

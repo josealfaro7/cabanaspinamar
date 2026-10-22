@@ -83,20 +83,22 @@ const cabins = [
 ];
 ---
 
-<section id="cabanas" class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80">
-  <!-- Encabezado Editorial -->
-  <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out max-w-2xl mb-16">
-    <p class="text-xs uppercase tracking-widest text-accent font-bold mb-3">
-      TU REFUGIO EN LA SERENA
-    </p>
-    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary tracking-tight leading-snug mb-4">
-      Catálogo de Cabañas
-    </h2>
-    <p class="text-gray-700 leading-relaxed text-base">
-      Espacios luminosos y completamente equipados para parejas, familias y grupos de hasta 7 personas.
-    </p>
-  </div>
+<section id="cabanas" class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-pinamar-pastel border-t-2 border-dotted border-[#0A2246]/25">
+  <div class="max-w-7xl mx-auto">
+    <!-- Encabezado de Sección -->
+    <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-center max-w-2xl mx-auto mb-16">
+      <span class="inline-block bg-pinamar-sun text-pinamar-navy text-xs uppercase tracking-widest font-bold px-3.5 py-1 mb-3 border border-pinamar-navy/15">
+        TU REFUGIO EN LA SERENA
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-pinamar-navy tracking-tight leading-snug mb-4">
+        Catálogo de Cabañas
+      </h2>
+      <p class="text-pinamar-navy/75 leading-relaxed text-base">
+        Espacios luminosos y completamente equipados para parejas, familias y grupos de hasta 7 personas.
+      </p>
+    </div>
 
-  <!-- Isla Interactiva Vue 3 (Hidratada al entrar en viewport) -->
-  <CabinCatalogIsland client:visible cabins={cabins} />
+    <!-- Isla Interactiva Vue 3 -->
+    <CabinCatalogIsland client:visible cabins={cabins} />
+  </div>
 </section>

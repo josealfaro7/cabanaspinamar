@@ -1,43 +1,57 @@
 ---
-import FontSwitcherIsland from './FontSwitcherIsland.vue';
 ---
 
-<header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-primary/5">
-  <!-- Slider en la parte superior del Navbar para cambiar en vivo SOLO el texto "Cabañas Pinamar" -->
-  <FontSwitcherIsland client:load />
+<header class="sticky top-0 z-50 bg-pinamar-ice/95 backdrop-blur-md border-b-2 border-dotted border-[#0A2246]/25">
+  <!-- Franja Superior Retro-Sunset de 5 Tonos del Logo -->
+  <div class="grid grid-cols-5 h-1.5 w-full">
+    <div class="bg-[#FCE600]"></div>
+    <div class="bg-[#F9C600]"></div>
+    <div class="bg-[#F59B00]"></div>
+    <div class="bg-[#F06A00]"></div>
+    <div class="bg-[#E63B06]"></div>
+  </div>
 
   <nav
-    class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-24 flex items-center justify-between"
+    class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-22 py-4 flex items-center justify-between"
     aria-label="Navegación principal"
   >
-    <!-- Logotipo + Nombre (Cambia en tiempo real con el slider superior) -->
-    <a href="#" class="flex items-center focus:outline-none min-h-[44px]">
-      <img src="/logocabanas.png" alt="Cabañas Pinamar" class="h-12 w-auto" />
-      <span
-        id="navbar-brand-text"
-        class="font-serif text-xl sm:text-2xl font-bold text-primary tracking-tight ml-3.5 transition-all duration-200"
-      >
-        Cabañas Pinamar
-      </span>
+    <!-- Logotipo + Nombre en Playfair Display y pinamar-navy -->
+    <a href="#" class="flex items-center focus:outline-none min-h-[44px] group">
+      <img
+        src="/logocabanas.png"
+        alt="Cabañas Pinamar"
+        class="h-12 sm:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+      />
+      <div class="ml-3.5">
+        <span
+          id="navbar-brand-text"
+          class="block font-serif text-xl sm:text-2xl font-bold text-pinamar-navy tracking-tight leading-none"
+        >
+          Cabañas Pinamar
+        </span>
+        <span class="block text-[10px] uppercase tracking-widest text-sunset-5 font-bold mt-1">
+          LA SERENA · SECTOR PEÑUELAS
+        </span>
+      </div>
     </a>
 
-    <!-- Navegación y Contacto con Tap Targets >= 44px -->
+    <!-- Navegación y Botón Secundario Outline (#0A2246) -->
     <div class="flex items-center gap-6 sm:gap-8">
       <a
         href="#cabanas"
-        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-primary/75 hover:text-primary transition-colors duration-200"
+        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-pinamar-navy/80 hover:text-sunset-5 transition-colors duration-200"
       >
-        Tu Refugio
+        Cabañas
       </a>
       <a
         href="#como-reservar"
-        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-primary/75 hover:text-primary transition-colors duration-200"
+        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-pinamar-navy/80 hover:text-sunset-5 transition-colors duration-200"
       >
         Cómo Reservar
       </a>
       <a
         href="#contacto"
-        class="inline-flex items-center justify-center min-h-[44px] border border-primary/30 text-primary px-6 py-2.5 text-xs uppercase tracking-widest font-bold rounded-none hover:bg-primary hover:text-white transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+        class="inline-flex items-center justify-center min-h-[44px] border border-pinamar-navy text-pinamar-navy hover:bg-pinamar-navy hover:text-white px-6 py-2.5 text-xs uppercase tracking-widest font-bold transition-all duration-300 ease-in-out"
       >
         Contacto
       </a>
