@@ -8,55 +8,70 @@ const {
 } = Astro.props;
 ---
 
-<div class="relative">
-  <!-- Hero Principal a Pantalla Completa -->
-  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-primary">
-    <!-- Imagen Placeholder de Fondo -->
-    <div class="absolute inset-0 z-0">
-      <img
-        src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1920&q=80"
-        alt="Cabañas Pinamar en La Serena"
-        class="w-full h-full object-cover object-center"
-        loading="eager"
-      />
-      <!-- Overlay oscuro gradiente -->
-      <div class="absolute inset-0 bg-primary/45"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-    </div>
+<section class="relative bg-surface overflow-hidden border-b border-primary/10">
+  <!-- Split Asimétrico 50/50 Editorial (Sin Hero Oscuro Centrado Genérico) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-20 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Columna Editorial Izquierda (7 Columnas) -->
+      <div class="lg:col-span-7 flex flex-col items-start text-left">
+        <div class="inline-flex items-center gap-3 mb-6">
+          <span class="w-8 h-px bg-accent"></span>
+          <span class="text-xs uppercase tracking-widest font-bold text-accent">
+            TRADICIÓN Y DESCANSO · LA SERENA
+          </span>
+        </div>
 
-    <!-- Contenido Centralizado -->
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 py-24 text-center">
-      <p class="text-white/90 text-xs uppercase tracking-widest font-bold mb-6">
-        TRADICIÓN Y DESCANSO
-      </p>
+        <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.4rem] font-bold text-primary tracking-tight leading-snug mb-8">
+          Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.
+        </h1>
 
-      <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-        Más de 25 años siendo parte de tus estadías. Tu lugar en La Serena a pasos del mar.
-      </h1>
-    </div>
-  </section>
-
-  <!-- Barra Horizontal Blanca Superpuesta en la Parte Inferior del Hero -->
-  <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-8 -mt-12">
-    <div class="bg-white p-8 shadow-lg border border-gray-200 rounded-none flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="text-center sm:text-left">
-        <span class="block text-xs uppercase tracking-widest text-primary/60 font-bold mb-1">
-          RESERVA DIRECTA · MEJOR TARIFA GARANTIZADA
-        </span>
-        <p class="font-serif text-xl sm:text-2xl font-bold text-primary">
-          Reserva tu estadía hoy
+        <p class="text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-10">
+          Descubre un refugio familiar en Avenida Pacífico 5020, diseñado para el descanso a solo 5 minutos a pie de la playa de Peñuelas.
         </p>
+
+        <!-- Barra Única de Acción y Reserva ("Reserva tu estadía hoy") -->
+        <div class="w-full bg-background p-6 sm:p-8 shadow-[0_12px_36px_-12px_rgba(10,31,53,0.10)] border-l-4 border-accent flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <span class="block text-xs uppercase tracking-widest text-primary/60 font-bold mb-1">
+              DISPONIBILIDAD EN TIEMPO REAL
+            </span>
+            <p class="font-serif text-xl sm:text-2xl font-bold text-primary">
+              Reserva tu estadía hoy
+            </p>
+          </div>
+
+          <a
+            href={hotelSyncUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-primary hover:bg-accent text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-none transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98]"
+          >
+            Ver Disponibilidad
+          </a>
+        </div>
       </div>
 
-      <!-- Botón Secundario en la Barra Inferior -->
-      <a
-        href={hotelSyncUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="w-full sm:w-auto text-center border border-primary bg-primary hover:bg-accent text-white font-bold text-xs uppercase tracking-widest px-8 py-4 rounded-none transition-all duration-300 ease-in-out"
-      >
-        Ver Disponibilidad
-      </a>
+      <!-- Columna Visual Derecha Asimétrica (5 Columnas, formato WebP) -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative aspect-[4/5] w-full overflow-hidden bg-background shadow-[0_20px_50px_-15px_rgba(10,31,53,0.18)]">
+          <img
+            src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
+            alt="Cabañas Pinamar a pasos de la playa de Peñuelas en La Serena"
+            class="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Pie Editorial Flotante Sutil -->
+        <div class="bg-primary text-white p-6 sm:p-7 -mt-12 ml-6 sm:ml-12 relative z-10 shadow-xl">
+          <p class="text-xs uppercase tracking-widest text-accent font-bold mb-1">
+            SECTOR PEÑUELAS
+          </p>
+          <p class="font-serif text-base sm:text-lg text-white">
+            Calificación 9,7 en Limpieza · 21 Cabañas Equipadas
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>

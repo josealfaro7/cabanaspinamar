@@ -1,5 +1,5 @@
 ---
-import CabinCard from './CabinCard.astro';
+import CabinCatalogIsland from './CabinCatalogIsland.vue';
 
 const cabins = [
   {
@@ -7,12 +7,12 @@ const cabins = [
     title: 'Individual',
     capacity: '28m2 | 1 Dormitorio',
     defaultGuests: 1,
-    mainImage: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
   {
@@ -20,12 +20,12 @@ const cabins = [
     title: 'Suite (4 pax)',
     capacity: '45m2 | 1 Dormitorio + Estar',
     defaultGuests: 4,
-    mainImage: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
   {
@@ -33,12 +33,12 @@ const cabins = [
     title: 'Cabañas 4 Personas',
     capacity: '54m2 | 2 Dormitorios',
     defaultGuests: 4,
-    mainImage: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
   {
@@ -46,12 +46,12 @@ const cabins = [
     title: 'Cabañas 5 Personas',
     capacity: '60m2 | 2 Dormitorios',
     defaultGuests: 5,
-    mainImage: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
   {
@@ -59,12 +59,12 @@ const cabins = [
     title: 'Cabañas 6 Personas',
     capacity: '68m2 | 3 Dormitorios',
     defaultGuests: 6,
-    mainImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
   {
@@ -72,368 +72,31 @@ const cabins = [
     title: 'Cabañas 7 Personas',
     capacity: '75m2 | 3 Dormitorios',
     defaultGuests: 7,
-    mainImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80&fm=webp',
     images: [
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80&fm=webp',
+      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80&fm=webp',
     ],
   },
 ];
 ---
 
-<section id="cabanas" class="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-gray-200">
-  <!-- Encabezado de Sección -->
-  <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out text-center max-w-3xl mx-auto mb-16">
+<section id="cabanas" class="py-20 sm:py-28 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-gray-200/80">
+  <!-- Encabezado Editorial -->
+  <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out max-w-2xl mb-16">
     <p class="text-xs uppercase tracking-widest text-accent font-bold mb-3">
-      ALOJAMIENTOS
+      TU REFUGIO EN LA SERENA
     </p>
-    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary">
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-primary tracking-tight leading-snug mb-4">
       Catálogo de Cabañas
     </h2>
+    <p class="text-gray-700 leading-relaxed text-base">
+      Espacios luminosos y completamente equipados para parejas, familias y grupos de hasta 7 personas.
+    </p>
   </div>
 
-  <!-- Grid Responsivo con Aparición en Cascada (Delay Progresivo) -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {cabins.map((cabin, index) => <CabinCard {...cabin} delay={(index % 3) * 120} />)}
-  </div>
+  <!-- Isla Interactiva Vue 3 (Hidratada al entrar en viewport) -->
+  <CabinCatalogIsland client:visible cabins={cabins} />
 </section>
-
-<!-- COMPONENTE MODAL INTERACTIVO (Bordes rectos, sombra elegante) -->
-<div
-  id="cabin-modal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modal-cabin-title"
-  class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-8 bg-primary/75 backdrop-blur-sm opacity-0 transition-opacity duration-300 ease-in-out"
->
-  <div
-    id="cabin-modal-content"
-    class="relative w-full max-w-5xl bg-surface shadow-2xl rounded-none border border-gray-200 overflow-hidden max-h-[92vh] flex flex-col"
-  >
-    <!-- Encabezado del Modal -->
-    <div class="flex items-center justify-between px-8 py-6 border-b border-gray-200 bg-surface shrink-0">
-      <div>
-        <p id="modal-cabin-capacity" class="text-xs uppercase tracking-widest text-accent font-bold mb-1">
-          54m2 | 2 Dormitorios
-        </p>
-        <h3 id="modal-cabin-title" class="font-serif text-2xl sm:text-3xl font-bold text-primary">
-          Cabañas 4 Personas
-        </h3>
-      </div>
-
-      <button
-        type="button"
-        id="close-cabin-modal"
-        aria-label="Cerrar ventana"
-        class="w-10 h-10 border border-gray-200 text-primary hover:bg-primary hover:text-white rounded-none flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Cuerpo del Modal -->
-    <div class="overflow-y-auto grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-gray-200">
-      <!-- Izquierda (Visual: Carrusel de fotos + Lista minimalista de equipamiento) -->
-      <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col gap-8">
-        <!-- Carrusel de Fotos (Bordes rectos) -->
-        <div class="relative overflow-hidden bg-gray-100 aspect-[16/10] rounded-none select-none border border-gray-200">
-          <div
-            id="carousel-track"
-            class="flex w-full h-full transition-transform duration-300 ease-in-out"
-          >
-            <!-- Slides inyectados dinámicamente -->
-          </div>
-
-          <!-- Botón Anterior -->
-          <button
-            type="button"
-            id="carousel-prev"
-            aria-label="Foto anterior"
-            class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-12 bg-white/90 hover:bg-primary hover:text-white text-primary flex items-center justify-center rounded-none transition-all duration-300 ease-in-out"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-
-          <!-- Botón Siguiente -->
-          <button
-            type="button"
-            id="carousel-next"
-            aria-label="Foto siguiente"
-            class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-12 bg-white/90 hover:bg-primary hover:text-white text-primary flex items-center justify-center rounded-none transition-all duration-300 ease-in-out"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-
-          <!-- Indicadores Rectos -->
-          <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-            <button type="button" data-slide="0" aria-label="Foto 1" class="w-6 h-1 bg-accent rounded-none transition-all duration-300 ease-in-out"></button>
-            <button type="button" data-slide="1" aria-label="Foto 2" class="w-6 h-1 bg-white/60 rounded-none transition-all duration-300 ease-in-out"></button>
-            <button type="button" data-slide="2" aria-label="Foto 3" class="w-6 h-1 bg-white/60 rounded-none transition-all duration-300 ease-in-out"></button>
-            <button type="button" data-slide="3" aria-label="Foto 4" class="w-6 h-1 bg-white/60 rounded-none transition-all duration-300 ease-in-out"></button>
-          </div>
-        </div>
-
-        <!-- Equipamiento presentado en lista minimalista -->
-        <div class="pt-2">
-          <h4 class="text-xs uppercase tracking-widest text-primary/60 font-bold mb-4 pb-2 border-b border-gray-200">
-            Equipamiento
-          </h4>
-          <ul class="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6 text-sm text-primary">
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>Cocina americana</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>Living</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>Baño privado</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>Ropa de cama</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>Terraza con parrilla</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="w-1.5 h-1.5 bg-accent rounded-none shrink-0"></span>
-              <span>TV Cable</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Derecha (Miniformulario de WhatsApp Serio y Clásico) -->
-      <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between bg-surface">
-        <div>
-          <p class="text-xs uppercase tracking-widest text-accent font-bold mb-2">
-            ATENCIÓN DIRECTA
-          </p>
-          <h4 class="font-serif text-2xl font-bold text-primary mb-8">
-            Consultar Disponibilidad
-          </h4>
-
-          <form id="whatsapp-booking-form" class="space-y-8">
-            <input type="hidden" id="wa-cabin-name" value="Cabañas 4 Personas" />
-
-            <!-- Campo: Nombre (text) -->
-            <div>
-              <label for="wa-nombre" class="block text-xs uppercase tracking-widest text-primary/70 font-bold mb-2">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="wa-nombre"
-                name="nombre"
-                required
-                placeholder="Ingrese su nombre"
-                class="w-full py-2.5 border-b border-gray-300 rounded-none bg-transparent text-primary placeholder:text-gray-400 focus:border-primary focus:outline-none transition-all duration-300 ease-in-out"
-              />
-            </div>
-
-            <!-- Campo: Fechas (date) -->
-            <div>
-              <label for="wa-fechas" class="block text-xs uppercase tracking-widest text-primary/70 font-bold mb-2">
-                Fechas
-              </label>
-              <input
-                type="date"
-                id="wa-fechas"
-                name="fechas"
-                required
-                class="w-full py-2.5 border-b border-gray-300 rounded-none bg-transparent text-primary focus:border-primary focus:outline-none transition-all duration-300 ease-in-out"
-              />
-            </div>
-
-            <!-- Campo: Personas (number) -->
-            <div>
-              <label for="wa-personas" class="block text-xs uppercase tracking-widest text-primary/70 font-bold mb-2">
-                Personas
-              </label>
-              <input
-                type="number"
-                id="wa-personas"
-                name="personas"
-                min="1"
-                max="15"
-                required
-                value="4"
-                class="w-full py-2.5 border-b border-gray-300 rounded-none bg-transparent text-primary focus:border-primary focus:outline-none transition-all duration-300 ease-in-out"
-              />
-            </div>
-
-            <!-- Botón de envío: Recto, color #25D366, texto "Enviar por WhatsApp" -->
-            <div class="pt-4">
-              <button
-                type="submit"
-                class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs uppercase tracking-widest py-4 px-6 rounded-none transition-all duration-300 ease-in-out focus:outline-none"
-              >
-                Enviar por WhatsApp
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const modal = document.getElementById('cabin-modal');
-  const closeModalBtn = document.getElementById('close-cabin-modal');
-  const modalTitle = document.getElementById('modal-cabin-title');
-  const modalCapacity = document.getElementById('modal-cabin-capacity');
-  const carouselTrack = document.getElementById('carousel-track');
-  const prevBtn = document.getElementById('carousel-prev');
-  const nextBtn = document.getElementById('carousel-next');
-  const dotsContainer = document.getElementById('carousel-dots');
-  const form = document.getElementById('whatsapp-booking-form') as HTMLFormElement | null;
-  const inputCabinName = document.getElementById('wa-cabin-name') as HTMLInputElement | null;
-  const inputNombre = document.getElementById('wa-nombre') as HTMLInputElement | null;
-  const inputFechas = document.getElementById('wa-fechas') as HTMLInputElement | null;
-  const inputPersonas = document.getElementById('wa-personas') as HTMLInputElement | null;
-
-  let currentSlide = 0;
-  let totalSlides = 4;
-
-  function updateCarousel() {
-    if (!carouselTrack) return;
-    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll('button');
-      dots.forEach((dot, idx) => {
-        if (idx === currentSlide) {
-          dot.classList.remove('bg-white/60');
-          dot.classList.add('bg-accent');
-        } else {
-          dot.classList.remove('bg-accent');
-          dot.classList.add('bg-white/60');
-        }
-      });
-    }
-  }
-
-  function openModal(button: HTMLElement) {
-    if (!modal) return;
-
-    const title = button.getAttribute('data-cabin-title') || 'Cabaña';
-    const capacity = button.getAttribute('data-cabin-capacity') || '';
-    const guests = button.getAttribute('data-cabin-guests') || '2';
-    const imagesJson = button.getAttribute('data-cabin-images') || '[]';
-
-    let images: string[] = [];
-    try {
-      images = JSON.parse(imagesJson);
-    } catch {
-      images = [];
-    }
-
-    if (modalTitle) modalTitle.textContent = title;
-    if (modalCapacity) modalCapacity.textContent = capacity;
-    if (inputCabinName) inputCabinName.value = title;
-    if (inputPersonas) inputPersonas.value = guests;
-
-    if (carouselTrack) {
-      carouselTrack.innerHTML = images
-        .map(
-          (src, index) => `
-          <div class="w-full h-full shrink-0">
-            <img
-              src="${src}"
-              alt="${title} - Foto ${index + 1}"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        `
-        )
-        .join('');
-    }
-
-    totalSlides = images.length || 4;
-    currentSlide = 0;
-    updateCarousel();
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.classList.add('overflow-hidden');
-
-    requestAnimationFrame(() => {
-      modal.classList.remove('opacity-0');
-      modal.classList.add('opacity-100');
-    });
-  }
-
-  function closeModal() {
-    if (!modal) return;
-
-    modal.classList.remove('opacity-100');
-    modal.classList.add('opacity-0');
-    document.body.classList.remove('overflow-hidden');
-
-    setTimeout(() => {
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-    }, 300);
-  }
-
-  document.querySelectorAll<HTMLElement>('[data-open-cabin-modal]').forEach((btn) => {
-    btn.addEventListener('click', () => openModal(btn));
-  });
-
-  closeModalBtn?.addEventListener('click', closeModal);
-  modal?.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-      closeModal();
-    }
-  });
-
-  prevBtn?.addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateCarousel();
-  });
-
-  dotsContainer?.querySelectorAll('button').forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const slideIdx = Number(dot.getAttribute('data-slide') || 0);
-      currentSlide = slideIdx;
-      updateCarousel();
-    });
-  });
-
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const cabana = inputCabinName?.value.trim() || 'Cabaña';
-    const nombre = inputNombre?.value.trim() || '';
-    const fechas = inputFechas?.value.trim() || '';
-    const personas = inputPersonas?.value.trim() || '';
-
-    const mensajeConstruido = `Hola Cabañas Pinamar, mi nombre es ${nombre}. Quisiera consultar disponibilidad para ${cabana}, para ${personas} personas, en la fecha ${fechas}.`;
-
-    window.open('https://wa.me/56974635702?text=' + encodeURIComponent(mensajeConstruido));
-  });
-</script>
