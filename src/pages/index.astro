@@ -17,20 +17,54 @@ const HOTELSYNC_BOOKING_URL =
   <!-- Sección 0: Header / Navbar (Sticky) -->
   <Navbar />
 
-  <main class="flex-1 bg-continuous-sunset bg-gradient-to-b from-[#fffdf7] via-[#fef6d8] to-[#fbd5b5]">
-    <!-- Sección 1: Hero Section (Primer Impacto) -->
+  <!-- Contenedor Padre con Lienzo Continuo Atmosférico (Desde el Hero hasta antes del Footer) -->
+  <main class="flex-1 relative overflow-hidden isolate bg-[#fffdf9]">
+    <!-- Capa de Fondo Absoluta Continua con Saturación Difuminada (Mesh / Atmospheric Blur) -->
+    <div class="absolute inset-0 -z-10 pointer-events-none overflow-hidden" aria-hidden="true">
+      <!-- Base de degradado continuo con mayor presencia cromática -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-[#f9c116]/45 via-[#f5921d]/40 to-[#e76a14]/50"
+        style="background-image: linear-gradient(180deg, rgba(249, 193, 22, 0.45) 0%, rgba(245, 146, 29, 0.40) 50%, rgba(231, 106, 20, 0.50) 100%);"
+      ></div>
+
+      <!-- 1. Zona Superior (Hero): Amarillo vivo #f9c116 al 100% de saturación difuminado -->
+      <div
+        class="absolute -top-24 left-1/2 -translate-x-1/2 w-[120%] h-[34%] rounded-full bg-[#f9c116] filter blur-[140px] opacity-65"
+        style="background-color: #f9c116; filter: blur(140px); opacity: 0.65;"
+      ></div>
+
+      <!-- 2. Zona Media (Servicios y Cabañas): Ámbar / Naranjo cálido #f38b18 -->
+      <div
+        class="absolute top-[33%] left-1/2 -translate-x-1/2 w-[120%] h-[36%] rounded-full bg-[#f38b18] filter blur-[140px] opacity-65"
+        style="background-color: #f38b18; filter: blur(140px); opacity: 0.65;"
+      ></div>
+
+      <!-- 3. Zona Inferior (Cómo Reservar y Ubicación): Naranja atardecer profundo #e76a14 -->
+      <div
+        class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[120%] h-[35%] rounded-full bg-[#e76a14] filter blur-[140px] opacity-65"
+        style="background-color: #e76a14; filter: blur(140px); opacity: 0.65;"
+      ></div>
+
+      <!-- Capa Final Unificadora de Seda Continua -->
+      <div
+        class="absolute inset-0 backdrop-blur-[80px] bg-white/15"
+        style="backdrop-filter: blur(80px); -webkit-backdrop-filter: blur(80px); background-color: rgba(255, 255, 255, 0.15);"
+      ></div>
+    </div>
+
+    <!-- Sección 1: Hero Section (100% Transparente con Caja Central Blanca Nítida) -->
     <Hero hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
 
-    <!-- Sección 2: Confianza y Servicios Rápidos (Transparente sobre el degradado continuo) -->
+    <!-- Sección 2: Confianza y Servicios Rápidos (100% Transparente) -->
     <TrustServices />
 
-    <!-- Sección 3: Catálogo de Cabañas (Transparente con tarjetas blanco puro flotantes) -->
+    <!-- Sección 3: Catálogo de Cabañas (100% Transparente) -->
     <CabinCatalog />
 
-    <!-- Sección: Cómo Reservar (Transparente con tarjetas blanco puro flotantes) -->
+    <!-- Sección: Cómo Reservar (100% Transparente) -->
     <HowToBook hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
 
-    <!-- Sección 4: Ubicación Privilegiada (Transparente antes del Footer azul marino) -->
+    <!-- Sección 4: Ubicación Privilegiada (100% Transparente) -->
     <Location />
   </main>
 

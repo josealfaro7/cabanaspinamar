@@ -8,25 +8,12 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-pinamar-gradient pt-10 pb-24 sm:pt-16 sm:pb-32">
-  <!-- Bandas Retro Escalonadas del Logo (Sutiles en el fondo) -->
-  <div class="absolute inset-0 bg-pinamar-stripes opacity-55 pointer-events-none"></div>
-
-  <!-- Sol Circular Difuminado del Logo (#FFFAC2 / pinamar-sun) -->
-  <div
-    class="
-      pointer-events-none absolute top-10 left-[12%] sm:left-[18%]
-      w-44 h-44 sm:w-72 sm:h-72 rounded-full bg-pinamar-sun
-      shadow-[0_0_90px_30px_rgba(255,250,194,0.75)] opacity-90
-    "
-    aria-hidden="true"
-  ></div>
-
-  <!-- Contenedor Principal en Blanco Puro / Glassmorphism Cálido -->
+<section class="relative bg-transparent pt-10 pb-12 sm:pt-16 sm:pb-16">
+  <!-- Contenedor Principal en Blanco Puro Sólido (bg-white shadow-xl) -->
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
-    <div class="bg-white/95 backdrop-blur-md shadow-2xl border border-amber-900/10 p-3 sm:p-5">
+    <div class="bg-white shadow-xl border border-amber-900/10 p-3 sm:p-5">
       <!-- Marco Interior Punteado (Guiño directo al borde punteado del logo) -->
-      <div class="border-2 border-dotted border-[#0A2246]/30 p-6 sm:p-12 lg:p-14">
+      <div class="border-2 border-dotted border-[#0A2246]/30 p-6 sm:p-12 lg:p-14 bg-white">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <!-- Columna de Texto Principal (7 Columnas) -->
           <div class="lg:col-span-7 text-left">
@@ -45,8 +32,8 @@ const {
               Un refugio cálido y familiar a solo 5 minutos caminando de la playa de Peñuelas, con atención las 24 horas y desayuno incluido.
             </p>
 
-            <!-- Barra Flotante de Reserva Directa en Blanco Puro Sólido (bg-white + border-amber-900/10) -->
-            <div class="bg-white p-5 sm:p-6 shadow-md border border-amber-900/10 border-l-4 border-l-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <!-- Barra de Reserva Directa en Blanco Puro Sólido -->
+            <div class="bg-[#fffdf9] p-5 sm:p-6 shadow-md border border-amber-900/10 border-l-4 border-l-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span class="block text-[11px] uppercase tracking-widest text-sunset-4 font-bold mb-0.5">
                   RESERVA ONLINE OFICIAL
@@ -61,7 +48,7 @@ const {
                 href={hotelSyncUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-sm transition-all duration-300 ease-in-out"
+                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-md transition-all duration-300 ease-in-out"
               >
                 Ver Disponibilidad
               </a>
@@ -98,20 +85,5 @@ const {
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Divisor Inferior SVG de Horizonte / Ola en color #fffdf7 para fundirse con el inicio del degradado continuo -->
-  <div class="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none">
-    <svg
-      class="relative block w-full h-12 sm:h-20 text-[#fffdf7]"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1440 120"
-      preserveAspectRatio="none"
-    >
-      <path
-        fill="currentColor"
-        d="M0,48L80,53.3C160,59,320,69,480,69.3C640,69,800,59,960,48C1120,37,1280,27,1360,21.3L1440,16L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"
-      ></path>
-    </svg>
   </div>
 </section>
