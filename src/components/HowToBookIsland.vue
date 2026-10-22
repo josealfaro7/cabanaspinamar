@@ -83,7 +83,7 @@ const whatsappSteps = [
             PASARELA DE PAGO EN LÍNEA
           </span>
           <h3 class="font-serif text-2xl font-bold text-pinamar-navy tracking-tight leading-snug">
-            Reserva por HotelSync
+            Reserva por <span class="italic font-normal text-sunset-5">HotelSync</span>
           </h3>
           <p class="text-sm text-pinamar-navy/75 leading-relaxed mt-2">
             Despliega los 6 pasos para reservar con confirmación inmediata.
@@ -178,7 +178,7 @@ const whatsappSteps = [
             ATENCIÓN ASISTIDA DIRECTA
           </span>
           <h3 class="font-serif text-2xl font-bold text-pinamar-navy tracking-tight leading-snug">
-            Reserva por WhatsApp
+            Reserva por <span class="italic font-normal text-[#25D366]">WhatsApp</span>
           </h3>
           <p class="text-sm text-pinamar-navy/75 leading-relaxed mt-2">
             Despliega el flujo rápido de consulta directa con recepción.
