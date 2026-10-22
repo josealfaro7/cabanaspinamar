@@ -1,15 +1,22 @@
 ---
+import FontSwitcherIsland from './FontSwitcherIsland.vue';
 ---
 
 <header class="sticky top-0 z-50 bg-surface/95 backdrop-blur-md border-b border-primary/5">
+  <!-- Slider en la parte superior del Navbar para cambiar en vivo SOLO el texto "Cabañas Pinamar" -->
+  <FontSwitcherIsland client:load />
+
   <nav
     class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-24 flex items-center justify-between"
     aria-label="Navegación principal"
   >
-    <!-- Logotipo + Nombre -->
+    <!-- Logotipo + Nombre (Cambia en tiempo real con el slider superior) -->
     <a href="#" class="flex items-center focus:outline-none min-h-[44px]">
       <img src="/logocabanas.png" alt="Cabañas Pinamar" class="h-12 w-auto" />
-      <span class="font-serif text-xl sm:text-2xl font-bold text-primary tracking-tight ml-3">
+      <span
+        id="navbar-brand-text"
+        class="font-serif text-xl sm:text-2xl font-bold text-primary tracking-tight ml-3.5 transition-all duration-200"
+      >
         Cabañas Pinamar
       </span>
     </a>
