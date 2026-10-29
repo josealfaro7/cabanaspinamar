@@ -366,14 +366,22 @@ onUnmounted(() => {
                   {{ optimisticDateSummary }}
                 </div>
 
-                <!-- Botón de envío con Tap Target >= 44px y Feedback Táctil -->
-                <div class="pt-2">
+                <div class="pt-2 space-y-3">
                   <button
                     type="submit"
                     class="w-full min-h-[48px] bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs uppercase tracking-widest py-4 px-6 rounded-none transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] focus:outline-none"
                   >
-                    Enviar por WhatsApp
+                    Consultar por WhatsApp
                   </button>
+
+                  <a
+                    href="https://app.hotelsync.com/engine/es?engine_code=e0dacb55418a3ad29a5f9d07b988ba218e10eeb0&adults=2&children=0"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full min-h-[48px] inline-flex items-center justify-center bg-primary hover:bg-accent text-white font-bold text-xs uppercase tracking-widest py-4 px-6 rounded-none transition-all duration-200 ease-out hover:scale-[1.02] active:scale-[0.98] text-center"
+                  >
+                    Reservar directo en HotelSync
+                  </a>
                 </div>
               </form>
             </div>
