@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import TrustServices from '../components/TrustServices.astro';
 import CabinCatalog from '../components/CabinCatalog.astro';
 import HowToBook from '../components/HowToBook.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import Location from '../components/Location.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
@@ -29,6 +30,9 @@ const HOTELSYNC_BOOKING_URL =
 
     <!-- Sección: Cómo Reservar (Flujo HotelSync & WhatsApp) -->
     <HowToBook hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
+
+    <!-- Sección: Reseñas Oficiales de Google -->
+    <GoogleReviews />
 
     <!-- Sección 4: Ubicación Privilegiada -->
     <Location />
