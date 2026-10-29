@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import TrustServices from '../components/TrustServices.astro';
 import CabinCatalog from '../components/CabinCatalog.astro';
 import HowToBook from '../components/HowToBook.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import Location from '../components/Location.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
@@ -39,7 +40,7 @@ const HOTELSYNC_BOOKING_URL =
         style="background-color: #f38b18; filter: blur(140px); opacity: 0.65;"
       ></div>
 
-      <!-- 3. Zona Inferior (Cómo Reservar y Ubicación): Naranja atardecer profundo #e76a14 -->
+      <!-- 3. Zona Inferior (Cómo Reservar, Reseñas y Ubicación): Naranja atardecer profundo #e76a14 -->
       <div
         class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[120%] h-[35%] rounded-full bg-[#e76a14] filter blur-[140px] opacity-65"
         style="background-color: #e76a14; filter: blur(140px); opacity: 0.65;"
@@ -63,6 +64,9 @@ const HOTELSYNC_BOOKING_URL =
 
     <!-- Sección: Cómo Reservar (100% Transparente) -->
     <HowToBook hotelSyncUrl={HOTELSYNC_BOOKING_URL} />
+
+    <!-- Sección: Reseñas de Google (Debajo de Cómo Reservar) -->
+    <GoogleReviews />
 
     <!-- Sección 4: Ubicación Privilegiada (100% Transparente) -->
     <Location />
