@@ -47,18 +47,18 @@ const hotelSyncSteps = [
 const whatsappSteps = [
   {
     step: '01',
-    title: 'Apretas en el link o cabaña',
-    description: 'Selecciona "Ver detalles" en la cabaña de tu interés dentro del catálogo.',
+    title: 'Rellenar formulario',
+    description: 'Selecciona la cabaña de tu interés en el catálogo y completa tu nombre, fechas y cantidad de personas.',
   },
   {
     step: '02',
-    title: 'Rellenas el formulario',
-    description: 'Completa tu nombre, fechas de estadía y cantidad de personas.',
+    title: 'Consulta por disponibilidad',
+    description: 'Envía el formulario para abrir el chat con recepción y verificar disponibilidad en tus fechas.',
   },
   {
     step: '03',
-    title: 'Envías para consultar',
-    description: 'Se abre el chat directo con recepción con tus datos listos para confirmar.',
+    title: 'Coordina el pago',
+    description: 'Coordina la transferencia o medio de pago directamente con nuestro equipo para confirmar tu estadía.',
   },
 ];
 </script>
