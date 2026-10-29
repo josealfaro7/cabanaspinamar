@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Presentación de Propuestas — Cabañas Pinamar</title>
-    <link rel="icon" type="image/png" href="/logocabanas.png" />
+    <link rel="icon" type="image/png" href="./logocabanas.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,7 +19,7 @@
     <!-- Barra Superior de Control / Slider de Temas para el Cliente -->
     <header class="bg-[#0A2246] border-b border-white/15 px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-4 shrink-0 z-50 shadow-xl">
       <div class="flex items-center gap-3">
-        <img src="/logocabanas.png" alt="Cabañas Pinamar" class="h-9 w-9 rounded-full bg-white p-0.5" />
+        <img id="brand-logo" src="/logocabanas.png" alt="Cabañas Pinamar" class="h-9 w-9 rounded-full bg-white p-0.5" />
         <div>
           <span class="block text-[10px] uppercase tracking-widest text-[#F9C600] font-bold">
             MODO PRESENTACIÓN CLIENTES · 5 PROPUESTAS
@@ -114,59 +114,79 @@
     <main class="flex-1 relative w-full h-full bg-white">
       <iframe
         id="frame-0"
-        src="http://localhost:4321/"
+        src="about:blank"
         title="Rama main"
         class="w-full h-full border-0 absolute inset-0 opacity-100 z-10 transition-opacity duration-300"
       ></iframe>
       <iframe
         id="frame-1"
-        src="http://localhost:4322/"
+        src="about:blank"
         title="Rama feat/frontend-design"
         class="w-full h-full border-0 absolute inset-0 opacity-0 pointer-events-none z-0 transition-opacity duration-300"
       ></iframe>
       <iframe
         id="frame-2"
-        src="http://localhost:4323/"
+        src="about:blank"
         title="Rama feat/ui-retro-sunset"
         class="w-full h-full border-0 absolute inset-0 opacity-0 pointer-events-none z-0 transition-opacity duration-300"
       ></iframe>
       <iframe
         id="frame-3"
-        src="http://localhost:4324/"
+        src="about:blank"
         title="Rama background-gradiente"
         class="w-full h-full border-0 absolute inset-0 opacity-0 pointer-events-none z-0 transition-opacity duration-300"
       ></iframe>
       <iframe
         id="frame-4"
-        src="http://localhost:4325/"
+        src="about:blank"
         title="Rama feat/coastal-organic"
         class="w-full h-full border-0 absolute inset-0 opacity-0 pointer-events-none z-0 transition-opacity duration-300"
       ></iframe>
     </main>
 
     <script>
+      const isLocal =
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1';
+
+      // Base en GitHub Pages (/cabanaspinamar) vs entorno local
+      const ghBase = window.location.pathname.startsWith('/cabanaspinamar')
+        ? '/cabanaspinamar'
+        : '';
+
+      const brandLogo = document.getElementById('brand-logo') as HTMLImageElement | null;
+      if (brandLogo && !isLocal) {
+        brandLogo.src = `${ghBase}/logocabanas.png`;
+      }
+
       const themes = [
         {
           title: 'Tema 1: Hotel Boutique Clásico (Rama main)',
-          url: 'http://localhost:4321/',
+          url: isLocal ? 'http://localhost:4321/' : `${ghBase}/p1/`,
         },
         {
           title: 'Tema 2: Editorial Minimalista en Lora (Rama feat/frontend-design)',
-          url: 'http://localhost:4322/',
+          url: isLocal ? 'http://localhost:4322/' : `${ghBase}/p2/`,
         },
         {
           title: 'Tema 3: Retro-Sunset del Logo (Rama feat/ui-retro-sunset)',
-          url: 'http://localhost:4323/',
+          url: isLocal ? 'http://localhost:4323/' : `${ghBase}/p3/`,
         },
         {
           title: 'Tema 4: Atardecer Continuo Difuminado (Rama background-gradiente)',
-          url: 'http://localhost:4324/',
+          url: isLocal ? 'http://localhost:4324/' : `${ghBase}/p4/`,
         },
         {
           title: 'Tema 5: Costero Orgánico & Bento Resort (Rama feat/coastal-organic)',
-          url: 'http://localhost:4325/',
+          url: isLocal ? 'http://localhost:4325/' : `${ghBase}/p5/`,
         },
       ];
+
+      // Inicializar src de los 5 iframes según el entorno (Localhost o GitHub Pages)
+      themes.forEach((t, i) => {
+        const frame = document.getElementById(`frame-${i}`) as HTMLIFrameElement | null;
+        if (frame) frame.src = t.url;
+      });
 
       let currentIdx = 0;
       const slider = document.getElementById('theme-slider') as HTMLInputElement | null;
@@ -175,6 +195,8 @@
       const prevBtn = document.getElementById('prev-theme');
       const nextBtn = document.getElementById('next-theme');
       const pills = document.querySelectorAll<HTMLButtonElement>('#theme-pills button');
+
+      if (directLink) directLink.href = themes[0].url;
 
       function setTheme(idx: number) {
         currentIdx = (idx + themes.length) % themes.length;
