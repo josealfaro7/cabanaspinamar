@@ -1,54 +1,51 @@
 ---
 ---
 
-<header class="sticky top-0 z-50 bg-pinamar-ice/95 backdrop-blur-md border-b-2 border-dotted border-[#0A2246]/25">
-  <!-- Franja Superior Retro-Sunset de 5 Tonos del Logo -->
-  <div class="grid grid-cols-5 h-1.5 w-full">
-    <div class="bg-[#FCE600]"></div>
-    <div class="bg-[#F9C600]"></div>
-    <div class="bg-[#F59B00]"></div>
-    <div class="bg-[#F06A00]"></div>
-    <div class="bg-[#E63B06]"></div>
-  </div>
-
+<header class="sticky top-0 z-50 px-4 sm:px-8 pt-3 pb-2">
   <nav
-    class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 h-22 py-4 flex items-center justify-between"
+    class="max-w-7xl mx-auto bg-white/90 backdrop-blur-xl border border-[#0A2246]/10 rounded-full px-5 sm:px-8 h-20 shadow-[0_12px_32px_-12px_rgba(10,34,70,0.12)] flex items-center justify-between"
     aria-label="Navegación principal"
   >
-    <!-- Logotipo + Nombre en Playfair Display y pinamar-navy -->
+    <!-- Logotipo + Nombre (Sin subtítulo secundario) -->
     <a href="#" class="flex items-center focus:outline-none min-h-[44px] group">
       <img
         src="/logocabanas.png"
         alt="Cabañas Pinamar"
-        class="h-12 sm:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+        class="h-11 sm:h-12 w-auto transition-transform duration-300 group-hover:scale-105"
       />
-      <div class="ml-3.5">
+      <div class="ml-3">
         <span
           id="navbar-brand-text"
-          class="block font-serif text-xl sm:text-2xl font-bold text-pinamar-navy tracking-tight leading-none"
+          class="block font-serif text-xl sm:text-2xl font-bold text-[#0A2246] tracking-tight leading-none"
         >
           Cabañas Pinamar
         </span>
       </div>
     </a>
 
-    <!-- Navegación y Botón Secundario Outline (#0A2246) -->
-    <div class="flex items-center gap-6 sm:gap-8">
+    <!-- Navegación y Botón Pill -->
+    <div class="flex items-center gap-5 sm:gap-8">
       <a
         href="#cabanas"
-        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-pinamar-navy/80 hover:text-sunset-5 transition-colors duration-200"
+        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-[#0A2246]/80 hover:text-[#E86F2C] transition-colors duration-200"
       >
         Cabañas
       </a>
       <a
         href="#como-reservar"
-        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-pinamar-navy/80 hover:text-sunset-5 transition-colors duration-200"
+        class="hidden md:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-[#0A2246]/80 hover:text-[#E86F2C] transition-colors duration-200"
       >
         Cómo Reservar
       </a>
       <a
+        href="#como-llegar"
+        class="hidden lg:inline-flex items-center min-h-[44px] text-xs uppercase tracking-widest font-bold text-[#0A2246]/80 hover:text-[#E86F2C] transition-colors duration-200"
+      >
+        Cómo Llegar
+      </a>
+      <a
         href="#contacto"
-        class="inline-flex items-center justify-center min-h-[44px] border border-pinamar-navy text-pinamar-navy hover:bg-pinamar-navy hover:text-white px-6 py-2.5 text-xs uppercase tracking-widest font-bold transition-all duration-300 ease-in-out"
+        class="inline-flex items-center justify-center min-h-[42px] rounded-full bg-[#0A2246] text-white hover:bg-[#E86F2C] px-6 py-2.5 text-xs uppercase tracking-widest font-bold transition-all duration-300 ease-in-out shadow-sm"
       >
         Contacto
       </a>

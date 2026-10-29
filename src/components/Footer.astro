@@ -1,83 +1,106 @@
 ---
 ---
 
-<footer id="contacto" class="bg-[#0A2246] text-white mt-auto relative">
-  <!-- Franja Superior Retro-Sunset de 5 Tonos -->
-  <div class="grid grid-cols-5 h-2 w-full">
-    <div class="bg-[#FCE600]"></div>
-    <div class="bg-[#F9C600]"></div>
-    <div class="bg-[#F59B00]"></div>
-    <div class="bg-[#F06A00]"></div>
-    <div class="bg-[#E63B06]"></div>
-  </div>
+<footer id="contacto" class="px-4 sm:px-8 pb-8 pt-6">
+  <div class="max-w-7xl mx-auto rounded-3xl bg-[#071A33] text-white overflow-hidden shadow-2xl">
+    <div class="px-6 sm:px-12 py-16 sm:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-14 border-b border-white/10">
+        <!-- Columna 1: Identidad de Marca -->
+        <div class="lg:col-span-4 space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="bg-white p-2 rounded-2xl shrink-0">
+              <img src="/logocabanas.png" alt="Cabañas Pinamar" class="h-12 w-auto" />
+            </div>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-white tracking-tight">
+                Cabañas Pinamar
+              </h3>
+              <p class="text-xs uppercase tracking-widest text-[#F9C600] font-bold">
+                La Serena · Chile
+              </p>
+            </div>
+          </div>
 
-  <div class="max-w-7xl mx-auto py-16 sm:py-20 px-4 sm:px-8 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b-2 border-dotted border-white/25">
-      <!-- Marca y Redes -->
-      <div class="space-y-6">
-        <div class="flex items-center">
-          <img
-            src="/logocabanas.png"
-            alt="Cabañas Pinamar"
-            class="h-14 w-auto bg-white p-1 shadow-md"
-          />
-          <span class="font-serif text-2xl font-bold text-white ml-3.5">
-            Cabañas Pinamar
-          </span>
-        </div>
-
-        <div>
-          <a
-            href="https://www.instagram.com/cabanaspinamarchile/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram Cabañas Pinamar"
-            class="inline-flex items-center gap-3 text-xs uppercase tracking-widest text-[#FFFAC2] hover:text-[#F9C600] font-bold transition-all duration-300 ease-in-out"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
-              <rect width="20" height="20" x="2" y="2"></rect>
-              <circle cx="12" cy="12" r="4"></circle>
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-            </svg>
-            <span>@cabanaspinamarchile</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Contacto y Dirección -->
-      <div class="space-y-4">
-        <h3 class="text-xs uppercase tracking-widest text-[#F9C600] font-bold">
-          Contacto
-        </h3>
-        <div class="space-y-2 text-sm text-white">
-          <p>
-            <a href="tel:+56974635702" class="text-white hover:text-[#FFFAC2] transition-all duration-300 ease-in-out">
-              +56 9 7463 5702
-            </a>
-            <span class="mx-2 text-white/50">|</span>
-            <a href="mailto:cabanapinamar.chile@gmail.com" class="text-white hover:text-[#FFFAC2] transition-all duration-300 ease-in-out">
-              cabanapinamar.chile@gmail.com
-            </a>
+          <p class="text-sm text-white/75 leading-relaxed">
+            Más de 25 años recibiendo familias a pasos de la playa de Peñuelas. Descanso, tradición y hospitalidad frente al mar.
           </p>
-          <p class="text-white/90">
-            Avenida Pacífico 5020, La Serena, Coquimbo.
-          </p>
+
+          <div class="pt-1">
+            <a
+              href="https://www.instagram.com/cabanaspinamarchile/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 min-h-[44px] rounded-full border border-white/20 hover:border-[#F9C600] px-5 py-2.5 text-xs uppercase tracking-widest text-white hover:text-[#F9C600] transition-colors font-bold"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F9C600]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+              </svg>
+              <span>@cabanaspinamarchile</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Contacto Directo -->
+        <div class="lg:col-span-4 space-y-4">
+          <h4 class="text-xs uppercase tracking-widest text-[#F9C600] font-bold">
+            Contacto Directo
+          </h4>
+          <ul class="space-y-3 text-sm text-white/85">
+            <li>
+              <span class="block text-xs uppercase tracking-wider text-white/50 mb-0.5">Dirección</span>
+              <span class="font-medium text-white">Avenida Pacífico 5020, La Serena</span>
+            </li>
+            <li>
+              <span class="block text-xs uppercase tracking-wider text-white/50 mb-0.5">Teléfonos</span>
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <a href="tel:+56974635702" class="text-white hover:text-[#F9C600] transition-colors font-medium">
+                  +56 9 7463 5702
+                </a>
+                <span class="text-white/30">/</span>
+                <a href="tel:+56944089260" class="text-white hover:text-[#F9C600] transition-colors font-medium">
+                  +56 9 4408 9260
+                </a>
+              </div>
+            </li>
+            <li>
+              <span class="block text-xs uppercase tracking-wider text-white/50 mb-0.5">Email</span>
+              <a
+                href="mailto:contacto@cabanaspinamar.cl"
+                class="text-white hover:text-[#F9C600] transition-colors font-medium"
+              >
+                contacto@cabanaspinamar.cl
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Políticas y Horarios -->
+        <div class="lg:col-span-4 space-y-4">
+          <h4 class="text-xs uppercase tracking-widest text-[#F9C600] font-bold">
+            Políticas de Estadía
+          </h4>
+          <div class="rounded-2xl bg-white/5 border border-white/15 p-6 space-y-3 text-sm">
+            <div class="flex justify-between items-center pb-2.5 border-b border-white/10">
+              <span class="text-white/70">Check-in</span>
+              <span class="font-bold text-[#F9C600]">15:00 a 00:00</span>
+            </div>
+            <div class="flex justify-between items-center pb-2.5 border-b border-white/10">
+              <span class="text-white/70">Check-out</span>
+              <span class="font-bold text-[#F9C600]">12:00</span>
+            </div>
+            <p class="text-xs text-white/75 leading-relaxed pt-1">
+              Sin restricción de edad. Mascotas gratis.
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Políticas -->
-      <div class="space-y-4">
-        <h3 class="text-xs uppercase tracking-widest text-[#F9C600] font-bold">
-          Políticas
-        </h3>
-        <p class="text-sm text-white leading-relaxed">
-          Entrada 15:00 - 00:00 | Salida 12:00. Cancelación sujeta a tarifa.
-        </p>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <p>© {new Date().getFullYear()} Cabañas Pinamar · La Serena, Chile.</p>
+        <p>Todos los derechos reservados.</p>
       </div>
-    </div>
-
-    <div class="pt-8 text-center text-xs uppercase tracking-widest text-white/75">
-      <p>Cabañas Pinamar · Avenida Pacífico 5020, La Serena, Coquimbo.</p>
     </div>
   </div>
 </footer>
