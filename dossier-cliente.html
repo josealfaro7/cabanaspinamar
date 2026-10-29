@@ -21,80 +21,108 @@
       * {
         box-sizing: border-box;
       }
+      html,
       body {
         margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
         font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
         color: var(--navy);
         background: var(--sand);
         line-height: 1.6;
       }
-      .page {
-        max-width: 960px;
-        margin: 32px auto;
-        background: #ffffff;
-        padding: 48px 56px;
-        border-radius: 24px;
-        box-shadow: 0 20px 50px rgba(10, 34, 70, 0.08);
-        border: 1px solid rgba(10, 34, 70, 0.08);
+      .container-outer {
+        width: 100%;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 16px;
       }
       .no-print-bar {
-        max-width: 960px;
-        margin: 24px auto 0;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
+        gap: 12px;
         background: var(--navy);
         color: #fff;
-        padding: 14px 24px;
-        border-radius: 999px;
+        padding: 14px 20px;
+        border-radius: 18px;
+        margin-bottom: 16px;
+        font-size: 13px;
       }
       .btn-print {
         background: var(--orange);
         color: #fff;
         border: none;
-        padding: 10px 22px;
+        padding: 10px 20px;
         border-radius: 999px;
         font-weight: 700;
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         cursor: pointer;
+        width: 100%;
+        text-align: center;
+      }
+      .page {
+        width: 100%;
+        background: #ffffff;
+        padding: 24px 18px;
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(10, 34, 70, 0.08);
+        border: 1px solid rgba(10, 34, 70, 0.08);
+        overflow: hidden;
       }
       header {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         justify-content: space-between;
+        gap: 14px;
         border-bottom: 2px solid rgba(10, 34, 70, 0.1);
-        padding-bottom: 24px;
-        margin-bottom: 32px;
+        padding-bottom: 20px;
+        margin-bottom: 24px;
       }
       .brand {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
+        max-width: 100%;
       }
       .brand img {
-        height: 60px;
+        height: 52px;
         width: auto;
+        flex-shrink: 0;
       }
-      h1, h2, h3 {
+      .header-meta {
+        font-size: 13px;
+        color: rgba(10, 34, 70, 0.75);
+        text-align: left;
+      }
+      h1,
+      h2,
+      h3 {
         font-family: 'Fraunces', Georgia, serif;
         margin: 0;
+        overflow-wrap: anywhere;
       }
       h1 {
-        font-size: 28px;
+        font-size: clamp(20px, 5vw, 28px);
+        line-height: 1.2;
         color: var(--navy);
       }
       h2 {
-        font-size: 22px;
-        margin-top: 32px;
+        font-size: clamp(18px, 4.2vw, 22px);
+        margin-top: 28px;
         margin-bottom: 14px;
         color: var(--navy);
         border-left: 4px solid var(--orange);
         padding-left: 12px;
       }
       h3 {
-        font-size: 17px;
+        font-size: 16px;
         margin-bottom: 6px;
         color: var(--navy);
       }
@@ -102,40 +130,59 @@
         display: inline-block;
         background: #fff5df;
         color: var(--orange);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
-        padding: 4px 12px;
+        letter-spacing: 0.08em;
+        padding: 4px 10px;
         border-radius: 999px;
+        margin-bottom: 4px;
       }
       .links-box {
         background: var(--sand);
         border: 1px solid rgba(10, 34, 70, 0.12);
         border-radius: 16px;
-        padding: 18px 24px;
-        margin-bottom: 28px;
+        padding: 16px 18px;
+        margin-bottom: 24px;
+        overflow-wrap: anywhere;
+        word-break: break-word;
       }
       .links-box a {
         color: var(--orange);
         font-weight: 700;
         text-decoration: none;
+        overflow-wrap: anywhere;
+        word-break: break-all;
       }
       .grid-2 {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
       .card {
         background: var(--sand);
         border-radius: 16px;
-        padding: 18px 20px;
+        padding: 16px 18px;
         border: 1px solid rgba(10, 34, 70, 0.08);
+        min-width: 0;
       }
       .card p {
         margin: 6px 0 0;
         font-size: 14px;
         color: rgba(10, 34, 70, 0.8);
+        overflow-wrap: anywhere;
+      }
+      code {
+        background: rgba(10, 34, 70, 0.06);
+        padding: 2px 5px;
+        border-radius: 4px;
+        font-size: 12px;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
       }
       table {
         width: 100%;
@@ -143,10 +190,12 @@
         margin-top: 12px;
         font-size: 14px;
       }
-      th, td {
+      th,
+      td {
         text-align: left;
         padding: 12px 14px;
         border-bottom: 1px solid rgba(10, 34, 70, 0.1);
+        vertical-align: top;
       }
       th {
         background: var(--navy);
@@ -155,9 +204,79 @@
         text-transform: uppercase;
         letter-spacing: 0.06em;
       }
+
+      /* Vista de tarjetas para la tabla en celulares */
+      @media (max-width: 639px) {
+        table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
+          display: block;
+          width: 100%;
+        }
+        thead {
+          display: none;
+        }
+        tr {
+          background: var(--sand);
+          border: 1px solid rgba(10, 34, 70, 0.1);
+          border-radius: 14px;
+          padding: 12px 14px;
+          margin-bottom: 12px;
+        }
+        td {
+          padding: 4px 0;
+          border: none;
+        }
+        td:last-child {
+          margin-top: 4px;
+          font-size: 12px;
+          color: var(--orange);
+          font-weight: 700;
+        }
+      }
+
+      /* Pantallas medianas y grandes (Tablet / Desktop) */
+      @media (min-width: 640px) {
+        .container-outer {
+          padding: 28px 24px;
+        }
+        .no-print-bar {
+          border-radius: 999px;
+          padding: 14px 24px;
+          flex-wrap: nowrap;
+        }
+        .btn-print {
+          width: auto;
+          flex-shrink: 0;
+        }
+        .page {
+          padding: 44px 52px;
+          border-radius: 24px;
+        }
+        header {
+          flex-direction: row;
+          align-items: center;
+        }
+        .header-meta {
+          text-align: right;
+          flex-shrink: 0;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+      }
+
       @media print {
         body {
           background: #fff;
+        }
+        .container-outer {
+          padding: 0;
+          max-width: 100%;
         }
         .no-print-bar {
           display: none !important;
@@ -168,128 +287,135 @@
           box-shadow: none;
           border: none;
         }
+        .grid-2 {
+          grid-template-columns: 1fr 1fr;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="no-print-bar">
-      <span>📄 <strong>Dossier Ejecutivo para Cliente</strong> — Presiona el botón para guardar como PDF</span>
-      <button class="btn-print" onclick="window.print()">Guardar como PDF / Imprimir</button>
-    </div>
+    <div class="container-outer">
+      <div class="no-print-bar">
+        <span>📄 <strong>Dossier Ejecutivo para Cliente</strong> — Presiona el botón para guardar como PDF</span>
+        <button class="btn-print" onclick="window.print()">Guardar como PDF / Imprimir</button>
+      </div>
 
-    <div class="page">
-      <header>
-        <div class="brand">
-          <img src="./logocabanas.png" alt="Cabañas Pinamar" />
-          <div>
-            <span class="badge">Walkthrough de Funcionalidades y Diseño</span>
-            <h1>Cabañas Pinamar · La Serena</h1>
+      <div class="page">
+        <header>
+          <div class="brand">
+            <img src="./logocabanas.png" alt="Cabañas Pinamar" />
+            <div>
+              <span class="badge">Walkthrough de Funcionalidades y Diseño</span>
+              <h1>Cabañas Pinamar · La Serena</h1>
+            </div>
+          </div>
+          <div class="header-meta">
+            <strong>Av. Pacífico 5020, Sector Peñuelas</strong><br />
+            La Serena, Región de Coquimbo
+          </div>
+        </header>
+
+        <div class="links-box">
+          <strong>🔗 Enlace Oficial del Presentador con las 5 Propuestas en Vivo:</strong><br />
+          <a href="https://josealfaro7.github.io/cabanaspinamar/propuestas/" target="_blank">
+            https://josealfaro7.github.io/cabanaspinamar/propuestas/
+          </a>
+          <div style="font-size: 13px; margin-top: 6px; color: rgba(10,34,70,0.75);">
+            Desde la barra superior del enlace puedes deslizar o hacer clic entre los <strong>5 diseños propuestos</strong> tanto en computador como en teléfono móvil.
           </div>
         </div>
-        <div style="text-align: right; font-size: 13px; color: rgba(10,34,70,0.75);">
-          <strong>Av. Pacífico 5020, Sector Peñuelas</strong><br />
-          La Serena, Región de Coquimbo
-        </div>
-      </header>
 
-      <div class="links-box">
-        <strong>🔗 Enlace Oficial del Presentador con las 5 Propuestas en Vivo:</strong><br />
-        <a href="https://josealfaro7.github.io/cabanaspinamar/propuestas/" target="_blank">
-          https://josealfaro7.github.io/cabanaspinamar/propuestas/
-        </a>
-        <div style="font-size: 13px; margin-top: 6px; color: rgba(10,34,70,0.75);">
-          Desde la barra superior del enlace puedes deslizar o hacer clic entre los <strong>5 diseños propuestos</strong> tanto en computador como en teléfono móvil.
+        <h2>1. Arquitectura y Funcionalidades Incluidas (Features)</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>1. Conexión Directa a HotelSync</h3>
+            <p>
+              El botón principal <strong>«Ver Disponibilidad»</strong> en el Hero, dentro de la guía paso a paso y dentro de cada cabaña lleva directamente al motor oficial de reservas en línea con disponibilidad y pago inmediato.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>2. Catálogo de 6 Cabañas + Modal</h3>
+            <p>
+              Presenta las 6 unidades reales (Individual, Suite 4 pax y Cabañas de 4, 5, 6 y 7 personas) con su metraje, carrusel de fotos interior y lista de equipamiento incluido.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>3. Formulario Pre-armado a WhatsApp</h3>
+            <p>
+              Al elegir una cabaña y completar Nombre, Fechas y Personas, abre el WhatsApp de recepción (<code>+56 9 7463 5702</code>) con el mensaje listo para consultar disponibilidad.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>4. Guía Interactiva «¿Cómo Reservar?»</h3>
+            <p>
+              Explica de forma desplegable los <strong>6 pasos de HotelSync</strong> y los <strong>3 pasos de WhatsApp</strong> (1. Rellenar formulario · 2. Consulta por disponibilidad · 3. Coordina el pago).
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>5. Reseñas Oficiales de Google (4,4 ★)</h3>
+            <p>
+              Muestra la calificación oficial en Google Maps (<strong>4,4 ★ · 320+ opiniones · 9,7 en Limpieza</strong>), 3 testimonios verificados, botón a la ficha de Google y soporte para Google Places API v1.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>6. Mapa Interactivo, Street View 360° y Rutas</h3>
+            <p>
+              Conmutador en vivo entre <strong>Mapa 2D</strong>, <strong>Street View 360° de la fachada</strong> y <strong>Vista Satélite</strong>, calculador de ruta en 1 clic (Faro, Terminal, Estadio, Aeropuerto) y botones directos a <strong>Google Maps</strong> y <strong>Waze</strong>.
+            </p>
+          </div>
+        </div>
+
+        <h2>2. Optimización Móvil y Servicios Destacados</h2>
+        <p style="font-size: 14px; margin-top: 4px;">
+          <strong>• Diseño Responsivo Inteligente:</strong> En teléfonos móviles se oculta automáticamente la imagen lateral secundaria del Hero para priorizar el título y el botón de reserva sin necesidad de hacer scroll extra.<br />
+          <strong>• Métricas y 8 Servicios:</strong> Destaca <strong>+25 años</strong> de trayectoria, <strong>9,7</strong> en limpieza, <strong>21 cabañas</strong>, recepción 24 hrs, desayuno incluido, estacionamiento privado, Wi-Fi, juegos, terraza común nueva y política <strong>100% Pet Friendly</strong>.
+        </p>
+
+        <h2>3. Las 5 Propuestas de Diseño en el Presentador</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Propuesta</th>
+                <th>Concepto Visual</th>
+                <th>Tipografía</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Clásico (main)</strong></td>
+                <td>Estética de Hotel Boutique tradicional en Azul Marino (<code>#0a1f35</code>), Dorado (<code>#d49a2a</code>) y bordes rectos.</td>
+                <td>Playfair Display + Lato</td>
+              </tr>
+              <tr>
+                <td><strong>2. Editorial Minimalista</strong></td>
+                <td>Diseño tipo revista de viajes, composición asimétrica, servicios en lista abierta y sombras suaves.</td>
+                <td>Lora + Lato</td>
+              </tr>
+              <tr>
+                <td><strong>3. Retro-Sunset</strong></td>
+                <td>Inspirada en las 5 franjas de atardecer y el marco punteado del logo oficial sobre fondo hielo costero.</td>
+                <td>Playfair Display + Plus Jakarta Sans</td>
+              </tr>
+              <tr>
+                <td><strong>4. Gradiente Continuo</strong></td>
+                <td>Lienzo continuo con el atardecer difuminado en el fondo y tarjetas en blanco puro sólido de alto contraste.</td>
+                <td>Playfair Display + Plus Jakarta Sans</td>
+              </tr>
+              <tr>
+                <td><strong>5. Costero Orgánico (Bento)</strong></td>
+                <td><strong>Twist Contemporáneo:</strong> Tarjetas curvas (<code>rounded-3xl</code>), botones cápsula, Navbar flotante y Hero <em>Dark-Luxe</em> en Azul Pacífico Profundo.</td>
+                <td>Fraunces + Plus Jakarta Sans</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
-      <h2>1. Arquitectura y Funcionalidades Incluidas (Features)</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3>1. Conexión Directa a HotelSync</h3>
-          <p>
-            El botón principal <strong>«Ver Disponibilidad»</strong> en el Hero, dentro de la guía paso a paso y dentro de cada cabaña lleva directamente al motor oficial de reservas en línea con disponibilidad y pago inmediato.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>2. Catálogo de 6 Cabañas + Modal</h3>
-          <p>
-            Presenta las 6 unidades reales (Individual, Suite 4 pax y Cabañas de 4, 5, 6 y 7 personas) con su metraje, carrusel de fotos interior y lista de equipamiento incluido.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>3. Formulario Pre-armado a WhatsApp</h3>
-          <p>
-            Al elegir una cabaña y completar Nombre, Fechas y Personas, abre el WhatsApp de recepción (<code>+56 9 7463 5702</code>) con el mensaje listo para consultar disponibilidad.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>4. Guía Interactiva «¿Cómo Reservar?»</h3>
-          <p>
-            Explica de forma desplegable los <strong>6 pasos de HotelSync</strong> y los <strong>3 pasos de WhatsApp</strong> (1. Rellenar formulario · 2. Consulta por disponibilidad · 3. Coordina el pago).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>5. Reseñas Oficiales de Google (4,4 ★)</h3>
-          <p>
-            Muestra la calificación oficial en Google Maps (<strong>4,4 ★ · 320+ opiniones · 9,7 en Limpieza</strong>), 3 testimonios verificados, botón a la ficha de Google y soporte para Google Places API v1.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>6. Mapa Interactivo, Street View 360° y Rutas</h3>
-          <p>
-            Conmutador en vivo entre <strong>Mapa 2D</strong>, <strong>Street View 360° de la fachada</strong> y <strong>Vista Satélite</strong>, calculador de ruta en 1 clic (Faro, Terminal, Estadio, Aeropuerto) y botones directos a <strong>Google Maps</strong> y <strong>Waze</strong>.
-          </p>
-        </div>
-      </div>
-
-      <h2>2. Optimización Móvil y Servicios Destacados</h2>
-      <p style="font-size: 14px; margin-top: 4px;">
-        <strong>• Diseño Responsivo Inteligente:</strong> En teléfonos móviles se oculta automáticamente la imagen lateral secundaria del Hero para priorizar el título y el botón de reserva sin necesidad de hacer scroll extra.<br />
-        <strong>• Métricas y 8 Servicios:</strong> Destaca <strong>+25 años</strong> de trayectoria, <strong>9,7</strong> en limpieza, <strong>21 cabañas</strong>, recepción 24 hrs, desayuno incluido, estacionamiento privado, Wi-Fi, juegos, terraza común nueva y política <strong>100% Pet Friendly</strong>.
-      </p>
-
-      <h2>3. Las 5 Propuestas de Diseño en el Presentador</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Propuesta</th>
-            <th>Concepto Visual</th>
-            <th>Tipografía</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1. Clásico (main)</strong></td>
-            <td>Estética de Hotel Boutique tradicional en Azul Marino (<code>#0a1f35</code>), Dorado (<code>#d49a2a</code>) y bordes rectos.</td>
-            <td>Playfair Display + Lato</td>
-          </tr>
-          <tr>
-            <td><strong>2. Editorial Minimalista</strong></td>
-            <td>Diseño tipo revista de viajes, composición asimétrica, servicios en lista abierta y sombras suaves.</td>
-            <td>Lora + Lato</td>
-          </tr>
-          <tr>
-            <td><strong>3. Retro-Sunset</strong></td>
-            <td>Inspirada en las 5 franjas de atardecer y el marco punteado del logo oficial sobre fondo hielo costero.</td>
-            <td>Playfair Display + Plus Jakarta Sans</td>
-          </tr>
-          <tr>
-            <td><strong>4. Gradiente Continuo</strong></td>
-            <td>Lienzo continuo con el atardecer difuminado en el fondo y tarjetas en blanco puro sólido de alto contraste.</td>
-            <td>Playfair Display + Plus Jakarta Sans</td>
-          </tr>
-          <tr>
-            <td><strong>5. Costero Orgánico (Bento)</strong></td>
-            <td><strong>Twist Contemporáneo:</strong> Tarjetas curvas (<code>rounded-3xl</code>), botones cápsula, Navbar flotante y Hero <em>Dark-Luxe</em> en Azul Pacífico Profundo.</td>
-            <td>Fraunces + Plus Jakarta Sans</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </body>
 </html>
