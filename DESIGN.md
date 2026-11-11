@@ -29,8 +29,8 @@ The sunset palette lives only in the logo.
 
 - Container 1200px, gutters 20px mobile / 40px desktop.
 - Sections separated by space and ground changes (bone ↔ sand), not cards.
-- Square corners on photos; 2px radius on controls.
-- One elevation: the hero booking panel. Everything else is flat.
+- Photos: 4px radius with a soft diffuse shadow (`0 26px 50px -28px` ink at 55%), so bright exterior shots lift off the sand ground instead of reading as hard cut-outs. Controls: 2px radius.
+- Elevation: the hero booking panel and the cabin photos. Everything else is flat.
 
 ## Components
 
