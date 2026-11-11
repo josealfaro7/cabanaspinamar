@@ -18,6 +18,7 @@ import { services } from '../data/site';
           <div>
             <h3 class="font-semibold">{s.title}</h3>
             <p class="text-stone text-[0.9375rem] mt-0.5">{s.text}</p>
+            {s.note && <p class="text-stone text-[0.8125rem] mt-0.5">{s.note}</p>}
           </div>
         </li>
       ))}

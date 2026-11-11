@@ -27,7 +27,9 @@ export const contact = {
 export const policies = {
   checkIn: '15:00 a 00:00',
   checkOut: '12:00',
-  cancellation: 'Cancelación sujeta a la tarifa elegida.',
+  cancellation: 'Todas las tarifas son no reembolsables.',
+  children: 'Niños desde 5 años pagan tarifa normal. Menores de 5 años no pagan.',
+  pets: 'Mascotas bienvenidas: solo perros de razas pequeñas, hasta 15 kg.',
 };
 
 // Tipos de alojamiento. La "Cabaña" es una sola tipología equipada para 4 a 7 personas:
@@ -75,7 +77,7 @@ export const cabinEquipment = [
 export const services = [
   { title: 'Desayuno incluido', text: 'Para empezar cada mañana sin preocupaciones.', icon: '<path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v3M10 2v3M14 2v3"/>' },
   { title: 'Recepción 24 horas', text: 'Atención durante toda tu estadía, de día y de noche.', icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' },
-  { title: 'Mascotas bienvenidas', text: 'Tu mascota también viene de vacaciones.', icon: '<circle cx="11" cy="4.5" r="1.8"/><circle cx="17.5" cy="8" r="1.8"/><circle cx="19.5" cy="14" r="1.8"/><path d="M8.5 14a3.5 3.5 0 0 1 7 0v1.5a3 3 0 0 1-3 3h-1a3 3 0 0 1-3-3Z"/><circle cx="5" cy="9" r="1.8"/>' },
+  { title: 'Pet friendly', text: 'Mascotas bienvenidas.', note: 'Solo perros de razas pequeñas, hasta 15 kg.', icon: '<circle cx="11" cy="4.5" r="1.8"/><circle cx="17.5" cy="8" r="1.8"/><circle cx="19.5" cy="14" r="1.8"/><path d="M8.5 14a3.5 3.5 0 0 1 7 0v1.5a3 3 0 0 1-3 3h-1a3 3 0 0 1-3-3Z"/><circle cx="5" cy="9" r="1.8"/>' },
   { title: 'Estacionamiento privado', text: 'Dentro del recinto, con acceso directo.', icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>' },
   { title: 'WiFi', text: 'Conexión gratuita en cabañas y áreas comunes.', icon: '<path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><path d="M2 9a15 15 0 0 1 20 0"/><path d="M12 19.5h.01"/>' },
   { title: 'Terraza común y taca-taca', text: 'Espacios renovados para compartir en familia.', icon: '<path d="M3 21h18"/><path d="M5 21V11h14v10"/><path d="M12 3 2 11h20Z"/>' },

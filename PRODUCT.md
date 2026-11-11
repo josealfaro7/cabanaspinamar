@@ -33,7 +33,9 @@ More than 25 years as a family business at Av. Pacífico 5020, five minutes on f
 - WhatsApp flow (3 steps): choose cabin and fill name, dates and guests · send to open the chat with reception · coordinate transfer or payment with the team.
 - WhatsApp: +56 9 7463 5702 (wa.me/56974635702). Phone: +56 9 7463 5702. Email: cabanapinamar.chile@gmail.com. Instagram: @cabanaspinamarchile.
 - Address: Avenida Pacífico 5020, La Serena, Coquimbo. Coordinates −29.938014, −71.282414.
-- Policies: check-in 15:00–00:00, check-out 12:00. Cancellation subject to rate.
+- Policies (confirmed by management, Nov 2026): all rates are non-refundable (must be visible on the site); children from 5 years pay the normal rate, under 5 free; pet friendly, only small-breed dogs up to 15 kg. Check-in 15:00–00:00, check-out 12:00.
+- Cabin assignment (confirmed): guests do not choose a specific cabin; reception assigns one by availability. HotelSync offers 7 options by group size (Individual, 2, 4, Suite, 5, 6, 7 people), of two physical types (grey modern facade; white with tile roof). Names and missing specs pending in the unit sheet shared with management.
+- HotelSync today only counts "Adulto 13+"; agreed interim: count everyone 5+ as adult (admin to change the age), the site's search sends adults only.
 - Routes by car: Faro de La Serena 4,2 km (6 min) · Terminal de Buses 4,8 km (10 min) · Estadio La Portada 5,5 km (12 min) · Aeropuerto La Florida 10 km (18 min).
 
 ## Capabilities and Constraints

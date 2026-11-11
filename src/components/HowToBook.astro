@@ -1,5 +1,13 @@
 ---
-import { hotelsyncSteps, whatsappSteps, hotelsyncUrl, whatsappUrl } from '../data/site';
+import { hotelsyncSteps, whatsappSteps, hotelsyncUrl, whatsappUrl, policies } from '../data/site';
+
+const conditions = [
+  { label: 'Llegada', value: policies.checkIn },
+  { label: 'Salida', value: `Hasta las ${policies.checkOut}` },
+  { label: 'Reembolsos', value: policies.cancellation },
+  { label: 'Niños', value: policies.children },
+  { label: 'Mascotas', value: policies.pets },
+];
 ---
 
 <section id="reservar" class="bg-sand py-16 sm:py-28" aria-labelledby="reservar-title">
@@ -50,6 +58,19 @@ import { hotelsyncSteps, whatsappSteps, hotelsyncUrl, whatsappUrl } from '../dat
           Escribir por WhatsApp
         </a>
       </div>
+    </div>
+
+    <!-- Condiciones de la estadía: visibles antes de reservar -->
+    <div class="mt-14 sm:mt-20" aria-labelledby="condiciones-title">
+      <h3 id="condiciones-title" class="font-display text-2xl">Condiciones de la estadía</h3>
+      <dl class="mt-5 grid sm:grid-cols-2 lg:grid-cols-5 border-t border-ink/10">
+        {conditions.map((c) => (
+          <div class="py-4 sm:pr-6 border-b border-ink/10">
+            <dt class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">{c.label}</dt>
+            <dd class="mt-1">{c.value}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </div>
 </section>

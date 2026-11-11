@@ -1,6 +1,7 @@
 ---
 // Formulario real hacia HotelSync. Parámetros verificados en el motor:
-// engine_code, dfrom/dto (AAAA-MM-DD; vacíos = el huésped elige allá), adults, children, currency.
+// engine_code, dfrom/dto (AAAA-MM-DD; vacíos = el huésped elige allá), adults, currency.
+// Niños: en HotelSync todo el que paga (desde 5 años) cuenta como adulto; menores de 5 no se ingresan.
 import { HOTELSYNC_ENGINE, HOTELSYNC_CODE, whatsappUrl } from '../data/site';
 
 interface Props {
@@ -20,7 +21,7 @@ const field = 'h-12 w-full rounded-ctl border border-ink/20 bg-bone px-3 text-ba
   data-booking-form
   class:list={[
     'bg-white shadow-[0_18px_40px_-20px_rgb(31_43_42/0.35)] grid gap-4',
-    wide ? 'px-5 py-6 sm:p-7 grid-cols-2 lg:grid-cols-[1fr_1fr_0.7fr_0.7fr_auto] items-end sm:gap-5' : 'p-5 sm:p-6 grid-cols-2',
+    wide ? 'px-5 py-6 sm:p-7 grid-cols-2 lg:grid-cols-[1fr_1fr_0.8fr_auto] items-end sm:gap-5' : 'p-5 sm:p-6 grid-cols-2',
   ]}
   aria-label="Buscar disponibilidad"
 >
@@ -39,12 +40,6 @@ const field = 'h-12 w-full rounded-ctl border border-ink/20 bg-bone px-3 text-ba
       {[1, 2, 3, 4, 5, 6, 7].map((n) => <option value={n} selected={n === 2}>{n}</option>)}
     </select>
   </label>
-  <label class="flex flex-col gap-2">
-    <span class={label}>Niños</span>
-    <select name="children" class={field}>
-      {[0, 1, 2, 3, 4, 5].map((n) => <option value={n}>{n}</option>)}
-    </select>
-  </label>
   <input type="hidden" name="currency" value="CLP" />
   <button
     type="submit"
@@ -52,8 +47,8 @@ const field = 'h-12 w-full rounded-ctl border border-ink/20 bg-bone px-3 text-ba
   >
     Ver disponibilidad
   </button>
-  <p class:list={['col-span-2 text-sm text-stone flex flex-wrap items-center gap-x-2', wide && 'lg:col-span-5']}>
-    <span>Precios en pesos, pago con Webpay.</span>
+  <p class:list={['col-span-2 text-sm text-stone flex flex-wrap items-center gap-x-2', wide && 'lg:col-span-4']}>
+    <span>Menores de 5 años no pagan. Tarifas no reembolsables, en pesos, pago con Webpay.</span>
     <a
       href={whatsappUrl('Hola, quiero consultar disponibilidad en Cabañas Pinamar.')}
       target="_blank"
