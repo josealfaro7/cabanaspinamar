@@ -41,7 +41,7 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
           </div>
 
           <!-- Formulario real: abre HotelSync con la cantidad de personas elegida -->
-          <form action={HOTELSYNC_ENGINE} method="get" target="_blank" class="sm:w-72">
+          <form action={HOTELSYNC_ENGINE} method="get" target="_blank" class="sm:w-72" data-hide-mobile-bar>
             <input type="hidden" name="engine_code" value={HOTELSYNC_CODE} />
             <fieldset>
               <legend class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">¿Cuántas personas vienen?</legend>
