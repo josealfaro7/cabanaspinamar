@@ -1,5 +1,8 @@
 // Datos del sitio: única fuente de hechos (ver PRODUCT.md). No inventar cifras ni reseñas.
 
+// Rutas de archivos de /public respetando el "base" del build (en GitHub Pages es /cabanaspinamar).
+export const asset = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
+
 export const HOTELSYNC_ENGINE = 'https://app.hotelsync.com/engine/es';
 export const HOTELSYNC_CODE = 'e0dacb55418a3ad29a5f9d07b988ba218e10eeb0';
 
@@ -37,8 +40,8 @@ export const cabana = {
   // Pendiente confirmar con el dueño: superficie y dormitorios reales (p. ej. '60 m² · 2 dormitorios').
   // Mientras esté vacío no se muestra.
   detail: '',
-  image: '/fotos/cabana-1400.webp',
-  imageSmall: '/fotos/cabana-800.webp',
+  image: asset('/fotos/cabana-1400.webp'),
+  imageSmall: asset('/fotos/cabana-800.webp'),
   alt: 'Cabaña blanca de techo de teja con su terraza, mesa y quitasol',
 };
 
@@ -55,8 +58,8 @@ export interface Unit {
 
 export const otherUnits: Unit[] = [
   // Pendiente confirmar con el dueño qué foto corresponde a cada unidad.
-  { id: 'individual', name: 'Individual', size: '28 m²', rooms: '1 dormitorio', guests: 1, image: '/fotos/unidad-a-1000.webp', imageSmall: '/fotos/unidad-a-700.webp', alt: 'Unidad de fachada gris y blanca con terraza y buganvilias' },
-  { id: 'suite', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: '/fotos/unidad-b-1000.webp', imageSmall: '/fotos/unidad-b-700.webp', alt: 'Unidades con ventanales y terraza con mesas' },
+  { id: 'individual', name: 'Individual', size: '28 m²', rooms: '1 dormitorio', guests: 1, image: asset('/fotos/unidad-a-1000.webp'), imageSmall: asset('/fotos/unidad-a-700.webp'), alt: 'Unidad de fachada gris y blanca con terraza y buganvilias' },
+  { id: 'suite', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: asset('/fotos/unidad-b-1000.webp'), imageSmall: asset('/fotos/unidad-b-700.webp'), alt: 'Unidades con ventanales y terraza con mesas' },
 ];
 
 export const cabinEquipment = [

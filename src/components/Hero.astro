@@ -1,5 +1,6 @@
 ---
 import BookingForm from './BookingForm.astro';
+import { asset } from '../data/site';
 
 const title = 'Tu lugar en La Serena, a pasos del mar';
 const subtitle = 'Cabañas familiares desde hace más de 25 años, a 5 minutos a pie de la playa de Peñuelas.';
@@ -20,8 +21,8 @@ const subtitle = 'Cabañas familiares desde hace más de 25 años, a 5 minutos a
   </div>
 
   <img
-    src="/fotos/panoramica-2000.webp"
-    srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w"
+    src={asset('/fotos/panoramica-2000.webp')}
+    srcset={`${asset('/fotos/panoramica-1200.webp')} 1200w, ${asset('/fotos/panoramica-2000.webp')} 2000w`}
     sizes="(min-width:1280px) 1200px, 100vw"
     alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena"
     width="2000"

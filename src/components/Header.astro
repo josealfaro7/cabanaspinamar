@@ -1,5 +1,5 @@
 ---
-import { hotelsyncUrl } from '../data/site';
+import { hotelsyncUrl, asset } from '../data/site';
 
 const links = [
   { href: '#cabanas', label: 'Cabañas' },
@@ -12,7 +12,7 @@ const links = [
 <header class="sticky top-0 z-40 bg-bone/95 backdrop-blur border-b border-ink/10">
   <nav class="max-w-page mx-auto px-5 sm:px-10 h-16 sm:h-[4.5rem] flex items-center justify-between gap-6" aria-label="Principal">
     <a href="#" class="flex items-center gap-3 min-h-[44px]">
-      <img src="/logocabanas.webp" alt="" width="44" height="44" class="w-10 h-10 sm:w-11 sm:h-11" />
+      <img src={asset('/logocabanas.webp')} alt="" width="44" height="44" class="w-10 h-10 sm:w-11 sm:h-11" />
       <span class="font-display text-xl sm:text-[1.375rem] leading-none">Cabañas Pinamar</span>
     </a>
 
