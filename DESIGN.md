@@ -40,7 +40,7 @@ The sunset palette lives only in the logo.
 
 ## Photography
 
-All current images are stock and carry a visible "Imagen referencial" caption until replaced by real photos of the property.
+Real photos of the property live in `public/fotos/` (WebP, several widths; originals in the untracked `Cabañas Página web_/` folder). Exteriors only for now: no interior photos yet. Any stock image added later must carry a visible "Imagen referencial" caption.
 
 ## Motion
 

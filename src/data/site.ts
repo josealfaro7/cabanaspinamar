@@ -29,8 +29,6 @@ export const policies = {
 
 // Tipos de alojamiento. La "Cabaña" es una sola tipología equipada para 4 a 7 personas:
 // la tarifa cambia según cuántas personas se alojan (se elige en HotelSync).
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=75&fm=webp`;
-
 export const cabana = {
   id: 'cabana',
   name: 'Cabaña',
@@ -39,7 +37,9 @@ export const cabana = {
   // Pendiente confirmar con el dueño: superficie y dormitorios reales (p. ej. '60 m² · 2 dormitorios').
   // Mientras esté vacío no se muestra.
   detail: '',
-  image: img('photo-1587061949409-02df41d5e562'),
+  image: '/fotos/cabana-1400.webp',
+  imageSmall: '/fotos/cabana-800.webp',
+  alt: 'Cabaña blanca de techo de teja con su terraza, mesa y quitasol',
 };
 
 export interface Unit {
@@ -49,11 +49,14 @@ export interface Unit {
   rooms: string;
   guests: number;
   image: string;
+  imageSmall: string;
+  alt: string;
 }
 
 export const otherUnits: Unit[] = [
-  { id: 'individual', name: 'Individual', size: '28 m²', rooms: '1 dormitorio', guests: 1, image: img('photo-1590490360182-c33d57733427') },
-  { id: 'suite', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: img('photo-1566665797739-1674de7a421a') },
+  // Pendiente confirmar con el dueño qué foto corresponde a cada unidad.
+  { id: 'individual', name: 'Individual', size: '28 m²', rooms: '1 dormitorio', guests: 1, image: '/fotos/unidad-a-1000.webp', imageSmall: '/fotos/unidad-a-700.webp', alt: 'Unidad de fachada gris y blanca con terraza y buganvilias' },
+  { id: 'suite', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: '/fotos/unidad-b-1000.webp', imageSmall: '/fotos/unidad-b-700.webp', alt: 'Unidades con ventanales y terraza con mesas' },
 ];
 
 export const cabinEquipment = [

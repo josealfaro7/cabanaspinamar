@@ -18,14 +18,15 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
         <div class="relative aspect-[16/10] overflow-hidden bg-bone">
           <img
             src={cabana.image}
-            alt=""
+            srcset={`${cabana.imageSmall} 800w, ${cabana.image} 1400w`}
+            sizes="(min-width: 1024px) 60vw, 100vw"
+            alt={cabana.alt}
             width="1400"
             height="875"
             loading="lazy"
             decoding="async"
             class="w-full h-full object-cover"
           />
-          <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
         </div>
 
         <div class="mt-6 grid sm:grid-cols-[1fr_auto] gap-x-10 gap-y-6 items-end">
@@ -74,14 +75,15 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
               <div class="relative aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-bone">
                 <img
                   src={unit.image}
-                  alt=""
-                  width="1400"
-                  height="875"
+                  srcset={`${unit.imageSmall} 700w, ${unit.image} 1000w`}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+                  alt={unit.alt}
+                  width="1000"
+                  height="625"
                   loading="lazy"
                   decoding="async"
                   class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
                 />
-                <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
               </div>
               <h3 class="mt-4 font-display text-2xl">{unit.name}</h3>
               <p class="mt-1 text-stone">
