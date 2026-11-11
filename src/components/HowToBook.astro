@@ -1,12 +1,12 @@
 ---
 import { hotelsyncSteps, whatsappSteps, hotelsyncUrl, whatsappUrl, policies } from '../data/site';
 
+// Orden en que el huésped las busca: horario, con quién viene, condiciones de pago.
 const conditions = [
-  { label: 'Llegada', value: policies.checkIn },
-  { label: 'Salida', value: `Hasta las ${policies.checkOut}` },
-  { label: 'Reembolsos', value: policies.cancellation },
-  { label: 'Niños', value: policies.children },
-  { label: 'Mascotas', value: policies.pets },
+  { label: 'Horario', lines: [`Llegada ${policies.checkIn}`, `Salida hasta las ${policies.checkOut}`] },
+  { label: 'Niños', lines: [policies.children] },
+  { label: 'Mascotas', lines: [policies.pets] },
+  { label: 'Reembolsos', lines: [policies.cancellation] },
 ];
 ---
 
@@ -63,11 +63,11 @@ const conditions = [
     <!-- Condiciones de la estadía: visibles antes de reservar -->
     <div class="mt-14 sm:mt-20" aria-labelledby="condiciones-title">
       <h3 id="condiciones-title" class="font-display text-2xl">Condiciones de la estadía</h3>
-      <dl class="mt-5 grid sm:grid-cols-2 lg:grid-cols-5 border-t border-ink/10">
+      <dl class="mt-5 grid grid-cols-2 lg:grid-cols-4 gap-x-6 border-t border-ink/10">
         {conditions.map((c) => (
-          <div class="py-4 sm:pr-6 border-b border-ink/10">
+          <div class="py-4 border-b border-ink/10">
             <dt class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">{c.label}</dt>
-            <dd class="mt-1">{c.value}</dd>
+            <dd class="mt-1">{c.lines.map((l) => <span class="block">{l}</span>)}</dd>
           </div>
         ))}
       </dl>

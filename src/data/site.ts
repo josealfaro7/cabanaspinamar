@@ -27,9 +27,9 @@ export const contact = {
 export const policies = {
   checkIn: '15:00 a 00:00',
   checkOut: '12:00',
-  cancellation: 'Todas las tarifas son no reembolsables.',
-  children: 'Niños desde 5 años pagan tarifa normal. Menores de 5 años no pagan.',
-  pets: 'Mascotas bienvenidas: solo perros de razas pequeñas, hasta 15 kg.',
+  cancellation: 'Tarifas no reembolsables.',
+  children: 'Menores de 5 años no pagan.',
+  pets: 'Perros pequeños, hasta 15 kg.',
 };
 
 // Tipos de alojamiento. La "Cabaña" es una sola tipología equipada para 4 a 7 personas:
