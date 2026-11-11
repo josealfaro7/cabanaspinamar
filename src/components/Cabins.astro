@@ -1,11 +1,12 @@
 ---
+import PhotoTuner from './PhotoTuner.astro';
 import { cabana, otherUnits, cabinEquipment, hotelsyncUrl, HOTELSYNC_ENGINE, HOTELSYNC_CODE } from '../data/site';
 
 const guestOptions = Array.from({ length: cabana.guestsMax - cabana.guestsMin + 1 }, (_, i) => cabana.guestsMin + i);
 const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${cabinEquipment.at(-1)}`;
 ---
 
-<section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title">
+<section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title" data-photo-style="square">
   <div class="max-w-page mx-auto px-5 sm:px-10">
     <div class="mb-10 sm:mb-14">
       <h2 id="cabanas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Las cabañas</h2>
@@ -15,7 +16,7 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
     <div class="grid lg:grid-cols-3 gap-12 lg:gap-10">
       <!-- Cabaña: una sola tipología para 4 a 7 personas; la tarifa depende de cuántos se alojan -->
       <article class="lg:col-span-2" aria-labelledby="cabana-title">
-        <div class="relative aspect-[16/10] overflow-hidden bg-bone">
+        <div class="cabin-photo relative aspect-[16/10] overflow-hidden bg-bone">
           <img
             src={cabana.image}
             srcset={`${cabana.imageSmall} 800w, ${cabana.image} 1400w`}
@@ -72,7 +73,7 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
         {otherUnits.map((unit) => (
           <li>
             <article class="group">
-              <div class="relative aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-bone">
+              <div class="cabin-photo relative aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-bone">
                 <img
                   src={unit.image}
                   srcset={`${unit.imageSmall} 700w, ${unit.image} 1000w`}
@@ -106,3 +107,38 @@ const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${c
     </div>
   </div>
 </section>
+
+{import.meta.env.DEV && <PhotoTuner />}
+
+<style is:global>
+  /* Tratamiento de fotos de cabañas. Estilos: square | rounded | arch | frame | lifted.
+     El radio sale de --photo-radius. */
+  #cabanas {
+    --photo-radius: 16px;
+  }
+  #cabanas .cabin-photo {
+    transition: border-radius 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+  #cabanas .cabin-photo img {
+    transition: border-radius 0.3s ease;
+  }
+  #cabanas[data-photo-style='rounded'] .cabin-photo {
+    border-radius: var(--photo-radius);
+  }
+  #cabanas[data-photo-style='arch'] .cabin-photo {
+    border-radius: calc(var(--photo-radius) * 6) calc(var(--photo-radius) * 6) var(--photo-radius) var(--photo-radius) / calc(var(--photo-radius) * 4) calc(var(--photo-radius) * 4) var(--photo-radius) var(--photo-radius);
+  }
+  #cabanas[data-photo-style='frame'] .cabin-photo {
+    background: #fff;
+    padding: 10px;
+    border-radius: var(--photo-radius);
+    box-shadow: 0 1px 2px rgb(31 43 42 / 0.06), 0 12px 28px -18px rgb(31 43 42 / 0.35);
+  }
+  #cabanas[data-photo-style='frame'] .cabin-photo img {
+    border-radius: max(0px, calc(var(--photo-radius) - 8px));
+  }
+  #cabanas[data-photo-style='lifted'] .cabin-photo {
+    border-radius: var(--photo-radius);
+    box-shadow: 0 26px 50px -28px rgb(31 43 42 / 0.55);
+  }
+</style>
