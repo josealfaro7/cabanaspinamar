@@ -4,7 +4,7 @@ export const HOTELSYNC_ENGINE = 'https://app.hotelsync.com/engine/es';
 export const HOTELSYNC_CODE = 'e0dacb55418a3ad29a5f9d07b988ba218e10eeb0';
 
 export function hotelsyncUrl(adults = 2, children = 0) {
-  return `${HOTELSYNC_ENGINE}?engine_code=${HOTELSYNC_CODE}&adults=${adults}&children=${children}`;
+  return `${HOTELSYNC_ENGINE}?engine_code=${HOTELSYNC_CODE}&adults=${adults}&children=${children}&currency=CLP`;
 }
 
 export const WHATSAPP_NUMBER = '56974635702';

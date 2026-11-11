@@ -1,0 +1,85 @@
+---
+// Formulario real hacia HotelSync. Parámetros verificados en el motor:
+// engine_code, dfrom/dto (AAAA-MM-DD; vacíos = el huésped elige allá), adults, children, currency.
+import { HOTELSYNC_ENGINE, HOTELSYNC_CODE, whatsappUrl } from '../data/site';
+
+interface Props {
+  layout?: 'wide' | 'stack';
+  idPrefix: string;
+}
+const { layout = 'wide', idPrefix } = Astro.props;
+const wide = layout === 'wide';
+const label = 'text-[13px] font-semibold uppercase tracking-[0.08em] text-stone';
+const field = 'h-12 w-full rounded-ctl border border-ink/20 bg-bone px-3 text-base';
+---
+
+<form
+  action={HOTELSYNC_ENGINE}
+  method="get"
+  target="_blank"
+  data-booking-form
+  class:list={[
+    'bg-white shadow-[0_18px_40px_-20px_rgb(31_43_42/0.35)] grid gap-4',
+    wide ? 'px-5 py-6 sm:p-7 grid-cols-2 lg:grid-cols-[1fr_1fr_0.7fr_0.7fr_auto] items-end sm:gap-5' : 'p-5 sm:p-6 grid-cols-2',
+  ]}
+  aria-label="Buscar disponibilidad"
+>
+  <input type="hidden" name="engine_code" value={HOTELSYNC_CODE} />
+  <label class="flex flex-col gap-2" for={`${idPrefix}-dfrom`}>
+    <span class={label}>Llegada</span>
+    <input id={`${idPrefix}-dfrom`} type="date" name="dfrom" class={field} data-dfrom />
+  </label>
+  <label class="flex flex-col gap-2" for={`${idPrefix}-dto`}>
+    <span class={label}>Salida</span>
+    <input id={`${idPrefix}-dto`} type="date" name="dto" class={field} data-dto />
+  </label>
+  <label class="flex flex-col gap-2">
+    <span class={label}>Adultos</span>
+    <select name="adults" class={field}>
+      {[1, 2, 3, 4, 5, 6, 7].map((n) => <option value={n} selected={n === 2}>{n}</option>)}
+    </select>
+  </label>
+  <label class="flex flex-col gap-2">
+    <span class={label}>Niños</span>
+    <select name="children" class={field}>
+      {[0, 1, 2, 3, 4, 5].map((n) => <option value={n}>{n}</option>)}
+    </select>
+  </label>
+  <input type="hidden" name="currency" value="CLP" />
+  <button
+    type="submit"
+    class:list={['h-12 px-7 rounded-ctl bg-terracotta hover:bg-terracotta-dark text-white font-medium transition-colors', wide ? 'col-span-2 lg:col-span-1' : 'col-span-2']}
+  >
+    Ver disponibilidad
+  </button>
+  <p class:list={['col-span-2 text-sm text-stone flex flex-wrap items-center gap-x-2', wide && 'lg:col-span-5']}>
+    <span>Precios en pesos, pago con Webpay.</span>
+    <a
+      href={whatsappUrl('Hola, quiero consultar disponibilidad en Cabañas Pinamar.')}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center min-h-[44px] text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-ink"
+    >
+      ¿Dudas? Escríbenos por WhatsApp
+    </a>
+  </p>
+</form>
+
+<script>
+  // Fechas: no permitir pasado; salida siempre después de la llegada.
+  const iso = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const today = iso(new Date());
+  document.querySelectorAll<HTMLFormElement>('[data-booking-form]').forEach((form) => {
+    const from = form.querySelector<HTMLInputElement>('[data-dfrom]')!;
+    const to = form.querySelector<HTMLInputElement>('[data-dto]')!;
+    from.min = today;
+    to.min = today;
+    from.addEventListener('change', () => {
+      if (!from.value) return;
+      const next = new Date(from.value + 'T12:00:00');
+      next.setDate(next.getDate() + 1);
+      to.min = iso(next);
+      if (!to.value || to.value <= from.value) to.value = iso(next);
+    });
+  });
+</script>

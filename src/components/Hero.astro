@@ -1,74 +1,89 @@
 ---
-import { HOTELSYNC_ENGINE, HOTELSYNC_CODE, whatsappUrl } from '../data/site';
+import BookingForm from './BookingForm.astro';
+import HeroTuner from './HeroTuner.astro';
+
+// Variante publicada. En `npm run dev` se renderizan todas y HeroTuner permite compararlas.
+const PUBLISHED = 'actual';
+const variants = import.meta.env.DEV ? ['actual', 'mosaico', 'panoramica', 'dividida'] : [PUBLISHED];
+const title = 'Tu lugar en La Serena, a pasos del mar';
+const subtitle = 'Cabañas familiares desde hace más de 25 años, a 5 minutos a pie de la playa de Peñuelas.';
+const lifted = 'rounded-[4px] shadow-[0_26px_50px_-28px_rgb(31_43_42/0.55)] object-cover';
+const hide = (v: string) => import.meta.env.DEV && PUBLISHED !== v;
 ---
 
-<section class="relative" aria-labelledby="hero-title">
-  <div class="relative h-[min(72svh,46rem)] min-h-[26rem] overflow-hidden bg-ink">
-    <img
-      src="/fotos/hero-recepcion-1600.webp"
-      srcset="/fotos/hero-recepcion-1200.webp 1200w, /fotos/hero-recepcion-1600.webp 1600w, /fotos/hero-recepcion-2400.webp 2400w"
-      sizes="100vw"
-      alt="Entrada de Cabañas Pinamar: recepción, palmeras y la calle interior con las cabañas"
-      width="2400"
-      height="1600"
-      fetchpriority="high"
-      class="hero-photo absolute inset-0 w-full h-full object-cover object-[30%_60%]"
-    />
-    <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" aria-hidden="true"></div>
-    <div class="absolute inset-0 hidden sm:block bg-gradient-to-r from-ink/65 via-ink/25 to-transparent" aria-hidden="true"></div>
-
-    <div class="relative h-full max-w-page mx-auto px-5 sm:px-10 flex flex-col justify-end pb-10 sm:pb-24 lg:pb-32">
-      <h1 id="hero-title" class="font-display text-bone text-[2.25rem] leading-[1.1] sm:text-6xl lg:text-7xl max-w-[16ch] text-balance">
-        Tu lugar en La Serena, a pasos del mar
-      </h1>
-      <p class="mt-4 sm:mt-6 text-bone/90 text-lg sm:text-xl max-w-[38ch]">
-        Cabañas familiares desde hace más de 25 años, a 5 minutos a pie de la playa de Peñuelas.
-      </p>
+{variants.includes('actual') && (
+  <section class="relative" aria-labelledby="hero-title-actual" data-hero-variant="actual" hidden={hide('actual')}>
+    <div class="relative h-[min(72svh,46rem)] min-h-[26rem] overflow-hidden bg-ink">
+      <img
+        src="/fotos/hero-recepcion-1600.webp"
+        srcset="/fotos/hero-recepcion-1200.webp 1200w, /fotos/hero-recepcion-1600.webp 1600w, /fotos/hero-recepcion-2400.webp 2400w"
+        sizes="100vw"
+        alt="Entrada de Cabañas Pinamar: recepción, palmeras y la calle interior con las cabañas"
+        width="2400"
+        height="1600"
+        fetchpriority="high"
+        class="hero-photo absolute inset-0 w-full h-full object-cover object-[30%_60%]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" aria-hidden="true"></div>
+      <div class="absolute inset-0 hidden sm:block bg-gradient-to-r from-ink/65 via-ink/25 to-transparent" aria-hidden="true"></div>
+      <div class="relative h-full max-w-page mx-auto px-5 sm:px-10 flex flex-col justify-end pb-10 sm:pb-24 lg:pb-32">
+        <h1 id="hero-title-actual" class="font-display text-bone text-[2.25rem] leading-[1.1] sm:text-6xl lg:text-7xl max-w-[16ch] text-balance">{title}</h1>
+        <p class="mt-4 sm:mt-6 text-bone/90 text-lg sm:text-xl max-w-[38ch]">{subtitle}</p>
+      </div>
     </div>
-  </div>
+    <div class="max-w-page mx-auto sm:px-10 sm:-mt-14 lg:-mt-16 relative z-10">
+      <BookingForm idPrefix="h1" />
+    </div>
+  </section>
+)}
 
-  <!-- Panel de reserva: formulario real hacia HotelSync -->
-  <div class="max-w-page mx-auto sm:px-10 sm:-mt-14 lg:-mt-16 relative z-10">
-    <form
-      action={HOTELSYNC_ENGINE}
-      method="get"
-      target="_blank"
-      class="bg-white sm:shadow-[0_18px_40px_-20px_rgb(31_43_42/0.35)] px-5 py-6 sm:p-7 grid grid-cols-2 sm:grid-cols-[1fr_1fr_auto] lg:grid-cols-[1fr_1fr_auto_auto] gap-4 sm:gap-5 items-end"
-      aria-label="Ver disponibilidad"
-    >
-      <input type="hidden" name="engine_code" value={HOTELSYNC_CODE} />
-      <label class="flex flex-col gap-2">
-        <span class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">Adultos</span>
-        <select name="adults" class="h-12 rounded-ctl border border-ink/20 bg-bone px-3 text-base">
-          {[1, 2, 3, 4, 5, 6, 7].map((n) => <option value={n} selected={n === 2}>{n}</option>)}
-        </select>
-      </label>
-      <label class="flex flex-col gap-2">
-        <span class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">Niños</span>
-        <select name="children" class="h-12 rounded-ctl border border-ink/20 bg-bone px-3 text-base">
-          {[0, 1, 2, 3, 4, 5].map((n) => <option value={n}>{n}</option>)}
-        </select>
-      </label>
-      <button
-        type="submit"
-        class="col-span-2 sm:col-span-1 h-12 px-7 rounded-ctl bg-terracotta hover:bg-terracotta-dark text-white font-medium transition-colors"
-      >
-        Ver disponibilidad
-      </button>
-      <a
-        href={whatsappUrl('Hola, quiero consultar disponibilidad en Cabañas Pinamar.')}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="col-span-2 sm:col-span-3 lg:col-span-1 inline-flex items-center justify-center gap-2 h-12 px-2 text-ink underline underline-offset-4 decoration-ink/30 hover:decoration-ink"
-      >
-        o pregunta por WhatsApp
-      </a>
-      <p class="col-span-2 sm:col-span-3 lg:col-span-4 text-sm text-stone -mt-1">
-        Eliges las fechas y la cabaña en el siguiente paso. Pago en línea y confirmación inmediata.
-      </p>
-    </form>
-  </div>
-</section>
+{variants.includes('mosaico') && (
+  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-mosaico" data-hero-variant="mosaico" hidden={hide('mosaico')}>
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <div class="lg:col-span-6">
+        <h1 id="hero-title-mosaico" class="font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[14ch] text-balance">{title}</h1>
+        <p class="mt-5 text-lg sm:text-xl text-stone max-w-[40ch]">{subtitle}</p>
+        <div class="mt-8">
+          <BookingForm layout="stack" idPrefix="h2" />
+        </div>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6 items-start">
+        <img src="/fotos/cabana-vertical-1000.webp" srcset="/fotos/cabana-vertical-600.webp 600w, /fotos/cabana-vertical-1000.webp 1000w" sizes="(min-width:1024px) 25vw, 50vw" alt="Cabaña blanca con techo de teja y terraza" width="1000" height="1251" fetchpriority="high" class={`w-full aspect-[4/5] ${lifted}`} />
+        <img src="/fotos/terraza-vertical-1000.webp" srcset="/fotos/terraza-vertical-600.webp 600w, /fotos/terraza-vertical-1000.webp 1000w" sizes="(min-width:1024px) 25vw, 50vw" alt="Mesa en la terraza, con palmeras y la zona de juegos al fondo" width="1000" height="1251" class={`w-full aspect-[4/5] mt-12 sm:mt-20 ${lifted}`} />
+      </div>
+    </div>
+  </section>
+)}
+
+{variants.includes('panoramica') && (
+  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-panoramica" data-hero-variant="panoramica" hidden={hide('panoramica')}>
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-14 items-end">
+      <h1 id="hero-title-panoramica" class="lg:col-span-7 font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[16ch] text-balance">{title}</h1>
+      <p class="lg:col-span-5 text-lg sm:text-xl text-stone max-w-[40ch] lg:pb-3">{subtitle}</p>
+    </div>
+    <img src="/fotos/panoramica-2000.webp" srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w" sizes="(min-width:1280px) 1200px, 100vw" alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena" width="2000" height="908" fetchpriority="high" class={`mt-10 w-full aspect-[16/9] sm:aspect-[2.2/1] ${lifted}`} />
+    <div class="relative z-10 -mt-10 sm:-mt-16 sm:mx-8 lg:mx-14">
+      <BookingForm idPrefix="h3" />
+    </div>
+  </section>
+)}
+
+{variants.includes('dividida') && (
+  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-dividida" data-hero-variant="dividida" hidden={hide('dividida')}>
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div>
+        <h1 id="hero-title-dividida" class="font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[14ch] text-balance">{title}</h1>
+        <p class="mt-5 text-lg sm:text-xl text-stone max-w-[40ch]">{subtitle}</p>
+        <div class="mt-8">
+          <BookingForm layout="stack" idPrefix="h4" />
+        </div>
+      </div>
+      <img src="/fotos/panoramica-2000.webp" srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w" sizes="(min-width:1024px) 50vw, 100vw" alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena" width="2000" height="908" fetchpriority="high" class={`w-full aspect-[4/3] lg:aspect-[4/5] ${lifted}`} />
+    </div>
+  </section>
+)}
+
+{import.meta.env.DEV && <HeroTuner />}
 
 <style>
   @media (prefers-reduced-motion: no-preference) {
