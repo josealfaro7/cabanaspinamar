@@ -1,0 +1,52 @@
+---
+import { cabins, cabinEquipment, hotelsyncUrl } from '../data/site';
+---
+
+<section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title">
+  <div class="max-w-page mx-auto px-5 sm:px-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
+      <div>
+        <h2 id="cabanas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Las cabañas</h2>
+        <p class="mt-3 text-stone max-w-[52ch]">Seis tipos, desde una cabaña individual hasta una para siete personas.</p>
+      </div>
+      <p class="text-sm text-stone max-w-[44ch]">
+        Todas incluyen {cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y {cabinEquipment.at(-1)}.
+      </p>
+    </div>
+
+    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+      {cabins.map((cabin) => (
+        <li>
+          <article class="group">
+            <div class="relative aspect-[4/3] overflow-hidden bg-bone">
+              <img
+                src={cabin.image}
+                alt=""
+                width="900"
+                height="675"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+              />
+              <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
+            </div>
+            <h3 class="mt-5 font-display text-2xl">{cabin.name}</h3>
+            <p class="mt-1 text-stone">
+              {cabin.size} · {cabin.rooms} · {cabin.guests === 1 ? '1 persona' : `hasta ${cabin.guests} personas`}
+            </p>
+            <a
+              href={hotelsyncUrl(cabin.guests)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 inline-flex items-center gap-2 min-h-[44px] text-terracotta font-medium hover:text-terracotta-dark"
+              aria-label={`Ver disponibilidad de ${cabin.name}`}
+            >
+              Ver disponibilidad
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

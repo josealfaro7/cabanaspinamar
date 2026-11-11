@@ -1,0 +1,26 @@
+---
+import { services } from '../data/site';
+---
+
+<section id="servicios" class="max-w-page mx-auto px-5 sm:px-10 py-16 sm:py-28" aria-labelledby="servicios-title">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+    <div class="lg:col-span-4">
+      <h2 id="servicios-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Lo que encuentras aquí</h2>
+      <p class="mt-4 text-stone max-w-[40ch]">
+        Pronto: un nuevo comedor para el desayuno, que estamos construyendo.
+      </p>
+    </div>
+
+    <ul class="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 border-t border-ink/10">
+      {services.map((s) => (
+        <li class="flex gap-4 py-5 border-b border-ink/10">
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="w-6 h-6 shrink-0 mt-0.5 text-terracotta" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+          <div>
+            <h3 class="font-semibold">{s.title}</h3>
+            <p class="text-stone text-[0.9375rem] mt-0.5">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

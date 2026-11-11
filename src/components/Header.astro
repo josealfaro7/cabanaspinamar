@@ -1,0 +1,65 @@
+---
+import { hotelsyncUrl } from '../data/site';
+
+const links = [
+  { href: '#cabanas', label: 'Cabañas' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#reservar', label: 'Cómo reservar' },
+  { href: '#ubicacion', label: 'Ubicación' },
+];
+---
+
+<header class="sticky top-0 z-40 bg-bone/95 backdrop-blur border-b border-ink/10">
+  <nav class="max-w-page mx-auto px-5 sm:px-10 h-16 sm:h-[4.5rem] flex items-center justify-between gap-6" aria-label="Principal">
+    <a href="#" class="flex items-center gap-3 min-h-[44px]">
+      <img src="/logocabanas.webp" alt="" width="44" height="44" class="w-10 h-10 sm:w-11 sm:h-11" />
+      <span class="font-display text-xl sm:text-[1.375rem] leading-none">Cabañas Pinamar</span>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-8 text-[0.9375rem]">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="inline-flex items-center min-h-[44px] text-ink/80 hover:text-ink underline-offset-8 hover:underline decoration-1">
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={hotelsyncUrl()}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex items-center justify-center min-h-[44px] px-5 rounded-ctl bg-terracotta hover:bg-terracotta-dark text-white text-[0.9375rem] font-medium transition-colors"
+      >
+        Reservar
+      </a>
+
+      <!-- Menú móvil sin JavaScript -->
+      <details class="lg:hidden relative group">
+        <summary
+          class="list-none [&::-webkit-details-marker]:hidden cursor-pointer inline-flex items-center justify-center w-11 h-11 rounded-ctl border border-ink/15"
+          aria-label="Abrir menú"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5 group-open:hidden" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5 hidden group-open:block" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </summary>
+        <ul class="absolute right-0 top-full mt-2 w-56 bg-bone border border-ink/10 shadow-lg py-2">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} class="flex items-center min-h-[48px] px-5 hover:bg-sand">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Cerrar el menú móvil al elegir una sección
+  document.querySelectorAll('header details a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open'))
+  );
+</script>

@@ -1,0 +1,87 @@
+---
+import { GOOGLE_LISTING_URL, googleFallback } from '../data/site';
+
+interface Review {
+  author: string;
+  rating: number;
+  date: string;
+  text: string;
+}
+
+// Se consulta solo al hacer build. Sin credenciales se muestra el resumen y el enlace a Google.
+// Nunca se muestran reseñas que no vengan de la API.
+const apiKey = import.meta.env.GOOGLE_PLACES_API_KEY;
+const placeId = import.meta.env.GOOGLE_PLACE_ID;
+
+let rating = googleFallback.rating;
+let count = googleFallback.count;
+let reviews: Review[] = [];
+
+if (apiKey && placeId) {
+  try {
+    const res = await fetch(
+      `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount,reviews&languageCode=es`,
+      { headers: { 'X-Goog-Api-Key': apiKey } }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      if (data.rating) rating = data.rating;
+      if (data.userRatingCount) count = data.userRatingCount;
+      reviews = (data.reviews ?? [])
+        .filter((r: any) => r.rating && (r.text?.text || r.originalText?.text))
+        .slice(0, 3)
+        .map((r: any) => ({
+          author: r.authorAttribution?.displayName ?? 'Huésped en Google',
+          rating: r.rating,
+          date: r.relativePublishTimeDescription ?? '',
+          text: r.text?.text ?? r.originalText?.text,
+        }));
+    }
+  } catch {
+    // Sin red: queda el resumen
+  }
+}
+
+const ratingLabel = rating.toLocaleString('es-CL', { maximumFractionDigits: 1 });
+---
+
+<section class="max-w-page mx-auto px-5 sm:px-10 py-16 sm:py-28" aria-labelledby="resenas-title">
+  <div class:list={['gap-10 lg:gap-16', reviews.length > 0 ? 'grid lg:grid-cols-12 items-start' : 'flex flex-col lg:flex-row lg:items-end lg:justify-between']}>
+    <div class:list={[reviews.length > 0 && 'lg:col-span-5']}>
+      <h2 id="resenas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Lo que dicen en Google</h2>
+      <p class="mt-3 text-stone max-w-[44ch]">Nuestras reseñas viven en Google Maps, escritas por los propios huéspedes.</p>
+    </div>
+    <div class:list={[reviews.length > 0 ? 'lg:col-span-5 lg:col-start-1' : 'lg:text-right']}>
+      <p class:list={['flex items-baseline gap-3', reviews.length === 0 && 'lg:justify-end']}>
+        <span class="font-display text-6xl leading-none">{ratingLabel}</span>
+        <span class="flex gap-1" role="img" aria-label={`${ratingLabel} de 5 estrellas`}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <svg aria-hidden="true" viewBox="0 0 20 20" class:list={['w-5 h-5', n <= Math.round(rating) ? 'text-terracotta' : 'text-ink/15']} fill="currentColor">
+              <path d="M10 1.8l2.5 5.2 5.7.8-4.1 4 1 5.6L10 14.7l-5.1 2.7 1-5.6-4.1-4 5.7-.8z" />
+            </svg>
+          ))}
+        </span>
+      </p>
+      <p class="mt-2 text-stone">Más de {count} opiniones.</p>
+      <a
+        href={GOOGLE_LISTING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-6 inline-flex items-center justify-center h-12 px-6 rounded-ctl border border-ink/25 hover:border-ink font-medium transition-colors"
+      >
+        Leer las reseñas
+      </a>
+    </div>
+
+    {reviews.length > 0 && (
+      <ul class="lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 border-t border-ink/10">
+        {reviews.map((r) => (
+          <li class="py-6 border-b border-ink/10">
+            <p class="text-lg leading-relaxed">“{r.text}”</p>
+            <p class="mt-3 text-sm text-stone">{r.author}{r.date && ` · ${r.date}`} · {r.rating} de 5</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>

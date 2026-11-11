@@ -1,0 +1,33 @@
+---
+import { policies } from '../data/site';
+---
+
+<section class="max-w-page mx-auto px-5 sm:px-10 py-16 sm:py-28" aria-labelledby="intro-title">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-16">
+    <h2 id="intro-title" class="lg:col-span-5 font-display text-3xl sm:text-[2.75rem] leading-[1.15] text-balance">
+      Más de 25 años siendo parte de tus estadías
+    </h2>
+
+    <div class="lg:col-span-7 lg:pt-2">
+      <p class="text-lg sm:text-xl leading-relaxed max-w-[60ch]">
+        Somos un recinto familiar de 21 cabañas equipadas en Avenida Pacífico, a cinco minutos caminando de la playa de
+        Peñuelas. Recepción las 24 horas, desayuno incluido y espacio para que los niños y las mascotas también disfruten.
+      </p>
+
+      <dl class="mt-10 grid sm:grid-cols-3 border-t border-ink/10">
+        <div class="py-5 sm:pr-6 border-b sm:border-b-0 border-ink/10">
+          <dt class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">Llegada</dt>
+          <dd class="mt-1">{policies.checkIn}</dd>
+        </div>
+        <div class="py-5 sm:px-6 border-b sm:border-b-0 sm:border-l border-ink/10">
+          <dt class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">Salida</dt>
+          <dd class="mt-1">Hasta las {policies.checkOut}</dd>
+        </div>
+        <div class="py-5 sm:pl-6 sm:border-l border-ink/10">
+          <dt class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">Playa</dt>
+          <dd class="mt-1">5 minutos a pie</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
