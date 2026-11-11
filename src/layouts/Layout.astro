@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/source-serif-4/opsz.css';
-import FontTuner from '../components/FontTuner.astro';
 import '@fontsource/hanken-grotesk/400.css';
 import '@fontsource/hanken-grotesk/500.css';
 import '@fontsource/hanken-grotesk/600.css';
@@ -39,10 +38,9 @@ const {
         font-size: 1.0625rem;
         line-height: 1.65;
       }
-      /* Peso de los títulos (Source Serif 4 variable, eje wght 200–900).
-         Se ajusta con el slider que aparece solo en `npm run dev`. */
+      /* Peso de los títulos (Source Serif 4 variable, eje wght 200–900). */
       :root {
-        --display-wght: 420;
+        --display-wght: 470;
       }
       .font-display {
         font-weight: var(--display-wght);
@@ -70,6 +68,5 @@ const {
       Saltar al contenido
     </a>
     <slot />
-    {import.meta.env.DEV && <FontTuner />}
   </body>
 </html>
