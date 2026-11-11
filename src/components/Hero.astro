@@ -1,102 +1,36 @@
 ---
 import BookingForm from './BookingForm.astro';
-import HeroTuner from './HeroTuner.astro';
 
-// Variante publicada. En `npm run dev` se renderizan todas y HeroTuner permite compararlas.
-const PUBLISHED = 'actual';
-const variants = import.meta.env.DEV ? ['actual', 'mosaico', 'panoramica', 'dividida'] : [PUBLISHED];
 const title = 'Tu lugar en La Serena, a pasos del mar';
 const subtitle = 'Cabañas familiares desde hace más de 25 años, a 5 minutos a pie de la playa de Peñuelas.';
-const lifted = 'rounded-[4px] shadow-[0_26px_50px_-28px_rgb(31_43_42/0.55)] object-cover';
-const hide = (v: string) => import.meta.env.DEV && PUBLISHED !== v;
 ---
 
-{variants.includes('actual') && (
-  <section class="relative" aria-labelledby="hero-title-actual" data-hero-variant="actual" hidden={hide('actual')}>
-    <div class="relative h-[min(72svh,46rem)] min-h-[26rem] overflow-hidden bg-ink">
-      <img
-        src="/fotos/hero-recepcion-1600.webp"
-        srcset="/fotos/hero-recepcion-1200.webp 1200w, /fotos/hero-recepcion-1600.webp 1600w, /fotos/hero-recepcion-2400.webp 2400w"
-        sizes="100vw"
-        alt="Entrada de Cabañas Pinamar: recepción, palmeras y la calle interior con las cabañas"
-        width="2400"
-        height="1600"
-        fetchpriority="high"
-        class="hero-photo absolute inset-0 w-full h-full object-cover object-[30%_60%]"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/20 to-transparent" aria-hidden="true"></div>
-      <div class="absolute inset-0 hidden sm:block bg-gradient-to-r from-ink/65 via-ink/25 to-transparent" aria-hidden="true"></div>
-      <div class="relative h-full max-w-page mx-auto px-5 sm:px-10 flex flex-col justify-end pb-10 sm:pb-24 lg:pb-32">
-        <h1 id="hero-title-actual" class="font-display text-bone text-[2.25rem] leading-[1.1] sm:text-6xl lg:text-7xl max-w-[16ch] text-balance">{title}</h1>
-        <p class="mt-4 sm:mt-6 text-bone/90 text-lg sm:text-xl max-w-[38ch]">{subtitle}</p>
-      </div>
-    </div>
-    <div class="max-w-page mx-auto sm:px-10 sm:-mt-14 lg:-mt-16 relative z-10">
-      <BookingForm idPrefix="h1" />
-    </div>
-  </section>
-)}
+<!--
+  Portada "panorámica". Regla: el buscador completo debe verse sin hacer scroll.
+  - Escritorio: la foto toma el alto que sobra de la pantalla (100svh menos header, título y buscador),
+    con mínimo 15rem y máximo 34rem; el buscador se monta sobre su borde inferior.
+  - Teléfono: título, buscador y después la foto.
+-->
+<section class="max-w-page mx-auto px-5 sm:px-10 pt-8 sm:pt-10 lg:pt-12 pb-6 flex flex-col" aria-labelledby="hero-title">
+  <div class="order-1 grid lg:grid-cols-12 gap-4 lg:gap-14 items-end">
+    <h1 id="hero-title" class="lg:col-span-7 font-display text-[2.375rem] leading-[1.08] sm:text-[3.25rem] lg:text-[3.75rem] max-w-[20ch] text-balance">
+      {title}
+    </h1>
+    <p class="lg:col-span-5 text-lg lg:text-xl text-stone max-w-[40ch] lg:pb-2">{subtitle}</p>
+  </div>
 
-{variants.includes('mosaico') && (
-  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-mosaico" data-hero-variant="mosaico" hidden={hide('mosaico')}>
-    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-      <div class="lg:col-span-6">
-        <h1 id="hero-title-mosaico" class="font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[14ch] text-balance">{title}</h1>
-        <p class="mt-5 text-lg sm:text-xl text-stone max-w-[40ch]">{subtitle}</p>
-        <div class="mt-8">
-          <BookingForm layout="stack" idPrefix="h2" />
-        </div>
-      </div>
-      <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6 items-start">
-        <img src="/fotos/cabana-vertical-1000.webp" srcset="/fotos/cabana-vertical-600.webp 600w, /fotos/cabana-vertical-1000.webp 1000w" sizes="(min-width:1024px) 25vw, 50vw" alt="Cabaña blanca con techo de teja y terraza" width="1000" height="1251" fetchpriority="high" class={`w-full aspect-[4/5] ${lifted}`} />
-        <img src="/fotos/terraza-vertical-1000.webp" srcset="/fotos/terraza-vertical-600.webp 600w, /fotos/terraza-vertical-1000.webp 1000w" sizes="(min-width:1024px) 25vw, 50vw" alt="Mesa en la terraza, con palmeras y la zona de juegos al fondo" width="1000" height="1251" class={`w-full aspect-[4/5] mt-12 sm:mt-20 ${lifted}`} />
-      </div>
-    </div>
-  </section>
-)}
+  <img
+    src="/fotos/panoramica-2000.webp"
+    srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w"
+    sizes="(min-width:1280px) 1200px, 100vw"
+    alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena"
+    width="2000"
+    height="908"
+    fetchpriority="high"
+    class="order-3 lg:order-2 mt-8 w-full aspect-[16/9] sm:aspect-[2.2/1] lg:aspect-auto lg:h-[clamp(15rem,calc(100svh-29rem),34rem)] object-cover rounded-[4px] shadow-[0_26px_50px_-28px_rgb(31_43_42/0.55)]"
+  />
 
-{variants.includes('panoramica') && (
-  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-panoramica" data-hero-variant="panoramica" hidden={hide('panoramica')}>
-    <div class="grid lg:grid-cols-12 gap-6 lg:gap-14 items-end">
-      <h1 id="hero-title-panoramica" class="lg:col-span-7 font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[16ch] text-balance">{title}</h1>
-      <p class="lg:col-span-5 text-lg sm:text-xl text-stone max-w-[40ch] lg:pb-3">{subtitle}</p>
-    </div>
-    <img src="/fotos/panoramica-2000.webp" srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w" sizes="(min-width:1280px) 1200px, 100vw" alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena" width="2000" height="908" fetchpriority="high" class={`mt-10 w-full aspect-[16/9] sm:aspect-[2.2/1] ${lifted}`} />
-    <div class="relative z-10 -mt-10 sm:-mt-16 sm:mx-8 lg:mx-14">
-      <BookingForm idPrefix="h3" />
-    </div>
-  </section>
-)}
-
-{variants.includes('dividida') && (
-  <section class="max-w-page mx-auto px-5 sm:px-10 pt-10 sm:pt-16 lg:pt-20 pb-6" aria-labelledby="hero-title-dividida" data-hero-variant="dividida" hidden={hide('dividida')}>
-    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <div>
-        <h1 id="hero-title-dividida" class="font-display text-[2.5rem] leading-[1.08] sm:text-6xl lg:text-[4.25rem] max-w-[14ch] text-balance">{title}</h1>
-        <p class="mt-5 text-lg sm:text-xl text-stone max-w-[40ch]">{subtitle}</p>
-        <div class="mt-8">
-          <BookingForm layout="stack" idPrefix="h4" />
-        </div>
-      </div>
-      <img src="/fotos/panoramica-2000.webp" srcset="/fotos/panoramica-1200.webp 1200w, /fotos/panoramica-2000.webp 2000w" sizes="(min-width:1024px) 50vw, 100vw" alt="Vista aérea de Cabañas Pinamar: techos rojos, palmeras y los cerros de La Serena" width="2000" height="908" fetchpriority="high" class={`w-full aspect-[4/3] lg:aspect-[4/5] ${lifted}`} />
-    </div>
-  </section>
-)}
-
-{import.meta.env.DEV && <HeroTuner />}
-
-<style>
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-photo {
-      animation: settle 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes settle {
-      from {
-        transform: scale(1.04);
-      }
-      to {
-        transform: scale(1);
-      }
-    }
-  }
-</style>
+  <div class="order-2 lg:order-3 relative z-10 mt-6 lg:-mt-24 lg:mx-14">
+    <BookingForm idPrefix="hero" />
+  </div>
+</section>

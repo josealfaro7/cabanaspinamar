@@ -34,7 +34,8 @@ The sunset palette lives only in the logo.
 
 ## Components
 
-- Booking panel: guests selectors + "Ver disponibilidad" (GET form to HotelSync) + WhatsApp link. Appears in the hero; a compact bar sticks to the bottom on phones.
+- Hero ("panorámica"): title (2 lines on desktop) and subtitle on the bone ground, then the aerial panorama with the booking panel overlapping its lower edge. The whole booking panel must be visible without scrolling: the panorama height is `clamp(15rem, 100svh - 29rem, 34rem)`. On phones the order is title, booking panel, photo.
+- Booking panel: arrival/departure (dfrom/dto), adults, children, currency CLP + "Ver disponibilidad" (GET form to HotelSync) + WhatsApp link. A compact bar sticks to the bottom on phones and hides while any booking form or the footer is on screen; on tablet/desktop a round WhatsApp button floats bottom-right.
 - Cabin entry: photo 4:3, name, size · bedrooms · guests, link that opens HotelSync with that cabin's guest count.
 - Lists (services, steps, routes): hairline-separated rows with a small line icon.
 
