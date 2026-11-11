@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, nextTick, onMounted, onUnmounted } from 'vue';
 
 interface Cabin {
   id: string;
@@ -18,6 +18,9 @@ const isModalOpen = ref(false);
 const isLoadingSkeleton = ref(false);
 const selectedCabin = ref<Cabin | null>(null);
 const currentSlide = ref(0);
+const dialogRef = ref<HTMLElement | null>(null);
+const closeBtnRef = ref<HTMLButtonElement | null>(null);
+let lastTrigger: HTMLElement | null = null;
 
 // Booking Form Reactive State (Vue 3 Composition API)
 const guestName = ref('');
@@ -45,13 +48,15 @@ const optimisticDateSummary = computed(() => {
   }
 });
 
-function openCabinModal(cabin: Cabin) {
+function openCabinModal(cabin: Cabin, event?: Event) {
+  lastTrigger = (event?.currentTarget as HTMLElement) ?? (document.activeElement as HTMLElement | null);
   selectedCabin.value = cabin;
   guestCount.value = cabin.defaultGuests;
   currentSlide.value = 0;
   isModalOpen.value = true;
   isLoadingSkeleton.value = true;
   document.body.classList.add('overflow-hidden');
+  nextTick(() => closeBtnRef.value?.focus());
 
   setTimeout(() => {
     isLoadingSkeleton.value = false;
@@ -61,6 +66,30 @@ function openCabinModal(cabin: Cabin) {
 function closeCabinModal() {
   isModalOpen.value = false;
   document.body.classList.remove('overflow-hidden');
+  // Devolver el foco al botón que abrió el modal
+  nextTick(() => lastTrigger?.focus());
+}
+
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+function trapFocus(e: KeyboardEvent) {
+  const root = dialogRef.value;
+  if (!root) return;
+  const items = Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+    (el) => el.offsetParent !== null
+  );
+  if (items.length === 0) return;
+  const first = items[0];
+  const last = items[items.length - 1];
+  const active = document.activeElement as HTMLElement | null;
+  if (e.shiftKey && (active === first || !root.contains(active))) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && (active === last || !root.contains(active))) {
+    e.preventDefault();
+    first.focus();
+  }
 }
 
 function nextSlide() {
@@ -94,8 +123,11 @@ function submitWhatsAppQuote() {
 }
 
 function handleKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && isModalOpen.value) {
+  if (!isModalOpen.value) return;
+  if (e.key === 'Escape') {
     closeCabinModal();
+  } else if (e.key === 'Tab') {
+    trapFocus(e);
   }
 }
 
@@ -105,6 +137,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown);
+  document.body.classList.remove('overflow-hidden');
 });
 </script>
 
@@ -115,18 +148,21 @@ onUnmounted(() => {
       <article
         v-for="cabin in props.cabins"
         :key="cabin.id"
-        class="bg-white border border-amber-900/10 p-2.5 shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col group"
+        class="bg-white shadow-xl hover:-translate-y-1 transition-all duration-300 ease-in-out flex flex-col group"
       >
-        <div class="border-2 border-dotted border-[#0A2246]/30 flex-1 flex flex-col">
+        <div class="flex-1 flex flex-col">
           <!-- Imagen Principal -->
           <div class="relative h-60 w-full overflow-hidden bg-pinamar-ice">
             <img
               :src="cabin.mainImage"
+              width="900"
+              height="600"
+              decoding="async"
               :alt="cabin.title"
               class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               loading="lazy"
             />
-            <span class="absolute top-3 left-3 bg-pinamar-sun text-pinamar-navy text-[11px] font-bold uppercase tracking-wider px-3 py-1 shadow-sm border border-pinamar-navy/20">
+            <span class="absolute top-3 left-3 bg-pinamar-sun text-pinamar-navy text-xs font-bold px-3 py-1 shadow-sm border border-pinamar-navy/20">
               {{ cabin.capacity }}
             </span>
           </div>
@@ -140,11 +176,11 @@ onUnmounted(() => {
             </div>
 
             <!-- Botón Secundario Outline (#0A2246) con Hover Relleno -->
-            <div class="pt-4 border-t border-[#0A2246]/10">
+            <div class="pt-4 border-t border-pinamar-navy/10">
               <button
                 type="button"
-                @click="openCabinModal(cabin)"
-                class="w-full min-h-[44px] border border-pinamar-navy text-pinamar-navy hover:bg-pinamar-navy hover:text-white font-bold text-xs uppercase tracking-widest py-3.5 px-6 transition-all duration-300 ease-in-out focus:outline-none"
+                @click="openCabinModal(cabin, $event)"
+                class="w-full min-h-[44px] border border-pinamar-navy text-pinamar-navy hover:bg-pinamar-navy hover:text-white font-bold text-xs uppercase tracking-widest py-3.5 px-6 transition-all duration-300 ease-in-out"
               >
                 Ver detalles
               </button>
@@ -157,29 +193,30 @@ onUnmounted(() => {
     <!-- Modal Interactivo de Cabaña -->
     <div
       v-if="isModalOpen && selectedCabin"
+      ref="dialogRef"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-cabin-title"
       @click.self="closeCabinModal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-pinamar-navy/80 backdrop-blur-sm transition-opacity duration-200 ease-out"
+      class="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8 bg-pinamar-navy/80 backdrop-blur-sm transition-opacity duration-200 ease-out"
     >
       <div
-        class="relative w-full max-w-5xl bg-pinamar-ice shadow-2xl p-2.5 overflow-hidden max-h-[92vh] flex flex-col"
+        class="relative w-full max-w-5xl bg-pinamar-ice shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
       >
-        <div class="border-2 border-dotted border-[#0A2246]/30 bg-white overflow-hidden flex flex-col max-h-full">
+        <div class="bg-white overflow-hidden flex flex-col max-h-full">
           <!-- Franja Retro-Sunset en el Tope del Modal -->
           <div class="grid grid-cols-5 h-1.5 w-full shrink-0">
-            <div class="bg-[#FCE600]"></div>
-            <div class="bg-[#F9C600]"></div>
-            <div class="bg-[#F59B00]"></div>
-            <div class="bg-[#F06A00]"></div>
-            <div class="bg-[#E63B06]"></div>
+            <div class="bg-sunset-1"></div>
+            <div class="bg-sunset-2"></div>
+            <div class="bg-sunset-3"></div>
+            <div class="bg-sunset-4"></div>
+            <div class="bg-sunset-5"></div>
           </div>
 
           <!-- Encabezado del Modal -->
-          <div class="flex items-center justify-between px-6 sm:px-10 py-5 border-b border-[#0A2246]/15 bg-pinamar-ice shrink-0">
+          <div class="flex items-center justify-between px-6 sm:px-10 py-5 border-b border-pinamar-navy/15 bg-pinamar-ice shrink-0">
             <div>
-              <span class="inline-block bg-pinamar-sun text-pinamar-navy text-[11px] uppercase tracking-widest font-bold px-2.5 py-0.5 mb-1">
+              <span class="inline-block bg-pinamar-sun text-pinamar-navy text-xs font-bold px-2.5 py-0.5 mb-1">
                 {{ selectedCabin.capacity }}
               </span>
               <h3
@@ -192,11 +229,12 @@ onUnmounted(() => {
 
             <button
               type="button"
+              ref="closeBtnRef"
               @click="closeCabinModal"
               aria-label="Cerrar ventana"
               class="min-w-[44px] min-h-[44px] border border-pinamar-navy text-pinamar-navy hover:bg-pinamar-navy hover:text-white flex items-center justify-center transition-all duration-200"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
@@ -204,7 +242,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Cuerpo del Modal -->
-          <div class="overflow-y-auto grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#0A2246]/15">
+          <div class="overflow-y-auto grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-pinamar-navy/15">
             <!-- Izquierda: Carrusel + Equipamiento -->
             <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col gap-8 bg-white">
               <div
@@ -217,10 +255,10 @@ onUnmounted(() => {
 
               <div
                 v-else
-                class="relative overflow-hidden bg-pinamar-ice aspect-[16/10] select-none border border-[#0A2246]/15"
+                class="relative overflow-hidden bg-pinamar-ice aspect-[16/10] select-none border border-pinamar-navy/15"
               >
                 <div
-                  class="flex w-full h-full transition-transform duration-300 ease-out"
+                  class="flex w-full h-full transition-transform duration-300 ease-out motion-reduce:transition-none"
                   :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
                 >
                   <div
@@ -230,6 +268,9 @@ onUnmounted(() => {
                   >
                     <img
                       :src="imgSrc"
+                      width="900"
+                      height="563"
+                      decoding="async"
                       :alt="`${selectedCabin.title} - Vista ${idx + 1}`"
                       class="w-full h-full object-cover"
                       loading="lazy"
@@ -244,7 +285,7 @@ onUnmounted(() => {
                   aria-label="Foto anterior"
                   class="absolute left-0 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[48px] bg-pinamar-ice/90 hover:bg-pinamar-navy hover:text-white text-pinamar-navy flex items-center justify-center transition-colors"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
                     <polyline points="15 18 9 12 15 6"></polyline>
                   </svg>
                 </button>
@@ -256,31 +297,36 @@ onUnmounted(() => {
                   aria-label="Foto siguiente"
                   class="absolute right-0 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[48px] bg-pinamar-ice/90 hover:bg-pinamar-navy hover:text-white text-pinamar-navy flex items-center justify-center transition-colors"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" stroke-linejoin="miter">
                     <polyline points="9 18 15 12 9 6"></polyline>
                   </svg>
                 </button>
 
-                <!-- Indicadores -->
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                <!-- Indicadores (área táctil 32x32, trazo visual interno) -->
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center">
                   <button
                     v-for="(_, idx) in selectedCabin.images"
                     :key="idx"
                     type="button"
                     @click="setSlide(idx)"
-                    :aria-label="`Foto ${idx + 1}`"
-                    :class="[
-                      'w-6 h-1.5 transition-all duration-200',
-                      currentSlide === idx ? 'bg-sunset-5' : 'bg-white/70',
-                    ]"
-                  ></button>
+                    :aria-label="`Foto ${idx + 1} de ${selectedCabin.images.length}`"
+                    :aria-current="currentSlide === idx ? 'true' : undefined"
+                    class="w-8 h-8 flex items-center justify-center"
+                  >
+                    <span
+                      :class="[
+                        'block w-6 h-1.5 transition-colors duration-200',
+                        currentSlide === idx ? 'bg-action' : 'bg-white/80',
+                      ]"
+                    ></span>
+                  </button>
                 </div>
               </div>
 
               <!-- Lista de Equipamiento -->
               <div class="pt-2">
-                <h4 class="text-xs uppercase tracking-widest text-pinamar-navy font-bold mb-4 pb-2 border-b border-[#0A2246]/15">
-                  Equipamiento Incluido
+                <h4 class="text-xs uppercase tracking-widest text-pinamar-navy font-bold mb-4 pb-2 border-b border-pinamar-navy/15">
+                  Equipamiento incluido
                 </h4>
                 <ul class="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-6 text-sm text-pinamar-navy">
                   <li
@@ -298,11 +344,8 @@ onUnmounted(() => {
             <!-- Derecha: Formulario de Consulta -->
             <div class="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between bg-pinamar-ice/60">
               <div>
-                <span class="inline-block bg-pinamar-sun text-pinamar-navy text-[11px] uppercase tracking-widest font-bold px-2.5 py-0.5 mb-2">
-                  ATENCIÓN DIRECTA
-                </span>
                 <h4 class="font-serif text-2xl font-bold text-pinamar-navy tracking-tight leading-snug mb-6">
-                  Consultar Disponibilidad
+                  Consultar disponibilidad
                 </h4>
 
                 <form @submit.prevent="submitWhatsAppQuote" class="space-y-6">
@@ -319,7 +362,7 @@ onUnmounted(() => {
                       type="text"
                       required
                       placeholder="Ej: Familia Muñoz"
-                      class="w-full min-h-[44px] py-2.5 border-b-2 border-[#0A2246]/30 bg-transparent text-pinamar-navy placeholder:text-pinamar-navy/40 focus:border-sunset-5 focus:outline-none transition-colors"
+                      class="w-full min-h-[44px] py-2.5 border-b-2 border-pinamar-navy/30 bg-transparent text-pinamar-navy placeholder:text-pinamar-navy/65 focus:border-sunset-5 transition-colors"
                     />
                   </div>
 
@@ -335,7 +378,7 @@ onUnmounted(() => {
                       v-model="stayDate"
                       type="date"
                       required
-                      class="w-full min-h-[44px] py-2.5 border-b-2 border-[#0A2246]/30 bg-transparent text-pinamar-navy focus:border-sunset-5 focus:outline-none transition-colors"
+                      class="w-full min-h-[44px] py-2.5 border-b-2 border-pinamar-navy/30 bg-transparent text-pinamar-navy focus:border-sunset-5 transition-colors"
                     />
                   </div>
 
@@ -353,13 +396,13 @@ onUnmounted(() => {
                       min="1"
                       max="15"
                       required
-                      class="w-full min-h-[44px] py-2.5 border-b-2 border-[#0A2246]/30 bg-transparent text-pinamar-navy focus:border-sunset-5 focus:outline-none transition-colors"
+                      class="w-full min-h-[44px] py-2.5 border-b-2 border-pinamar-navy/30 bg-transparent text-pinamar-navy focus:border-sunset-5 transition-colors"
                     />
                   </div>
 
                   <div
                     v-if="optimisticDateSummary"
-                    class="bg-pinamar-sun border-l-4 border-sunset-5 px-4 py-3 text-xs text-pinamar-navy font-bold"
+                    class="bg-pinamar-sun px-4 py-3 text-xs text-pinamar-navy font-bold"
                   >
                     {{ optimisticDateSummary }}
                   </div>
@@ -367,7 +410,7 @@ onUnmounted(() => {
                   <div class="pt-2 space-y-3">
                     <button
                       type="submit"
-                      class="w-full min-h-[48px] bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs uppercase tracking-widest py-4 px-6 shadow-md transition-all duration-300 ease-in-out"
+                      class="w-full min-h-[48px] bg-whatsapp hover:bg-whatsapp-hover text-pinamar-navy font-bold text-xs uppercase tracking-widest py-4 px-6 shadow-md transition-all duration-300 ease-in-out"
                     >
                       Consultar por WhatsApp
                     </button>
@@ -376,7 +419,7 @@ onUnmounted(() => {
                       href="https://app.hotelsync.com/engine/es?engine_code=e0dacb55418a3ad29a5f9d07b988ba218e10eeb0&adults=2&children=0"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="w-full min-h-[48px] inline-flex items-center justify-center bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest py-4 px-6 shadow-md transition-all duration-300 ease-in-out text-center"
+                      class="w-full min-h-[48px] inline-flex items-center justify-center bg-action hover:bg-action-hover text-white font-bold text-xs uppercase tracking-widest py-4 px-6 shadow-md transition-all duration-300 ease-in-out text-center"
                     >
                       Reservar directo en HotelSync
                     </a>

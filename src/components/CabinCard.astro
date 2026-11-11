@@ -14,7 +14,7 @@ const { id, title, capacity, defaultGuests, mainImage, images, delay = 0 } = Ast
 
 <article
   style={`transition-delay: ${delay}ms;`}
-  class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out bg-surface rounded-none border border-gray-200 hover:border-primary/40 hover:shadow-md flex flex-col"
+  class="reveal-on-scroll bg-surface rounded-none border border-gray-200 hover:border-primary/40 hover:shadow-md flex flex-col"
 >
   <!-- Imagen Placeholder -->
   <div class="relative h-64 w-full overflow-hidden bg-gray-100">
@@ -46,7 +46,7 @@ const { id, title, capacity, defaultGuests, mainImage, images, delay = 0 } = Ast
         data-cabin-capacity={capacity}
         data-cabin-guests={defaultGuests}
         data-cabin-images={JSON.stringify(images)}
-        class="w-full border border-primary text-primary hover:bg-primary hover:text-white font-bold text-xs uppercase tracking-widest py-3.5 px-6 rounded-none transition-all duration-300 ease-in-out focus:outline-none"
+        class="w-full border border-primary text-primary hover:bg-primary hover:text-white font-bold text-xs uppercase tracking-widest py-3.5 px-6 rounded-none transition-all duration-300 ease-in-out"
       >
         Ver detalles
       </button>

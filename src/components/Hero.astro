@@ -9,68 +9,45 @@ const {
 ---
 
 <section class="relative bg-transparent pt-10 pb-12 sm:pt-16 sm:pb-16">
-  <!-- Contenedor Principal en Blanco Puro Sólido (bg-white shadow-xl) -->
   <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-8">
-    <div class="bg-white shadow-xl border border-amber-900/10 p-3 sm:p-5">
-      <!-- Marco Interior Punteado (Guiño directo al borde punteado del logo) -->
-      <div class="border-2 border-dotted border-[#0A2246]/30 p-6 sm:p-12 lg:p-14 bg-white">
+    <!-- Postal: superficie blanca única con el borde punteado del logo trazado hacia adentro -->
+    <div class="bg-white shadow-xl outline-2 outline-dotted outline-pinamar-navy/30 [outline-offset:-12px] sm:[outline-offset:-20px] p-8 sm:p-16 lg:p-20">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <!-- Columna de Texto Principal (7 Columnas) -->
           <div class="lg:col-span-7 text-left">
             <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.2rem] font-bold text-pinamar-navy tracking-tight leading-[1.18] mb-6">
-              Más de <span class="italic font-normal text-sunset-5">25 años</span> siendo parte de tus estadías. Tu lugar en La Serena <span class="italic font-normal text-sunset-5">a pasos del mar.</span>
+              Más de <span class="italic font-normal text-action">25 años</span> siendo parte de tus estadías. Tu lugar en La Serena <span class="italic font-normal text-action">a pasos del mar.</span>
             </h1>
 
             <p class="text-pinamar-navy/80 text-base sm:text-lg leading-relaxed mb-8">
               Un refugio cálido y familiar a solo 5 minutos caminando de la playa de Peñuelas, con atención las 24 horas y desayuno incluido.
             </p>
 
-            <!-- Barra de Reserva Directa en Blanco Puro Sólido -->
-            <div class="bg-[#fffdf9] p-5 sm:p-6 shadow-md border border-amber-900/10 border-l-4 border-l-sunset-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <span class="block text-[11px] uppercase tracking-widest text-sunset-4 font-bold mb-0.5">
-                  RESERVA ONLINE OFICIAL
-                </span>
-                <p class="font-serif text-xl sm:text-2xl font-bold text-pinamar-navy">
-                  Reserva tu <span class="italic font-normal text-sunset-5">estadía hoy</span>
-                </p>
-              </div>
-
-              <!-- Botón Primario en #E63B06 (sunset-5) con hover en #F06A00 (sunset-4) -->
-              <a
-                href={hotelSyncUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-sunset-5 hover:bg-sunset-4 text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-md transition-all duration-300 ease-in-out"
-              >
-                Ver Disponibilidad
-              </a>
-            </div>
+            <a
+              href={hotelSyncUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] bg-action hover:bg-action-hover text-white font-bold text-xs uppercase tracking-widest px-8 py-4 shadow-md transition-colors duration-200"
+            >
+              Ver disponibilidad y reservar
+            </a>
           </div>
 
-          <!-- Columna Derecha: Sello Visual Retro-Sunset + Fotografía Costera (Solo Desktop) -->
-          <div class="hidden lg:block lg:col-span-5 relative">
-            <div class="relative bg-white p-3 shadow-xl border border-amber-900/10">
-              <div class="relative aspect-[4/5] overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
-                  alt="Atardecer costero y Cabañas Pinamar en La Serena"
+          <!-- Columna Derecha: Fotografía (solo desktop) -->
+          <div class="hidden lg:block lg:col-span-5">
+            <div class="aspect-[4/5] overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=1200&q=80&fm=webp"
+                  alt="Atardecer en la costa"
                   class="w-full h-full object-cover"
-                  loading="eager"
-                />
-                <!-- Sello Flotante con el Logo Original -->
-                <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm p-2 shadow-lg border border-amber-900/10">
-                  <img
-                    src="/logocabanas.png"
-                    alt="Emblema Cabañas Pinamar"
-                    class="w-14 h-14 object-contain"
-                  />
-                </div>
-              </div>
+                  width="1200"
+                  height="1500"
+                  loading="lazy"
+                  decoding="async"
+              />
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
