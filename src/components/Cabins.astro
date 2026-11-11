@@ -1,52 +1,106 @@
 ---
-import { cabins, cabinEquipment, hotelsyncUrl } from '../data/site';
+import { cabana, otherUnits, cabinEquipment, hotelsyncUrl, HOTELSYNC_ENGINE, HOTELSYNC_CODE } from '../data/site';
+
+const guestOptions = Array.from({ length: cabana.guestsMax - cabana.guestsMin + 1 }, (_, i) => cabana.guestsMin + i);
+const equipment = `${cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y ${cabinEquipment.at(-1)}`;
 ---
 
 <section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title">
   <div class="max-w-page mx-auto px-5 sm:px-10">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
-      <div>
-        <h2 id="cabanas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Las cabañas</h2>
-        <p class="mt-3 text-stone max-w-[52ch]">Seis tipos, desde una cabaña individual hasta una para siete personas.</p>
-      </div>
-      <p class="text-sm text-stone max-w-[44ch]">
-        Todas incluyen {cabinEquipment.slice(0, -1).join(', ').toLowerCase()} y {cabinEquipment.at(-1)}.
-      </p>
+    <div class="mb-10 sm:mb-14">
+      <h2 id="cabanas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Las cabañas</h2>
+      <p class="mt-3 text-stone max-w-[56ch]">Todas incluyen {equipment}.</p>
     </div>
 
-    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-      {cabins.map((cabin) => (
-        <li>
-          <article class="group">
-            <div class="relative aspect-[4/3] overflow-hidden bg-bone">
-              <img
-                src={cabin.image}
-                alt=""
-                width="900"
-                height="675"
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
-              />
-              <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
-            </div>
-            <h3 class="mt-5 font-display text-2xl">{cabin.name}</h3>
+    <div class="grid lg:grid-cols-3 gap-12 lg:gap-10">
+      <!-- Cabaña: una sola tipología para 4 a 7 personas; la tarifa depende de cuántos se alojan -->
+      <article class="lg:col-span-2" aria-labelledby="cabana-title">
+        <div class="relative aspect-[16/10] overflow-hidden bg-bone">
+          <img
+            src={cabana.image}
+            alt=""
+            width="1400"
+            height="875"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-cover"
+          />
+          <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
+        </div>
+
+        <div class="mt-6 grid sm:grid-cols-[1fr_auto] gap-x-10 gap-y-6 items-end">
+          <div>
+            <h3 id="cabana-title" class="font-display text-3xl">{cabana.name}</h3>
             <p class="mt-1 text-stone">
-              {cabin.size} · {cabin.rooms} · {cabin.guests === 1 ? '1 persona' : `hasta ${cabin.guests} personas`}
+              Para {cabana.guestsMin} a {cabana.guestsMax} personas{cabana.detail && ` · ${cabana.detail}`}
             </p>
-            <a
-              href={hotelsyncUrl(cabin.guests)}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-4 inline-flex items-center gap-2 min-h-[44px] text-terracotta font-medium hover:text-terracotta-dark"
-              aria-label={`Ver disponibilidad de ${cabin.name}`}
+            <p class="mt-3 max-w-[48ch]">
+              Es la misma cabaña para todo el grupo: la tarifa cambia según cuántas personas se alojan.
+            </p>
+          </div>
+
+          <!-- Formulario real: abre HotelSync con la cantidad de personas elegida -->
+          <form action={HOTELSYNC_ENGINE} method="get" target="_blank" class="sm:w-72">
+            <input type="hidden" name="engine_code" value={HOTELSYNC_CODE} />
+            <fieldset>
+              <legend class="text-[13px] font-semibold uppercase tracking-[0.08em] text-stone">¿Cuántas personas vienen?</legend>
+              <div class="mt-2 grid grid-cols-4 gap-2">
+                {guestOptions.map((n) => (
+                  <label class="relative">
+                    <input type="radio" name="adults" value={n} checked={n === cabana.guestsMin} class="peer sr-only" />
+                    <span class="flex items-center justify-center h-12 rounded-ctl border border-ink/20 bg-bone cursor-pointer text-lg tabular-nums peer-checked:bg-ink peer-checked:text-bone peer-checked:border-ink peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-terracotta hover:border-ink/50">
+                      {n}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <input type="hidden" name="children" value="0" />
+            <button
+              type="submit"
+              class="mt-3 w-full h-12 rounded-ctl bg-terracotta hover:bg-terracotta-dark text-white font-medium transition-colors"
             >
-              Ver disponibilidad
-              <svg aria-hidden="true" viewBox="0 0 24 24" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </a>
-          </article>
-        </li>
-      ))}
-    </ul>
+              Ver disponibilidad y tarifa
+            </button>
+          </form>
+        </div>
+      </article>
+
+      <!-- Individual y Suite -->
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-1 gap-10 content-start">
+        {otherUnits.map((unit) => (
+          <li>
+            <article class="group">
+              <div class="relative aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-bone">
+                <img
+                  src={unit.image}
+                  alt=""
+                  width="1400"
+                  height="875"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none"
+                />
+                <span class="absolute right-0 bottom-0 bg-ink/70 text-bone text-[11px] px-2 py-0.5">Imagen referencial</span>
+              </div>
+              <h3 class="mt-4 font-display text-2xl">{unit.name}</h3>
+              <p class="mt-1 text-stone">
+                {unit.size} · {unit.rooms} · {unit.guests === 1 ? '1 persona' : `hasta ${unit.guests} personas`}
+              </p>
+              <a
+                href={hotelsyncUrl(unit.guests)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-2 inline-flex items-center gap-2 min-h-[44px] text-terracotta font-medium hover:text-terracotta-dark"
+                aria-label={`Ver disponibilidad de ${unit.name}`}
+              >
+                Ver disponibilidad
+                <svg aria-hidden="true" viewBox="0 0 24 24" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </a>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>

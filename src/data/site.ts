@@ -27,7 +27,22 @@ export const policies = {
   cancellation: 'Cancelación sujeta a la tarifa elegida.',
 };
 
-export interface Cabin {
+// Tipos de alojamiento. La "Cabaña" es una sola tipología equipada para 4 a 7 personas:
+// la tarifa cambia según cuántas personas se alojan (se elige en HotelSync).
+const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=75&fm=webp`;
+
+export const cabana = {
+  id: 'cabana',
+  name: 'Cabaña',
+  guestsMin: 4,
+  guestsMax: 7,
+  // Pendiente confirmar con el dueño: superficie y dormitorios reales (p. ej. '60 m² · 2 dormitorios').
+  // Mientras esté vacío no se muestra.
+  detail: '',
+  image: img('photo-1587061949409-02df41d5e562'),
+};
+
+export interface Unit {
   id: string;
   name: string;
   size: string;
@@ -36,16 +51,9 @@ export interface Cabin {
   image: string;
 }
 
-// Fotos: stock de referencia hasta tener fotos propias del recinto.
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=75&fm=webp`;
-
-export const cabins: Cabin[] = [
+export const otherUnits: Unit[] = [
   { id: 'individual', name: 'Individual', size: '28 m²', rooms: '1 dormitorio', guests: 1, image: img('photo-1590490360182-c33d57733427') },
-  { id: 'suite-4', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: img('photo-1566665797739-1674de7a421a') },
-  { id: 'cabana-4', name: 'Cabaña 4 personas', size: '54 m²', rooms: '2 dormitorios', guests: 4, image: img('photo-1587061949409-02df41d5e562') },
-  { id: 'cabana-5', name: 'Cabaña 5 personas', size: '60 m²', rooms: '2 dormitorios', guests: 5, image: img('photo-1449844908441-8829872d2607') },
-  { id: 'cabana-6', name: 'Cabaña 6 personas', size: '68 m²', rooms: '3 dormitorios', guests: 6, image: img('photo-1512917774080-9991f1c4c750') },
-  { id: 'cabana-7', name: 'Cabaña 7 personas', size: '75 m²', rooms: '3 dormitorios', guests: 7, image: img('photo-1600596542815-ffad4c1539a9') },
+  { id: 'suite', name: 'Suite', size: '45 m²', rooms: '1 dormitorio + estar', guests: 4, image: img('photo-1566665797739-1674de7a421a') },
 ];
 
 export const cabinEquipment = [

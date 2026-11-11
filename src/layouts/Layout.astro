@@ -1,5 +1,6 @@
 ---
-import '@fontsource/libre-caslon-display/400.css';
+import '@fontsource-variable/source-serif-4/opsz.css';
+import FontTuner from '../components/FontTuner.astro';
 import '@fontsource/hanken-grotesk/400.css';
 import '@fontsource/hanken-grotesk/500.css';
 import '@fontsource/hanken-grotesk/600.css';
@@ -38,6 +39,16 @@ const {
         font-size: 1.0625rem;
         line-height: 1.65;
       }
+      /* Peso de los títulos (Source Serif 4 variable, eje wght 200–900).
+         Se ajusta con el slider que aparece solo en `npm run dev`. */
+      :root {
+        --display-wght: 420;
+      }
+      .font-display {
+        font-weight: var(--display-wght);
+        font-optical-sizing: auto;
+        letter-spacing: -0.01em;
+      }
       :focus-visible {
         outline: 2px solid theme('colors.terracotta.DEFAULT');
         outline-offset: 3px;
@@ -59,5 +70,6 @@ const {
       Saltar al contenido
     </a>
     <slot />
+    {import.meta.env.DEV && <FontTuner />}
   </body>
 </html>
