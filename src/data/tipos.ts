@@ -14,7 +14,7 @@ const porId = (ids: string[]) => ids.map((id) => fotos.find((p) => p.id === id)!
 export const tiposCabana: TipoCabana[] = [
   {
     id: 'tipo-1',
-    nombre: 'Cabaña tipo 1',
+    nombre: 'Cabaña Mediterránea',
     detalle: '',
     descripcion: '',
     portada: 'exterior-blanca',
@@ -22,7 +22,7 @@ export const tiposCabana: TipoCabana[] = [
   },
   {
     id: 'tipo-2',
-    nombre: 'Cabaña tipo 2',
+    nombre: 'Cabaña Costera',
     detalle: '',
     descripcion: '',
     portada: 'exterior-terrazas',
@@ -30,7 +30,7 @@ export const tiposCabana: TipoCabana[] = [
   },
   {
     id: 'tipo-3',
-    nombre: 'Cabaña tipo 3',
+    nombre: 'Cabaña Contemporánea',
     detalle: '',
     descripcion: '',
     portada: 'exterior-gris',

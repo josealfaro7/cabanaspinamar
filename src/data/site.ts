@@ -18,7 +18,7 @@ export function whatsappUrl(text?: string) {
 export const contact = {
   phoneLabel: '+56 9 7463 5702',
   phoneHref: 'tel:+56974635702',
-  email: 'cabanapinamar.chile@gmail.com',
+  email: 'contacto@cabanaspinamar.com',
   instagram: 'https://www.instagram.com/cabanaspinamarchile/',
   instagramHandle: '@cabanaspinamarchile',
   address: 'Avenida Pacífico 5020, La Serena, Coquimbo',
