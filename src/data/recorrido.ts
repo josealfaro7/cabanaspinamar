@@ -46,6 +46,7 @@ export const fotos: Foto[] = [
   f('cocina-1', 'cocina-living', 'Barra de la cocina', 'Barra de madera con pisos y refrigerador'),
   f('living-cocina-2', 'cocina-living', 'Living con vista a las palmeras', 'Sofá frente a la cocina y ventana con palmeras'),
   f('cocina-2', 'cocina-living', 'Cocina equipada', 'Cocina con horno, encimera, lavaplatos y microondas'),
+  f('cocina-3', 'cocina-living', 'Cocina con horno y refrigerador', 'Cocina con encimera, horno, hervidor y refrigerador'),
   f('living-2', 'cocina-living', 'Comedor y living', 'Mesa con pisos, sofá de cuero y televisor'),
   f('bano-1', 'banos', 'Baño privado', 'Baño con lavamanos, inodoro y ducha con cortina'),
   f('bano-2', 'banos', 'Baño privado', 'Baño blanco con lavamanos y ducha'),

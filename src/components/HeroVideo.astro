@@ -1,0 +1,76 @@
+---
+import BookingForm from './BookingForm.astro';
+import { asset } from '../data/site';
+
+const title = 'Tu lugar en La Serena, a pasos del mar';
+const subtitle = 'Cabañas familiares desde hace más de 25 años, a 5 minutos a pie de la playa de Peñuelas.';
+---
+
+<section class="relative" aria-labelledby="hero-title" data-hero>
+  <div class="relative h-[58svh] min-h-[24rem] sm:h-[calc(100svh-4.5rem-7.5rem)] sm:min-h-[28rem] sm:max-h-[50rem] overflow-hidden bg-ink">
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster={asset('/video/terraza-poster.jpg')}
+      aria-hidden="true"
+      data-hero-video
+    >
+      <source src={asset('/video/terraza-1920.mp4')} type="video/mp4" media="(min-width: 640px)" />
+      <source src={asset('/video/terraza-720v.mp4')} type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/10"></div>
+
+    <div class="relative h-full max-w-page mx-auto px-5 sm:px-10 flex flex-col justify-end pb-10 sm:pb-36">
+      <h1 id="hero-title" class="font-display text-bone text-[2.375rem] leading-[1.08] sm:text-[3.5rem] lg:text-[4rem] max-w-[22ch] text-balance">
+        {title}
+      </h1>
+      <p class="mt-4 text-lg lg:text-xl text-bone/90 max-w-[44ch]">{subtitle}</p>
+    </div>
+
+    <button
+      type="button"
+      data-hero-toggle
+      class="absolute right-4 top-4 sm:top-auto sm:bottom-36 sm:right-10 w-11 h-11 grid place-items-center rounded-full bg-ink/45 text-bone backdrop-blur hover:bg-ink/70"
+      aria-label="Pausar video"
+    >
+      <svg data-icon-pause aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6v12M15 6v12" /></svg>
+      <svg data-icon-play aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5l11 7-11 7Z" /></svg>
+    </button>
+  </div>
+
+  <div class="relative z-10 max-w-page mx-auto px-5 sm:px-10 -mt-6 sm:-mt-24 pb-6">
+    <div class="lg:mx-14">
+      <BookingForm idPrefix="hero" />
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-hero]').forEach((root) => {
+    const video = root.querySelector<HTMLVideoElement>('[data-hero-video]')!;
+    const btn = root.querySelector<HTMLButtonElement>('[data-hero-toggle]')!;
+    const set = (paused: boolean) => {
+      btn.setAttribute('aria-label', paused ? 'Reproducir video' : 'Pausar video');
+      btn.querySelector('[data-icon-pause]')!.classList.toggle('hidden', paused);
+      btn.querySelector('[data-icon-play]')!.classList.toggle('hidden', !paused);
+    };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      set(true);
+    }
+    btn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        set(false);
+      } else {
+        video.pause();
+        set(true);
+      }
+    });
+  });
+</script>

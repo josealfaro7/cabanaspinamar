@@ -34,6 +34,9 @@ The sunset palette lives only in the logo.
 
 ## Components
 
+- Hero (branch `redesign/hoteleria-campanario`, replaces "panorámica"): full-bleed muted looping video of the terrace (16:9 on desktop, vertical on phones) under an ink gradient, title and subtitle in bone over it, booking panel overlapping its lower edge and fully visible without scrolling (video height `100svh − header − 7.5rem`). Visible pause button; `prefers-reduced-motion` keeps it paused on the poster.
+- Nuestras cabañas: three type cards (4:3 facade photo that opens the type gallery, name, details, "Ver disponibilidad"), then the two-row photo strip with a pause button.
+
 - Hero ("panorámica"): title (2 lines on desktop) and subtitle on the bone ground, then the aerial panorama with the booking panel overlapping its lower edge. The whole booking panel must be visible without scrolling: the panorama height is `clamp(15rem, 100svh - 29rem, 34rem)`. On phones the order is title, booking panel, photo.
 - Booking panel: arrival/departure (dfrom/dto), adults, children, currency CLP + "Ver disponibilidad" (GET form to HotelSync) + WhatsApp link. A compact bar sticks to the bottom on phones and hides while any booking form or the footer is on screen; on tablet/desktop a round WhatsApp button floats bottom-right.
 - Cabin entry: photo 4:3, name, size · bedrooms · guests, link that opens HotelSync with that cabin's guest count.
