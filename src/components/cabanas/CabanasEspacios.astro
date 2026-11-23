@@ -1,0 +1,147 @@
+---
+import { fotos, fotosPorEspacio, resumenCabanas } from '../../data/recorrido';
+import GuestPicker from './GuestPicker.astro';
+import Lightbox from './Lightbox.astro';
+
+const layout: Record<string, string> = {
+  dormitorios: 'lg:col-span-2 lg:row-span-2 aspect-[4/3] lg:aspect-auto',
+  'cocina-living': 'lg:col-span-2 aspect-[4/3] lg:aspect-auto',
+  banos: 'aspect-[4/3] lg:aspect-auto',
+  terrazas: 'aspect-[4/3] lg:aspect-auto',
+  complejo: 'lg:col-span-4 aspect-[4/3] sm:aspect-[21/9]',
+};
+
+const pasos = [
+  { t: 'Cuéntanos cuántos vienen', d: 'Desde 1 hasta 7 personas. Los menores de 5 años no pagan.' },
+  { t: 'Revisa fechas y tarifa', d: 'En el motor de reservas, con pago en línea.' },
+  { t: 'Te asignamos la cabaña', d: 'Recepción elige una para tu grupo según disponibilidad.' },
+];
+---
+
+<section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title">
+  <div class="max-w-page mx-auto px-5 sm:px-10">
+    <div class="max-w-[62ch] mb-10 sm:mb-14">
+      <h2 id="cabanas-title" class="font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Así son las cabañas</h2>
+      <p class="mt-4 text-lg">
+        {resumenCabanas.cantidad} cabañas equipadas, {resumenCabanas.superficie}, para grupos {resumenCabanas.personas}. Recorre
+        cada espacio: toca una foto para verlas todas.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(15rem,1fr))] gap-3 sm:gap-4" data-mosaico>
+      {fotosPorEspacio.map((e, n) => (
+        <button
+          type="button"
+          data-lb-open="galeria-espacios"
+          data-lb-index={fotos.findIndex((p) => p.espacio === e.id)}
+          data-tile
+          data-delay={n * 900}
+          class:list={['tile group relative overflow-hidden rounded-[4px] bg-ink text-left', layout[e.id], e.id === 'complejo' && 'sm:col-span-2']}
+          aria-label={`${e.nombre}: ver ${e.fotos.length} fotos`}
+        >
+          {e.fotos.map((p, i) => (
+            <img
+              src={p.src}
+              srcset={`${p.srcSmall} 800w, ${p.src} 1600w`}
+              sizes={e.id === 'complejo' ? '100vw' : '(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw'}
+              alt=""
+              width="1600"
+              height="900"
+              loading="lazy"
+              decoding="async"
+              data-layer
+              class:list={['layer absolute inset-0 w-full h-full object-cover', i === 0 && 'is-on']}
+            />
+          ))}
+          <span class="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-transparent"></span>
+          <span class="absolute left-0 right-0 bottom-0 p-5 sm:p-6 text-bone">
+            <span class="block font-display text-2xl sm:text-[1.75rem] leading-tight">{e.nombre}</span>
+            <span class="block mt-1 text-[15px] text-bone/85 max-w-[40ch]">{e.texto}</span>
+            <span class="mt-3 inline-flex items-center gap-2 text-sm font-medium">
+              Ver {e.fotos.length} fotos
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </span>
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <div class="mt-14 sm:mt-20 grid lg:grid-cols-[1fr_400px] gap-10 lg:gap-16 items-start">
+      <div>
+        <h3 class="font-display text-2xl sm:text-3xl">Cómo se reserva una cabaña</h3>
+        <ol class="mt-6 border-t border-ink/10">
+          {pasos.map((p, n) => (
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 py-5 border-b border-ink/10">
+              <span class="font-display text-2xl text-terracotta tabular-nums leading-none pt-0.5">{n + 1}</span>
+              <span>
+                <span class="block font-medium">{p.t}</span>
+                <span class="block text-stone mt-0.5">{p.d}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="bg-bone p-5 sm:p-7 shadow-[0_18px_40px_-20px_rgb(31_43_42/0.35)]">
+        <GuestPicker />
+      </div>
+    </div>
+  </div>
+  <Lightbox id="galeria-espacios" fotos={fotos} />
+</section>
+
+<style>
+  .layer {
+    opacity: 0;
+    transition: opacity 1200ms ease, transform 6s ease-out;
+    transform: scale(1.04);
+  }
+  .layer.is-on {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .tile:hover .layer.is-on {
+    transform: scale(1.03);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .layer {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CICLO = 4200;
+
+  document.querySelectorAll<HTMLElement>('[data-mosaico]').forEach((root) => {
+    if (reduce) return;
+    let visible = false;
+    let hovered: HTMLElement | null = null;
+
+    root.querySelectorAll<HTMLElement>('[data-tile]').forEach((tile) => {
+      const layers = [...tile.querySelectorAll<HTMLImageElement>('[data-layer]')];
+      if (layers.length < 2) return;
+      let i = 0;
+      tile.addEventListener('mouseenter', () => (hovered = tile));
+      tile.addEventListener('mouseleave', () => (hovered = null));
+      tile.addEventListener('focus', () => (hovered = tile));
+      tile.addEventListener('blur', () => (hovered = null));
+      window.setTimeout(() => {
+        window.setInterval(() => {
+          if (!visible || hovered === tile || document.hidden) return;
+          const next = layers[(i + 1) % layers.length];
+          if (!next.complete || !next.naturalWidth) {
+            next.loading = 'eager';
+            return;
+          }
+          layers[i].classList.remove('is-on');
+          i = (i + 1) % layers.length;
+          layers[i].classList.add('is-on');
+        }, CICLO);
+      }, Number(tile.dataset.delay || 0));
+    });
+
+    new IntersectionObserver(([entry]) => (visible = entry.isIntersecting), { threshold: 0.2 }).observe(root);
+  });
+</script>

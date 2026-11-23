@@ -34,7 +34,7 @@ More than 25 years as a family business at Av. Pacífico 5020, five minutes on f
 - WhatsApp: +56 9 7463 5702 (wa.me/56974635702). Phone: +56 9 7463 5702. Email: cabanapinamar.chile@gmail.com. Instagram: @cabanaspinamarchile.
 - Address: Avenida Pacífico 5020, La Serena, Coquimbo. Coordinates −29.938014, −71.282414.
 - Policies (confirmed by management, Nov 2026): all rates are non-refundable (must be visible on the site); children from 5 years pay the normal rate, under 5 free; pet friendly, only small-breed dogs up to 15 kg. Check-in 15:00–00:00, check-out 12:00.
-- Cabin assignment (confirmed): guests do not choose a specific cabin; reception assigns one by availability. HotelSync offers 7 options by group size (Individual, 2, 4, Suite, 5, 6, 7 people), of two physical types (grey modern facade; white with tile roof). Names and missing specs pending in the unit sheet shared with management.
+- Cabin assignment (confirmed): guests do not choose a specific cabin; reception assigns one by availability. HotelSync offers 7 options by group size (Individual, 2, 4, Suite, 5, 6, 7 people), of two physical types (grey modern facade; white with tile roof). Names and missing specs pending in the unit sheet shared with management. Decision (Nov 23, 2026): the site does not present cabin types; it shows a photo tour by space (bedrooms, kitchen and living, bathrooms, terraces, the complex) plus one "how many people" selector (1–7) that opens HotelSync.
 - HotelSync today only counts "Adulto 13+"; agreed interim: count everyone 5+ as adult (admin to change the age), the site's search sends adults only.
 - Routes by car: Faro de La Serena 4,2 km (6 min) · Terminal de Buses 4,8 km (10 min) · Estadio La Portada 5,5 km (12 min) · Aeropuerto La Florida 10 km (18 min).
 
@@ -51,13 +51,13 @@ More than 25 years as a family business at Av. Pacífico 5020, five minutes on f
 
 - Name: Cabañas Pinamar. Logo: `public/logocabanas.png` (sunset with palm trees). The logo is the only binding brand asset; colours, type and the rest of the look are open (assumed by Claude, user did not answer; confirm).
 - Voice: warm, family, Chilean Spanish; "tú". No tech jargon.
-- Standing direction (owner's choice, Nov 2026, branch `redesign/impeccable-postal`): the hospitality-category standard played straight, at the finish level of Tierra Hotels / Explora (large photography, sober type, calm). Not a themed concept.
+- Standing direction (owner's choice, Nov 2026, working branch `redesign/impeccable-hoteleria`): the hospitality-category standard played straight, at the finish level of Tierra Hotels / Explora (large photography, sober type, calm). Not a themed concept.
 
 ## Evidence on Hand
 
 - Google rating summary: 4,4 with 320+ reviews (as stated in the main branch; must be verified against the live Google listing). Public listing link: https://share.google/X8pzTj1kjc1M6aP7U
 - Real guest reviews: none on hand. Never invent reviews, authors or dates; only show reviews returned by the Google Places API.
-- Photos: real exterior photos of the property (grounds, cabins, reception, playground, drone views) in `public/fotos/`; originals and videos in `Cabañas Página web_/` (not committed). No interior photos yet. Which photo shows the Individual and the Suite is pending confirmation.
+- Photos: real exterior photos of the property (grounds, cabins, reception, playground, drone views) in `public/fotos/`; originals and videos in `Cabañas Página web_/` (not committed). Interior photos of three cabins (bedrooms, bunks, kitchens, livings, bathrooms, terraces) and of the new dining room arrived Nov 2026; the selection used on the site is in `public/fotos/recorrido/` and `src/data/recorrido.ts`. Photos are not tied to a cabin type.
 - No other ratings (the former "9,7 en limpieza" claim was removed by the owner).
 
 ## Product Principles

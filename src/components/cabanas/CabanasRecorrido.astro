@@ -1,0 +1,226 @@
+---
+import { fotos, espacios, resumenCabanas } from '../../data/recorrido';
+import { cabinEquipment } from '../../data/site';
+import GuestPicker from './GuestPicker.astro';
+
+const capitulos = espacios.map((e) => ({ ...e, start: fotos.findIndex((p) => p.espacio === e.id), total: fotos.filter((p) => p.espacio === e.id).length }));
+const nombreEspacio = Object.fromEntries(espacios.map((e) => [e.id, e.nombre]));
+---
+
+<section id="cabanas" class="bg-sand py-16 sm:py-28" aria-labelledby="cabanas-title">
+  <div class="max-w-page mx-auto px-5 sm:px-10">
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-16 items-end mb-8 sm:mb-10">
+      <h2 id="cabanas-title" class="lg:col-span-5 font-display text-3xl sm:text-[2.75rem] leading-[1.15]">Las cabañas</h2>
+      <p class="lg:col-span-7 text-lg max-w-[58ch]">
+        {resumenCabanas.cantidad} cabañas equipadas para grupos {resumenCabanas.personas}. No tienes que elegir un modelo:
+        nos dices cuántos vienen y recepción te asigna una cabaña para tu grupo, según disponibilidad.
+      </p>
+    </div>
+
+    <div data-recorrido>
+      <div class="flex gap-2 overflow-x-auto pb-3 -mx-5 px-5 sm:mx-0 sm:px-0 [scrollbar-width:none]" role="group" aria-label="Ir a un espacio">
+        {capitulos.map((c, n) => (
+          <button
+            type="button"
+            data-chapter={c.id}
+            data-start={c.start}
+            aria-pressed={n === 0 ? 'true' : 'false'}
+            class="chapter shrink-0 relative overflow-hidden h-11 px-4 rounded-ctl border border-ink/15 bg-bone/60 text-[15px] text-stone hover:text-ink hover:border-ink/40 aria-pressed:bg-ink aria-pressed:text-bone aria-pressed:border-ink transition-colors"
+          >
+            {c.nombre}
+            <span data-bar class="absolute left-0 bottom-0 h-[3px] bg-terracotta w-0 transition-[width] duration-500"></span>
+          </button>
+        ))}
+      </div>
+
+      <div class="stage relative mt-2 aspect-[4/3] sm:aspect-[16/9] max-h-[78vh] w-full overflow-hidden bg-ink rounded-[4px]" aria-roledescription="carrusel" aria-label="Fotos de las cabañas y el complejo">
+        {fotos.map((p, i) => (
+          <figure
+            data-slide={i}
+            data-espacio={p.espacio}
+            class:list={['slide absolute inset-0 m-0', i === 0 && 'is-active']}
+            aria-roledescription="diapositiva"
+            aria-label={`${i + 1} de ${fotos.length}: ${p.caption}`}
+            aria-hidden={i === 0 ? 'false' : 'true'}
+          >
+            <img
+              src={p.src}
+              srcset={`${p.srcSmall} 800w, ${p.src} 1600w`}
+              sizes="(min-width: 1200px) 1120px, 100vw"
+              alt={p.alt}
+              width="1600"
+              height="900"
+              loading={i < 2 ? 'eager' : 'lazy'}
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+            <figcaption class="absolute inset-x-0 bottom-0 pt-24 pb-5 sm:pb-7 pl-5 sm:pl-8 pr-5 sm:pr-48 bg-gradient-to-t from-ink/80 via-ink/35 to-transparent text-bone">
+              <span class="block text-[13px] font-semibold uppercase tracking-[0.08em] text-bone/80">{nombreEspacio[p.espacio]}</span>
+              <span class="block font-display text-2xl sm:text-3xl mt-1">{p.caption}</span>
+            </figcaption>
+          </figure>
+        ))}
+
+        <div class="absolute right-3 top-3 sm:top-auto sm:right-6 sm:bottom-6 flex items-center gap-1.5 text-bone">
+          <span data-counter class="hidden sm:inline text-sm tabular-nums text-bone/80 mr-2" aria-live="polite">1 / {fotos.length}</span>
+          <button type="button" data-prev class="ctl" aria-label="Foto anterior">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6" /></svg>
+          </button>
+          <button type="button" data-toggle class="ctl" aria-label="Pausar recorrido">
+            <svg data-icon-pause aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6v12M15 6v12" /></svg>
+            <svg data-icon-play aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 5l11 7-11 7Z" /></svg>
+          </button>
+          <button type="button" data-next class="ctl" aria-label="Foto siguiente">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mt-12 grid lg:grid-cols-[1fr_400px] gap-10 lg:gap-16 items-start">
+      <div>
+        <h3 class="font-display text-2xl sm:text-3xl">Todas las cabañas incluyen</h3>
+        <ul class="mt-5 grid sm:grid-cols-2 border-t border-ink/10">
+          {cabinEquipment.map((item) => (
+            <li class="py-3 border-b border-ink/10 sm:odd:pr-6">{item}</li>
+          ))}
+        </ul>
+        <p class="mt-5 text-stone max-w-[56ch]">
+          Hay cabañas para 1, 2, 4, 5, 6 y 7 personas, {resumenCabanas.superficie}. La tarifa depende de cuántas personas se alojan.
+        </p>
+      </div>
+      <div class="bg-bone p-5 sm:p-7 shadow-[0_18px_40px_-20px_rgb(31_43_42/0.35)]">
+        <GuestPicker />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .slide {
+    opacity: 0;
+    transition: opacity 900ms ease;
+  }
+  .slide.is-active {
+    opacity: 1;
+  }
+  .slide.is-active img {
+    animation: kenburns 7s ease-out both;
+  }
+  @keyframes kenburns {
+    from {
+      transform: scale(1.06);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .ctl {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 9999px;
+    background: rgb(31 43 42 / 0.45);
+    backdrop-filter: blur(6px);
+    transition: background 0.2s;
+  }
+  .ctl:hover {
+    background: rgb(31 43 42 / 0.75);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide {
+      transition: none;
+    }
+    .slide.is-active img {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const DURACION = 5000;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-recorrido]').forEach((root) => {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const chips = [...root.querySelectorAll<HTMLButtonElement>('[data-chapter]')];
+    const counter = root.querySelector<HTMLElement>('[data-counter]');
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+    const stage = root.querySelector<HTMLElement>('.stage')!;
+    let i = 0;
+    let paused = reduce;
+    let hover = false;
+    let visible = false;
+    let timer: number | undefined;
+
+    const render = () => {
+      slides.forEach((s, n) => {
+        s.classList.toggle('is-active', n === i);
+        s.setAttribute('aria-hidden', n === i ? 'false' : 'true');
+      });
+      const espacio = slides[i].dataset.espacio;
+      chips.forEach((c) => {
+        const on = c.dataset.chapter === espacio;
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        const bar = c.querySelector<HTMLElement>('[data-bar]')!;
+        if (!on) {
+          bar.style.width = '0';
+          return;
+        }
+        const grupo = slides.filter((s) => s.dataset.espacio === espacio);
+        bar.style.width = `${((grupo.indexOf(slides[i]) + 1) / grupo.length) * 100}%`;
+        if (c.offsetLeft < c.parentElement!.scrollLeft || c.offsetLeft + c.offsetWidth > c.parentElement!.scrollLeft + c.parentElement!.clientWidth) {
+          c.parentElement!.scrollTo({ left: c.offsetLeft - 20, behavior: reduce ? 'auto' : 'smooth' });
+        }
+      });
+      if (counter) counter.textContent = `${i + 1} / ${slides.length}`;
+    };
+
+    const go = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      render();
+      schedule();
+    };
+
+    const schedule = () => {
+      window.clearTimeout(timer);
+      if (!paused && !hover && visible) timer = window.setTimeout(() => go(i + 1), DURACION);
+    };
+
+    const setPaused = (p: boolean) => {
+      paused = p;
+      toggle.setAttribute('aria-label', p ? 'Reanudar recorrido' : 'Pausar recorrido');
+      toggle.querySelector('[data-icon-pause]')!.classList.toggle('hidden', p);
+      toggle.querySelector('[data-icon-play]')!.classList.toggle('hidden', !p);
+      schedule();
+    };
+
+    root.querySelector('[data-prev]')!.addEventListener('click', () => go(i - 1));
+    root.querySelector('[data-next]')!.addEventListener('click', () => go(i + 1));
+    toggle.addEventListener('click', () => setPaused(!paused));
+    chips.forEach((c) => c.addEventListener('click', () => go(Number(c.dataset.start))));
+
+    stage.addEventListener('mouseenter', () => ((hover = true), schedule()));
+    stage.addEventListener('mouseleave', () => ((hover = false), schedule()));
+    root.addEventListener('focusin', () => ((hover = true), schedule()));
+    root.addEventListener('focusout', () => ((hover = false), schedule()));
+
+    let x0: number | null = null;
+    stage.addEventListener('touchstart', (e) => (x0 = e.touches[0].clientX), { passive: true });
+    stage.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1);
+      x0 = null;
+    });
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      schedule();
+    }, { threshold: 0.4 }).observe(stage);
+
+    setPaused(paused);
+    render();
+  });
+</script>

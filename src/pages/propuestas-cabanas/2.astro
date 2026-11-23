@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Intro from '../../components/Intro.astro';
+import Cabanas from '../../components/cabanas/CabanasEspacios.astro';
+import PropuestaNav from '../../components/cabanas/PropuestaNav.astro';
+import Services from '../../components/Services.astro';
+import HowToBook from '../../components/HowToBook.astro';
+import Reviews from '../../components/Reviews.astro';
+import Location from '../../components/Location.astro';
+import Footer from '../../components/Footer.astro';
+import MobileBar from '../../components/MobileBar.astro';
+import WhatsAppFloat from '../../components/WhatsAppFloat.astro';
+---
+
+<Layout title="Propuesta 2 · Cabañas · Cabañas Pinamar">
+  <Header />
+  <PropuestaNav actual={2} />
+  <main id="contenido">
+    <Hero />
+    <Intro />
+    <Cabanas />
+    <Services />
+    <HowToBook />
+    <Reviews />
+    <Location />
+  </main>
+  <Footer />
+  <MobileBar />
+  <WhatsAppFloat />
+</Layout>
