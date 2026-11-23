@@ -26,6 +26,7 @@ export const contact = {
 
 export const policies = {
   checkIn: '15:00 a 00:00',
+  checkInHora: '15:00',
   checkOut: '12:00',
   cancellation: 'Tarifas no reembolsables.',
   children: 'Menores de 5 años no pagan.',

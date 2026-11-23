@@ -24,7 +24,7 @@ Success: the guest reaches the HotelSync booking engine (primary path) or opens 
 
 ## Positioning
 
-More than 25 years as a family business at Av. Pacífico 5020, five minutes on foot from Playa de Peñuelas, with 24-hour reception and breakfast included. A long-standing family place by the sea, not a hotel chain.
+More than 25 years as a family business at Av. Pacífico 5020, three minutes on foot from Playa de Peñuelas (client copy, Nov 23, 2026; previously stated as five), with 24-hour reception and breakfast included. A long-standing family place by the sea, not a hotel chain.
 
 ## Operating Context
 
