@@ -14,7 +14,7 @@ export default {
       },
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
-        logo: ['"Source Serif 4 Variable"', 'Georgia', 'serif'],
+        logo: ['Cinzel', 'Georgia', 'serif'],
         sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
