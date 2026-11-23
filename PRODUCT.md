@@ -55,7 +55,7 @@ More than 25 years as a family business at Av. Pacífico 5020, three minutes on 
 
 ## Evidence on Hand
 
-- Google rating summary: 4,4 with 320+ reviews (as stated in the main branch; must be verified against the live Google listing). Public listing link: https://share.google/X8pzTj1kjc1M6aP7U
+- Google rating summary: 4,4 with 472 reviews (verified on the Google Business Profile, Nov 23, 2026). Do not add aggregateRating to the site's structured data: Google ignores self-served review stars for local businesses. Public listing link: https://share.google/X8pzTj1kjc1M6aP7U
 - Real guest reviews: none on hand. Never invent reviews, authors or dates; only show reviews returned by the Google Places API.
 - Photos: real exterior photos of the property (grounds, cabins, reception, playground, drone views) in `public/fotos/`; originals and videos in `Cabañas Página web_/` (not committed). Interior photos of three cabins (bedrooms, bunks, kitchens, livings, bathrooms, terraces) and of the new dining room arrived Nov 2026; the selection used on the site is in `public/fotos/recorrido/` and `src/data/recorrido.ts`. Photos are not tied to a cabin type.
 - No other ratings (the former "9,7 en limpieza" claim was removed by the owner).

@@ -116,5 +116,5 @@ export const location = {
 };
 
 export const GOOGLE_LISTING_URL = 'https://share.google/X8pzTj1kjc1M6aP7U';
-// Respaldo sin API (dato de la rama main, verificar contra la ficha de Google)
-export const googleFallback = { rating: 4.4, count: 320 };
+// Respaldo sin API: ficha de Google verificada el 23-nov-2026
+export const googleFallback = { rating: 4.4, count: 472 };
