@@ -27,11 +27,11 @@ const field = 'h-12 w-full rounded-ctl border border-ink/20 bg-bone px-3 text-ba
 >
   <input type="hidden" name="engine_code" value={HOTELSYNC_CODE} />
   <label class="flex flex-col gap-2" for={`${idPrefix}-dfrom`}>
-    <span class={label}>Llegada</span>
+    <span class={label}>Check-in</span>
     <input id={`${idPrefix}-dfrom`} type="date" name="dfrom" class={field} data-dfrom />
   </label>
   <label class="flex flex-col gap-2" for={`${idPrefix}-dto`}>
-    <span class={label}>Salida</span>
+    <span class={label}>Check-out</span>
     <input id={`${idPrefix}-dto`} type="date" name="dto" class={field} data-dto />
   </label>
   <label class="flex flex-col gap-2">
