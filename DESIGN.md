@@ -21,7 +21,8 @@ The sunset palette lives only in the logo.
 
 ## Type
 
-- Display: Libre Caslon Display 400. Headings only, never below 24px. Sentence case.
+- Display: Playfair Display 500 (chosen with the client, Nov 23, 2026; self-hosted woff2 in `src/assets/fonts`). Headings only, never below 24px. Sentence case.
+- Logo wordmark in the header: Source Serif 4 470 (`font-logo`). The footer wordmark uses the display font.
 - Text and UI: Hanken Grotesk 400/500/600. Body 17px/1.65, measure ≤ 68ch.
 - Labels: Hanken Grotesk 600, 13px, letter-spacing .08em, uppercase, used sparingly (form labels, image captions), never as a kicker above a heading.
 

@@ -4,6 +4,8 @@ import '@fontsource-variable/source-serif-4/opsz.css';
 import '@fontsource/hanken-grotesk/400.css';
 import '@fontsource/hanken-grotesk/500.css';
 import '@fontsource/hanken-grotesk/600.css';
+import '../styles/fonts.css';
+import playfairUrl from '../assets/fonts/playfair-display-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -26,6 +28,7 @@ const {
     <link rel="icon" type="image/png" href={asset('/favicon.png')} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preload" href={playfairUrl} as="font" type="font/woff2" crossorigin />
     <style is:global>
       html {
         -webkit-text-size-adjust: 100%;
@@ -39,9 +42,14 @@ const {
         font-size: 1.0625rem;
         line-height: 1.65;
       }
-      /* Peso de los títulos (Source Serif 4 variable, eje wght 200–900). */
+      /* Títulos en Playfair Display; logotipo del header en Source Serif 4. */
       :root {
-        --display-wght: 470;
+        --display-wght: 500;
+      }
+      .font-logo {
+        font-weight: 470;
+        font-optical-sizing: auto;
+        letter-spacing: -0.01em;
       }
       .font-display {
         font-weight: var(--display-wght);

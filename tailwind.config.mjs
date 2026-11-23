@@ -13,7 +13,8 @@ export default {
         whatsapp: { DEFAULT: '#25D366', dark: '#1EBE5D' },
       },
       fontFamily: {
-        display: ['"Source Serif 4 Variable"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        logo: ['"Source Serif 4 Variable"', 'Georgia', 'serif'],
         sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
