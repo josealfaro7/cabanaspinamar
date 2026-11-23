@@ -1,0 +1,95 @@
+---
+import { asset } from '../data/site';
+
+const fuentes = [
+  { id: 'baskerville', nombre: 'Libre Baskerville', nota: 'Clásica y firme', family: '"Libre Baskerville", Georgia, serif', wght: 700, track: '0.04em' },
+  { id: 'playfair-sc', nombre: 'Playfair Display SC', nota: 'Elegante, igual a los títulos', family: '"Playfair Display SC", Georgia, serif', wght: 700, track: '0.04em' },
+  { id: 'marcellus', nombre: 'Marcellus', nota: 'Romana, suave y luminosa', family: '"Marcellus", Georgia, serif', wght: 400, track: '0.08em' },
+  { id: 'cormorant-sc', nombre: 'Cormorant SC', nota: 'Fina y refinada', family: '"Cormorant SC", Georgia, serif', wght: 700, track: '0.06em' },
+  { id: 'spectral-sc', nombre: 'Spectral SC', nota: 'Sobria y legible', family: '"Spectral SC", Georgia, serif', wght: 600, track: '0.05em' },
+];
+const googleFonts =
+  'https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&family=Libre+Baskerville:wght@700&family=Marcellus&family=Playfair+Display+SC:wght@700&family=Spectral+SC:wght@600&display=swap';
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href={googleFonts} />
+
+<div
+  data-logo-fuentes={JSON.stringify(fuentes)}
+  class="fixed z-[60] left-1/2 -translate-x-1/2 bottom-20 sm:bottom-6 w-[min(94vw,34rem)] rounded-[4px] bg-bone text-ink shadow-[0_18px_50px_-12px_rgb(31_43_42/0.45)] border border-ink/10 p-3 sm:p-4"
+  role="group"
+  aria-label="Probar tipografías del logotipo"
+>
+  <div class="flex items-center gap-3 sm:gap-4">
+    <img src={asset('/logocabanas.webp')} alt="Logo de Cabañas Pinamar" width="64" height="64" class="w-14 h-14 sm:w-16 sm:h-16 shrink-0" />
+    <p data-muestra class="flex-1 min-w-0 uppercase text-[1.35rem] sm:text-[1.75rem] leading-none truncate">Cabañas Pinamar</p>
+  </div>
+  <div class="mt-3 flex items-center gap-2 border-t border-ink/10 pt-3">
+    <button type="button" data-prev class="w-11 h-11 shrink-0 grid place-items-center rounded-full border border-ink/15 hover:border-ink/50" aria-label="Fuente anterior">
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6" /></svg>
+    </button>
+    <div class="flex-1 min-w-0 text-center leading-tight" aria-live="polite">
+      <p data-nombre class="font-medium truncate">Libre Baskerville</p>
+      <p class="text-[13px] text-stone"><span data-n>1</span> de {fuentes.length} · <span data-nota></span></p>
+    </div>
+    <button type="button" data-next class="w-11 h-11 shrink-0 grid place-items-center rounded-full border border-ink/15 hover:border-ink/50" aria-label="Fuente siguiente">
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6" /></svg>
+    </button>
+  </div>
+</div>
+
+<style is:global>
+  html[data-logo-fuente] .font-logo {
+    font-family: var(--lf) !important;
+    font-weight: var(--lw) !important;
+    letter-spacing: var(--lt) !important;
+    text-transform: uppercase;
+  }
+</style>
+
+<script>
+  type Fuente = { id: string; nombre: string; nota: string; family: string; wght: number; track: string };
+  const box = document.querySelector<HTMLElement>('[data-logo-fuentes]');
+  if (box) {
+    const lista: Fuente[] = JSON.parse(box.dataset.logoFuentes || '[]');
+    const muestra = box.querySelector<HTMLElement>('[data-muestra]')!;
+    const nombre = box.querySelector<HTMLElement>('[data-nombre]')!;
+    const nota = box.querySelector<HTMLElement>('[data-nota]')!;
+    const n = box.querySelector<HTMLElement>('[data-n]')!;
+    const root = document.documentElement;
+    const desdeUrl = new URLSearchParams(location.search).get('fuente');
+    let i = Math.max(0, lista.findIndex((f) => f.id === desdeUrl));
+
+    const aplicar = () => {
+      const f = lista[i];
+      root.dataset.logoFuente = f.id;
+      root.style.setProperty('--lf', f.family);
+      root.style.setProperty('--lw', String(f.wght));
+      root.style.setProperty('--lt', f.track);
+      muestra.style.fontFamily = f.family;
+      muestra.style.fontWeight = String(f.wght);
+      muestra.style.letterSpacing = f.track;
+      nombre.textContent = f.nombre;
+      nota.textContent = f.nota;
+      n.textContent = String(i + 1);
+      const url = new URL(location.href);
+      url.searchParams.set('fuente', f.id);
+      history.replaceState(null, '', url);
+    };
+
+    const mover = (d: number) => {
+      i = (i + d + lista.length) % lista.length;
+      aplicar();
+    };
+    box.querySelector('[data-prev]')!.addEventListener('click', () => mover(-1));
+    box.querySelector('[data-next]')!.addEventListener('click', () => mover(1));
+    document.addEventListener('keydown', (e) => {
+      if ((e.target as HTMLElement).closest('input, select, textarea, dialog')) return;
+      if (e.key === 'ArrowLeft') mover(-1);
+      if (e.key === 'ArrowRight') mover(1);
+    });
+    aplicar();
+  }
+</script>
