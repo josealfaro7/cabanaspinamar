@@ -10,9 +10,13 @@ import Location from '../components/Location.astro';
 import Footer from '../components/Footer.astro';
 import MobileBar from '../components/MobileBar.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import SeoSchema from '../components/SeoSchema.astro';
+import { asset } from '../data/site';
 ---
 
 <Layout>
+  <SeoSchema slot="head" />
+  <link slot="head" rel="preload" as="image" href={asset('/video/terraza-poster.jpg')} fetchpriority="high" />
   <Header />
   <main id="contenido">
     <HeroVideo />

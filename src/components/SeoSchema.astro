@@ -1,0 +1,37 @@
+---
+import { contact, location, policies, services, asset } from '../data/site';
+import { tiposCabana } from '../data/tipos';
+
+const site = Astro.site ? new URL(import.meta.env.BASE_URL.replace(/\/?$/, '/'), Astro.site).href : undefined;
+const abs = (path: string) => (Astro.site ? new URL(path, Astro.site).href : path);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Cabañas Pinamar',
+  description:
+    'Cabañas familiares equipadas en La Serena, a 3 minutos a pie de la playa de Peñuelas. Desayuno incluido, recepción 24 horas, estacionamiento privado y pet friendly.',
+  url: site,
+  image: [abs(asset('/og-cabanas-pinamar.jpg')), ...tiposCabana.map((t) => abs(t.fotos[0].src))],
+  logo: abs(asset('/logocabanas.png')),
+  telephone: contact.phoneHref.replace('tel:', ''),
+  email: contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Avenida Pacífico 5020',
+    addressLocality: 'La Serena',
+    addressRegion: 'Coquimbo',
+    addressCountry: 'CL',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: location.lat, longitude: location.lng },
+  hasMap: location.googleMaps,
+  checkinTime: `${policies.checkInHora}:00`,
+  checkoutTime: `${policies.checkOut}:00`,
+  numberOfRooms: 21,
+  petsAllowed: true,
+  amenityFeature: services.map((s) => ({ '@type': 'LocationFeatureSpecification', name: s.title, value: true })),
+  sameAs: [contact.instagram],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

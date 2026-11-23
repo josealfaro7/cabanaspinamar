@@ -10,16 +10,22 @@ import logoFontUrl from '../assets/fonts/playfair-display-sc-latin-700-normal.wo
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Cabañas Pinamar · La Serena, a pasos de la playa de Peñuelas',
-  description = 'Cabañas familiares en La Serena desde hace más de 25 años. A 3 minutos a pie de la playa de Peñuelas, con recepción 24 horas y desayuno incluido.',
+  title = 'Cabañas en La Serena a pasos de la playa | Cabañas Pinamar',
+  description = 'Cabañas familiares equipadas en La Serena, a 3 minutos a pie de la playa de Peñuelas. Desayuno incluido, recepción 24 horas, estacionamiento y pet friendly.',
+  noindex = false,
 } = Astro.props;
+
+const pathname = /\.[a-z0-9]+$/i.test(Astro.url.pathname) || Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = Astro.site ? new URL(pathname, Astro.site).href : undefined;
+const ogImage = Astro.site ? new URL(asset('/og-cabanas-pinamar.jpg'), Astro.site).href : asset('/og-cabanas-pinamar.jpg');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +34,21 @@ const {
     <link rel="icon" type="image/png" href={asset('/favicon.png')} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Cabañas Pinamar" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Cabaña blanca de techo de teja con terraza en Cabañas Pinamar, La Serena" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href={asset('/sitemap.xml')} />
+    <slot name="head" />
     <link rel="preload" href={playfairUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={logoFontUrl} as="font" type="font/woff2" crossorigin />
     <style is:global>
