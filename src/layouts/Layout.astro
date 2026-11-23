@@ -5,7 +5,7 @@ import '@fontsource/hanken-grotesk/500.css';
 import '@fontsource/hanken-grotesk/600.css';
 import '../styles/fonts.css';
 import playfairUrl from '../assets/fonts/playfair-display-latin-wght-normal.woff2?url';
-import cinzelUrl from '../assets/fonts/cinzel-latin-wght-normal.woff2?url';
+import logoFontUrl from '../assets/fonts/playfair-display-sc-latin-700-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -29,7 +29,7 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <link rel="preload" href={playfairUrl} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={cinzelUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={logoFontUrl} as="font" type="font/woff2" crossorigin />
     <style is:global>
       html {
         -webkit-text-size-adjust: 100%;
@@ -43,14 +43,15 @@ const {
         font-size: 1.0625rem;
         line-height: 1.65;
       }
-      /* Títulos en Playfair Display; logotipo del header en Cinzel (igual al logo). */
+      /* Títulos en Playfair Display; logotipo del header en Playfair Display SC. */
       :root {
         --display-wght: 500;
       }
       .font-logo {
-        font-family: 'Cinzel', Georgia, serif;
+        font-family: 'Playfair Display SC', Georgia, serif;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
       .font-display {
         font-weight: var(--display-wght);

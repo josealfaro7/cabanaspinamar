@@ -22,7 +22,7 @@ The sunset palette lives only in the logo.
 ## Type
 
 - Display: Playfair Display 500 (chosen with the client, Nov 23, 2026; self-hosted woff2 in `src/assets/fonts`). Headings only, never below 24px. Sentence case.
-- Logo wordmark in the header: Cinzel 700 (`font-logo`, self-hosted), the closest free match to the Roman capitals of `logocabanas.png`. The footer wordmark uses the display font.
+- Logo wordmark in the header: Playfair Display SC 700, uppercase, letter-spacing 0.04em pending the client's final value (`font-logo`, self-hosted; chosen Nov 23, 2026). The footer wordmark uses the display font.
 - Text and UI: Hanken Grotesk 400/500/600. Body 17px/1.65, measure ≤ 68ch.
 - Labels: Hanken Grotesk 600, 13px, letter-spacing .08em, uppercase, used sparingly (form labels, image captions), never as a kicker above a heading.
 
