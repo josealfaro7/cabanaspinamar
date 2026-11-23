@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /cabanaspinamar/propuestas-cabanas/
+
+Sitemap: https://josealfaro7.github.io/cabanaspinamar/sitemap.xml
